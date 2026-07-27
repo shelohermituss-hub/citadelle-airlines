@@ -1,6 +1,31 @@
 {
   "HomePage": {
     "title": "Where to?",
-    "subtitle": "Book your flight with Citadelle Airlines."
+    "subtitle": "Book your flight with Citadelle Airlines.",
+    "searchCta": "Search flights"
+  },
+  "Nav": {
+    "logoAlt": "Citadelle Airlines",
+    "book": "Book",
+    "manageBooking": "My booking",
+    "flightStatus": "Flight status",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "changeLanguage": "Change language"
+  },
+  "Language": {
+    "fr": "Français",
+    "ht": "Kreyòl",
+    "en": "English"
+  },
+  "Footer": {
+    "legalHeading": "Legal information",
+    "terms": "Terms and conditions",
+    "privacy": "Privacy policy",
+    "cookies": "Cookie settings",
+    "contactHeading": "Contact",
+    "contactEmail": "contact@citadelleairlines.com",
+    "contactPhone": "+509 2222 3333",
+    "rights": "© {year} Citadelle Airlines. All rights reserved."
   }
 }

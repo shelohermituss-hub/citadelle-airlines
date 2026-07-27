@@ -1,6 +1,31 @@
 {
   "HomePage": {
     "title": "Ki kote w prale ?",
-    "subtitle": "Rezève vòl ou avèk Citadelle Airlines."
+    "subtitle": "Rezève vòl ou avèk Citadelle Airlines.",
+    "searchCta": "Chèche vòl"
+  },
+  "Nav": {
+    "logoAlt": "Citadelle Airlines",
+    "book": "Rezève",
+    "manageBooking": "Rezèvasyon mwen",
+    "flightStatus": "Estati vòl",
+    "openMenu": "Louvri meni an",
+    "closeMenu": "Fèmen meni an",
+    "changeLanguage": "Chanje lang"
+  },
+  "Language": {
+    "fr": "Français",
+    "ht": "Kreyòl",
+    "en": "English"
+  },
+  "Footer": {
+    "legalHeading": "Enfòmasyon legal",
+    "terms": "Kondisyon jeneral vant",
+    "privacy": "Politik konfidansyalite",
+    "cookies": "Jesyon cookies",
+    "contactHeading": "Kontak",
+    "contactEmail": "contact@citadelleairlines.com",
+    "contactPhone": "+509 2222 3333",
+    "rights": "© {year} Citadelle Airlines. Tout dwa rezève."
   }
 }

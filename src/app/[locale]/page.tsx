@@ -5,12 +5,12 @@ export default function HomePage() {
   const t = useTranslations("HomePage");
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-background p-8 text-center">
+    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center gap-6 p-8 text-center">
       <h1 className="font-serif text-4xl font-semibold text-foreground sm:text-5xl">
         {t("title")}
       </h1>
       <p className="max-w-md text-muted-foreground">{t("subtitle")}</p>
-      <Button>Rechercher des vols</Button>
-    </main>
+      <Button>{t("searchCta")}</Button>
+    </div>
   );
 }

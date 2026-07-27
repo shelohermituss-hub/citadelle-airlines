@@ -5,6 +5,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { QueryProvider } from "@/components/providers/query-provider";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
 import "../globals.css";
 
 const inter = Inter({
@@ -56,7 +58,13 @@ export default async function LocaleLayout({
         className={`${inter.variable} ${fraunces.variable} font-sans antialiased`}
       >
         <NextIntlClientProvider>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <div className="flex min-h-screen flex-col bg-background">
+              <SiteHeader />
+              <main className="flex-1">{children}</main>
+              <SiteFooter />
+            </div>
+          </QueryProvider>
         </NextIntlClientProvider>
       </body>
     </html>

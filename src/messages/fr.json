@@ -1,6 +1,31 @@
 {
   "HomePage": {
     "title": "Où allez-vous ?",
-    "subtitle": "Réservez votre vol avec Citadelle Airlines."
+    "subtitle": "Réservez votre vol avec Citadelle Airlines.",
+    "searchCta": "Rechercher des vols"
+  },
+  "Nav": {
+    "logoAlt": "Citadelle Airlines",
+    "book": "Réserver",
+    "manageBooking": "Ma réservation",
+    "flightStatus": "Statut du vol",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "changeLanguage": "Changer de langue"
+  },
+  "Language": {
+    "fr": "Français",
+    "ht": "Kreyòl",
+    "en": "English"
+  },
+  "Footer": {
+    "legalHeading": "Informations légales",
+    "terms": "Conditions générales de vente",
+    "privacy": "Politique de confidentialité",
+    "cookies": "Gestion des cookies",
+    "contactHeading": "Contact",
+    "contactEmail": "contact@citadelleairlines.com",
+    "contactPhone": "+509 2222 3333",
+    "rights": "© {year} Citadelle Airlines. Tous droits réservés."
   }
 }
