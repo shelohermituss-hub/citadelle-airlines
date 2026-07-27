@@ -43,6 +43,48 @@
     "done": "Terminé",
     "search": "Rechercher des vols"
   },
+  "Fares": {
+    "ECO": "Éco",
+    "ECOFLEX": "Éco Flex",
+    "BUSINESS": "Business"
+  },
+  "Stepper": {
+    "flights": "Vols",
+    "passengers": "Passagers",
+    "payment": "Paiement",
+    "ticket": "Billet"
+  },
+  "Results": {
+    "heading": "Vols {origin} → {destination}",
+    "subheading": "{date} · {passengers}",
+    "backToSearch": "Retour à la recherche",
+    "sortLabel": "Trier par",
+    "sortPrice": "Prix",
+    "sortDuration": "Durée",
+    "sortDeparture": "Heure de départ",
+    "filtersHeading": "Filtres",
+    "resetFilters": "Réinitialiser",
+    "stopsHeading": "Escales",
+    "directOnly": "Vols directs uniquement",
+    "timeHeading": "Horaires de départ",
+    "morning": "Matin (00 h – 12 h)",
+    "afternoon": "Après-midi (12 h – 18 h)",
+    "evening": "Soir (18 h – 24 h)",
+    "fareHeading": "Classe",
+    "resultsCount": "{count, plural, =0 {Aucun vol} one {# vol} other {# vols}}",
+    "recommended": "Vol recommandé",
+    "select": "Sélectionner",
+    "direct": "Direct",
+    "oneStop": "1 escale",
+    "modifiable": "Modifiable",
+    "bagsIncluded": "{count, plural, =0 {Bagage cabine} one {# bagage inclus} other {# bagages inclus}}",
+    "noResults": "Aucun vol ne correspond à ces filtres.",
+    "noResultsHint": "Essayez d'élargir vos critères.",
+    "loadError": "Une erreur est survenue pendant la recherche.",
+    "retry": "Réessayer",
+    "missingParams": "Veuillez lancer une recherche depuis la page d'accueil.",
+    "passengerCount": "{count, plural, one {# passager} other {# passagers}}"
+  },
   "Shortcuts": {
     "checkin": "Enregistrement",
     "checkinDescription": "Enregistrez-vous en ligne avant votre vol",

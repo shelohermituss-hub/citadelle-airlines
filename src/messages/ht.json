@@ -43,6 +43,48 @@
     "done": "Fini",
     "search": "Chèche vòl"
   },
+  "Fares": {
+    "ECO": "Eko",
+    "ECOFLEX": "Eko Flex",
+    "BUSINESS": "Biznis"
+  },
+  "Stepper": {
+    "flights": "Vòl",
+    "passengers": "Pasaje",
+    "payment": "Peman",
+    "ticket": "Tikè"
+  },
+  "Results": {
+    "heading": "Vòl {origin} → {destination}",
+    "subheading": "{date} · {passengers}",
+    "backToSearch": "Tounen nan rechèch la",
+    "sortLabel": "Klase pa",
+    "sortPrice": "Pri",
+    "sortDuration": "Dire",
+    "sortDeparture": "Lè depa",
+    "filtersHeading": "Filtè",
+    "resetFilters": "Reyajiste",
+    "stopsHeading": "Eskal",
+    "directOnly": "Vòl dirèk sèlman",
+    "timeHeading": "Lè depa",
+    "morning": "Maten (00 z – 12 z)",
+    "afternoon": "Aprèmidi (12 z – 18 z)",
+    "evening": "Aswè (18 z – 24 z)",
+    "fareHeading": "Klas",
+    "resultsCount": "{count, plural, =0 {Pa gen vòl} one {# vòl} other {# vòl}}",
+    "recommended": "Vòl rekòmande",
+    "select": "Chwazi",
+    "direct": "Dirèk",
+    "oneStop": "1 eskal",
+    "modifiable": "Modifyab",
+    "bagsIncluded": "{count, plural, =0 {Bagaj kabin} one {# bagaj enkli} other {# bagaj enkli}}",
+    "noResults": "Pa gen vòl ki koresponn ak filtè sa yo.",
+    "noResultsHint": "Eseye elaji kritè rechèch ou yo.",
+    "loadError": "Gen yon erè ki pase pandan rechèch la.",
+    "retry": "Eseye ankò",
+    "missingParams": "Tanpri lanse yon rechèch soti nan paj akèy la.",
+    "passengerCount": "{count, plural, one {# pasaje} other {# pasaje}}"
+  },
   "Shortcuts": {
     "checkin": "Anrejistreman",
     "checkinDescription": "Anrejistre w sou entènèt anvan vòl ou",

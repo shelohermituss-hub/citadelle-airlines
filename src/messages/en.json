@@ -43,6 +43,48 @@
     "done": "Done",
     "search": "Search flights"
   },
+  "Fares": {
+    "ECO": "Economy",
+    "ECOFLEX": "Economy Flex",
+    "BUSINESS": "Business"
+  },
+  "Stepper": {
+    "flights": "Flights",
+    "passengers": "Passengers",
+    "payment": "Payment",
+    "ticket": "Ticket"
+  },
+  "Results": {
+    "heading": "Flights {origin} → {destination}",
+    "subheading": "{date} · {passengers}",
+    "backToSearch": "Back to search",
+    "sortLabel": "Sort by",
+    "sortPrice": "Price",
+    "sortDuration": "Duration",
+    "sortDeparture": "Departure time",
+    "filtersHeading": "Filters",
+    "resetFilters": "Reset",
+    "stopsHeading": "Stops",
+    "directOnly": "Direct flights only",
+    "timeHeading": "Departure time",
+    "morning": "Morning (12am–12pm)",
+    "afternoon": "Afternoon (12pm–6pm)",
+    "evening": "Evening (6pm–12am)",
+    "fareHeading": "Fare class",
+    "resultsCount": "{count, plural, =0 {No flights} one {# flight} other {# flights}}",
+    "recommended": "Recommended flight",
+    "select": "Select",
+    "direct": "Direct",
+    "oneStop": "1 stop",
+    "modifiable": "Changeable",
+    "bagsIncluded": "{count, plural, =0 {Cabin bag only} one {# bag included} other {# bags included}}",
+    "noResults": "No flights match these filters.",
+    "noResultsHint": "Try widening your search criteria.",
+    "loadError": "Something went wrong while searching.",
+    "retry": "Retry",
+    "missingParams": "Please start a search from the home page.",
+    "passengerCount": "{count, plural, one {# passenger} other {# passengers}}"
+  },
   "Shortcuts": {
     "checkin": "Check-in",
     "checkinDescription": "Check in online before your flight",
