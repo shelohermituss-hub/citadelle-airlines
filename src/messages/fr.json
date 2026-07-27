@@ -2,7 +2,7 @@
   "HomePage": {
     "title": "Où allez-vous ?",
     "subtitle": "Réservez votre vol avec Citadelle Airlines.",
-    "searchCta": "Rechercher des vols"
+    "heroImageAlt": "Avion Citadelle Airlines en vol"
   },
   "Nav": {
     "logoAlt": "Citadelle Airlines",
@@ -17,6 +17,37 @@
     "fr": "Français",
     "ht": "Kreyòl",
     "en": "English"
+  },
+  "Airports": {
+    "PAP": "Port-au-Prince",
+    "CAP": "Cap-Haïtien",
+    "JFK": "New York",
+    "MIA": "Miami",
+    "SDQ": "Saint-Domingue"
+  },
+  "SearchForm": {
+    "tripTypeRoundtrip": "Aller-retour",
+    "tripTypeOneway": "Aller simple",
+    "origin": "Départ",
+    "destination": "Destination",
+    "originPlaceholder": "Choisir un aéroport",
+    "destinationPlaceholder": "Choisir un aéroport",
+    "swapAirports": "Inverser le départ et la destination",
+    "departDate": "Date de départ",
+    "returnDate": "Date de retour",
+    "selectDate": "Choisir une date",
+    "passengers": "Passagers",
+    "passengerCount": "{count, plural, one {# passager} other {# passagers}}",
+    "adults": "Adultes",
+    "adultsHint": "12 ans et plus",
+    "done": "Terminé",
+    "search": "Rechercher des vols"
+  },
+  "Shortcuts": {
+    "checkin": "Enregistrement",
+    "checkinDescription": "Enregistrez-vous en ligne avant votre vol",
+    "manageBookingDescription": "Consultez ou modifiez votre réservation",
+    "flightStatusDescription": "Suivez l'état de votre vol en temps réel"
   },
   "Footer": {
     "legalHeading": "Informations légales",

@@ -18,6 +18,7 @@
     "next": "15.5.22",
     "next-intl": "^4.13.4",
     "react": "19.1.0",
+    "react-day-picker": "^10.0.1",
     "react-dom": "19.1.0",
     "shadcn": "^4.16.0",
     "tailwind-merge": "^3.6.0",

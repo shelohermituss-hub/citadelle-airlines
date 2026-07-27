@@ -2,7 +2,7 @@
   "HomePage": {
     "title": "Where to?",
     "subtitle": "Book your flight with Citadelle Airlines.",
-    "searchCta": "Search flights"
+    "heroImageAlt": "Citadelle Airlines aircraft in flight"
   },
   "Nav": {
     "logoAlt": "Citadelle Airlines",
@@ -17,6 +17,37 @@
     "fr": "Français",
     "ht": "Kreyòl",
     "en": "English"
+  },
+  "Airports": {
+    "PAP": "Port-au-Prince",
+    "CAP": "Cap-Haïtien",
+    "JFK": "New York",
+    "MIA": "Miami",
+    "SDQ": "Santo Domingo"
+  },
+  "SearchForm": {
+    "tripTypeRoundtrip": "Round trip",
+    "tripTypeOneway": "One way",
+    "origin": "From",
+    "destination": "To",
+    "originPlaceholder": "Choose an airport",
+    "destinationPlaceholder": "Choose an airport",
+    "swapAirports": "Swap origin and destination",
+    "departDate": "Depart date",
+    "returnDate": "Return date",
+    "selectDate": "Select a date",
+    "passengers": "Passengers",
+    "passengerCount": "{count, plural, one {# passenger} other {# passengers}}",
+    "adults": "Adults",
+    "adultsHint": "12 and older",
+    "done": "Done",
+    "search": "Search flights"
+  },
+  "Shortcuts": {
+    "checkin": "Check-in",
+    "checkinDescription": "Check in online before your flight",
+    "manageBookingDescription": "View or change your booking",
+    "flightStatusDescription": "Track your flight in real time"
   },
   "Footer": {
     "legalHeading": "Legal information",

@@ -2,7 +2,7 @@
   "HomePage": {
     "title": "Ki kote w prale ?",
     "subtitle": "Rezève vòl ou avèk Citadelle Airlines.",
-    "searchCta": "Chèche vòl"
+    "heroImageAlt": "Avyon Citadelle Airlines nan syèl la"
   },
   "Nav": {
     "logoAlt": "Citadelle Airlines",
@@ -17,6 +17,37 @@
     "fr": "Français",
     "ht": "Kreyòl",
     "en": "English"
+  },
+  "Airports": {
+    "PAP": "Pòtoprens",
+    "CAP": "Kap Ayisyen",
+    "JFK": "New York",
+    "MIA": "Miami",
+    "SDQ": "Sen Domeng"
+  },
+  "SearchForm": {
+    "tripTypeRoundtrip": "Ale-tounen",
+    "tripTypeOneway": "Ale sèlman",
+    "origin": "Depa",
+    "destination": "Destinasyon",
+    "originPlaceholder": "Chwazi yon ayewopò",
+    "destinationPlaceholder": "Chwazi yon ayewopò",
+    "swapAirports": "Ranvèse depa ak destinasyon",
+    "departDate": "Dat depa",
+    "returnDate": "Dat tounen",
+    "selectDate": "Chwazi yon dat",
+    "passengers": "Pasaje",
+    "passengerCount": "{count, plural, one {# pasaje} other {# pasaje}}",
+    "adults": "Granmoun",
+    "adultsHint": "12 an oswa plis",
+    "done": "Fini",
+    "search": "Chèche vòl"
+  },
+  "Shortcuts": {
+    "checkin": "Anrejistreman",
+    "checkinDescription": "Anrejistre w sou entènèt anvan vòl ou",
+    "manageBookingDescription": "Gade oswa modifye rezèvasyon w",
+    "flightStatusDescription": "Swiv estati vòl ou an tan reyèl"
   },
   "Footer": {
     "legalHeading": "Enfòmasyon legal",
