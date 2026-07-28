@@ -95,6 +95,23 @@
     "termsLabel": "Mwen aksepte <terms>kondisyon jeneral vant</terms> ak politik tarif la.",
     "pay": "Peye {amount}"
   },
+  "Confirmation": {
+    "loading": "N ap finalize rezèvasyon w…",
+    "notFound": "Nou pa jwenn vòl sa a. Tanpri refè rechèch ou.",
+    "backToHome": "Tounen nan akèy la",
+    "successHeading": "Rezèvasyon konfime !",
+    "successSubheading": "Mèsi paske ou chwazi Citadelle Airlines.",
+    "pnrLabel": "Kòd rezèvasyon",
+    "emailReminder": "Nou voye yon imèl konfimasyon ba ou ak tout detay vwayaj ou.",
+    "summaryHeading": "Rezime vwayaj la",
+    "layoverAt": "Eskal nan {airport}",
+    "passengersLabel": "{count, plural, one {# pasaje} other {# pasaje}}",
+    "totalPaid": "Total peye",
+    "downloadTicket": "Telechaje tikè a",
+    "addToCalendar": "Ajoute nan kalandriye",
+    "actionsHint": "Fonksyonalite sa yo ap disponib byento.",
+    "manageBooking": "Jere rezèvasyon mwen"
+  },
   "Recap": {
     "stepHeading": "Enfòmasyon ou yo",
     "loading": "N ap chaje vòl ou…",

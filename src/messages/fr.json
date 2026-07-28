@@ -95,6 +95,23 @@
     "termsLabel": "J'accepte les <terms>conditions générales de vente</terms> et la politique tarifaire.",
     "pay": "Payer {amount}"
   },
+  "Confirmation": {
+    "loading": "Finalisation de votre réservation…",
+    "notFound": "Ce vol est introuvable. Veuillez relancer votre recherche.",
+    "backToHome": "Retour à l'accueil",
+    "successHeading": "Réservation confirmée !",
+    "successSubheading": "Merci d'avoir choisi Citadelle Airlines.",
+    "pnrLabel": "Code de réservation",
+    "emailReminder": "Un e-mail de confirmation vous a été envoyé avec tous les détails de votre voyage.",
+    "summaryHeading": "Récapitulatif du voyage",
+    "layoverAt": "Escale à {airport}",
+    "passengersLabel": "{count, plural, one {# passager} other {# passagers}}",
+    "totalPaid": "Total payé",
+    "downloadTicket": "Télécharger le billet",
+    "addToCalendar": "Ajouter au calendrier",
+    "actionsHint": "Ces fonctionnalités seront bientôt disponibles.",
+    "manageBooking": "Gérer ma réservation"
+  },
   "Recap": {
     "stepHeading": "Vos informations",
     "loading": "Chargement de votre vol…",

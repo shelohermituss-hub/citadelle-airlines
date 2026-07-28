@@ -95,6 +95,23 @@
     "termsLabel": "I accept the <terms>terms and conditions</terms> and fare policy.",
     "pay": "Pay {amount}"
   },
+  "Confirmation": {
+    "loading": "Finalizing your booking…",
+    "notFound": "This flight could not be found. Please search again.",
+    "backToHome": "Back to home",
+    "successHeading": "Booking confirmed!",
+    "successSubheading": "Thank you for choosing Citadelle Airlines.",
+    "pnrLabel": "Booking reference",
+    "emailReminder": "A confirmation email with your full trip details has been sent to you.",
+    "summaryHeading": "Trip summary",
+    "layoverAt": "Layover in {airport}",
+    "passengersLabel": "{count, plural, one {# passenger} other {# passengers}}",
+    "totalPaid": "Total paid",
+    "downloadTicket": "Download ticket",
+    "addToCalendar": "Add to calendar",
+    "actionsHint": "These features will be available soon.",
+    "manageBooking": "Manage my booking"
+  },
   "Recap": {
     "stepHeading": "Your details",
     "loading": "Loading your flight…",
