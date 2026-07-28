@@ -74,18 +74,6 @@
     "ECOFLEX": "Éco Flex",
     "BUSINESS": "Business"
   },
-  "FareComparison": {
-    "title": "Choisissez votre tarif",
-    "description": "{origin} → {destination} · {departure} – {arrival}",
-    "select": "Sélectionner",
-    "recommended": "Recommandé",
-    "notAvailable": "Non disponible",
-    "baggage": "Bagages",
-    "modification": "Modification",
-    "refund": "Remboursement",
-    "seat": "Sélection de siège",
-    "close": "Fermer"
-  },
   "Payment": {
     "stepHeading": "Paiement",
     "loading": "Chargement de votre vol…",
@@ -237,6 +225,9 @@
     "fareHeading": "Classe",
     "resultsCount": "{count, plural, =0 {Aucun vol} one {# vol} other {# vols}}",
     "recommended": "Vol recommandé",
+    "recommendedFare": "Recommandé",
+    "editSearch": "Modifier",
+    "notAvailable": "Non disponible",
     "select": "Sélectionner",
     "direct": "Direct",
     "oneStop": "1 escale",

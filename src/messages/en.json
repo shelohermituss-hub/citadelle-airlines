@@ -74,18 +74,6 @@
     "ECOFLEX": "Economy Flex",
     "BUSINESS": "Business"
   },
-  "FareComparison": {
-    "title": "Choose your fare",
-    "description": "{origin} → {destination} · {departure} – {arrival}",
-    "select": "Select",
-    "recommended": "Recommended",
-    "notAvailable": "Not available",
-    "baggage": "Baggage",
-    "modification": "Changes",
-    "refund": "Refund",
-    "seat": "Seat selection",
-    "close": "Close"
-  },
   "Payment": {
     "stepHeading": "Payment",
     "loading": "Loading your flight…",
@@ -237,6 +225,9 @@
     "fareHeading": "Fare class",
     "resultsCount": "{count, plural, =0 {No flights} one {# flight} other {# flights}}",
     "recommended": "Recommended flight",
+    "recommendedFare": "Recommended",
+    "editSearch": "Edit",
+    "notAvailable": "Not available",
     "select": "Select",
     "direct": "Direct",
     "oneStop": "1 stop",

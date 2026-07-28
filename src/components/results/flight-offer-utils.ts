@@ -90,7 +90,8 @@ export function getItineraryKey(offer: FlightOffer): string {
     .join("|");
 }
 
-const FARE_ORDER: BrandedFare[] = ["ECO", "ECOFLEX", "BUSINESS"];
+export const FARE_ORDER: BrandedFare[] = ["ECO", "ECOFLEX", "BUSINESS"];
+export const RECOMMENDED_FARE: BrandedFare = "ECOFLEX";
 
 /** Les offres partageant le même itinéraire que `target`, triées Éco → Business. */
 export function getFareSiblings(
@@ -105,6 +106,20 @@ export function getFareSiblings(
         FARE_ORDER.indexOf(getOfferFare(a).brandedFare) -
         FARE_ORDER.indexOf(getOfferFare(b).brandedFare)
     );
+}
+
+/** Une offre par itinéraire unique (dédoublonne les paliers tarifaires) — alimente les lignes de la matrice de tarifs. */
+export function getUniqueItineraries(offers: FlightOffer[]): FlightOffer[] {
+  const seen = new Set<string>();
+  const result: FlightOffer[] = [];
+  for (const offer of offers) {
+    const key = getItineraryKey(offer);
+    if (!seen.has(key)) {
+      seen.add(key);
+      result.push(offer);
+    }
+  }
+  return result;
 }
 
 export function getDepartureHour(offer: FlightOffer): number {

@@ -6,34 +6,25 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { format } from "date-fns";
 import { enUS, fr } from "date-fns/locale";
-import { motion } from "motion/react";
 import { Link, useRouter } from "@/i18n/navigation";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { amadeusClient, type AirportCode, type FlightOffer } from "@/services/amadeus";
-import { FareComparisonDialog } from "./fare-comparison-dialog";
-import { FlightCard } from "./flight-card";
+import { FareMatrix } from "./fare-matrix";
 import { FlightCardSkeleton } from "./flight-card-skeleton";
 import { DEFAULT_FILTERS, FlightFilters, type FiltersState } from "./flight-filters";
+import { SearchSummaryBar } from "./search-summary-bar";
 import { SortBar, type SortKey } from "./sort-bar";
 import {
   formatDurationMinutes,
-  getFareSiblings,
+  getItineraryKey,
   getOfferFare,
   getTimeOfDay,
+  getUniqueItineraries,
   isDirect,
 } from "./flight-offer-utils";
 
 const DATE_LOCALES = { fr, ht: fr, en: enUS } as const;
 const EMPTY_OFFERS: FlightOffer[] = [];
-
-const listVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.06 } },
-};
-const cardVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" as const } },
-};
 
 function pickRecommendedId(offers: FlightOffer[]): string | undefined {
   if (offers.length === 0) return undefined;
@@ -88,8 +79,6 @@ export function ResultsView() {
 
   const [sort, setSort] = useState<SortKey>("price");
   const [filters, setFilters] = useState<FiltersState>(DEFAULT_FILTERS);
-  const [comparedOffer, setComparedOffer] = useState<FlightOffer | null>(null);
-  const [selectOrigin, setSelectOrigin] = useState<{ x: number; y: number } | null>(null);
 
   const origin = searchParams.get("originLocationCode") ?? "";
   const destination = searchParams.get("destinationLocationCode") ?? "";
@@ -118,6 +107,10 @@ export function ResultsView() {
 
   const allOffers = data?.data ?? EMPTY_OFFERS;
   const recommendedId = useMemo(() => pickRecommendedId(allOffers), [allOffers]);
+  const recommendedItineraryKey = useMemo(() => {
+    const offer = allOffers.find((candidate) => candidate.id === recommendedId);
+    return offer ? getItineraryKey(offer) : undefined;
+  }, [allOffers, recommendedId]);
   const hasStops = useMemo(() => allOffers.some((offer) => !isDirect(offer)), [
     allOffers,
   ]);
@@ -127,20 +120,15 @@ export function ResultsView() {
     [allOffers, filters, sort]
   );
 
-  const fareSiblings = useMemo(
-    () => (comparedOffer ? getFareSiblings(allOffers, comparedOffer) : []),
-    [allOffers, comparedOffer]
+  const uniqueItineraries = useMemo(
+    () => getUniqueItineraries(visibleOffers),
+    [visibleOffers]
   );
 
   function handleFareSelect(offer: FlightOffer) {
     const params = new URLSearchParams(searchParams);
     params.set("offerId", offer.id);
     router.push(`/recapitulatif?${params.toString()}`);
-  }
-
-  function handleCardSelect(offer: FlightOffer, event: React.MouseEvent<HTMLButtonElement>) {
-    setSelectOrigin({ x: event.clientX, y: event.clientY });
-    setComparedOffer(offer);
   }
 
   if (!hasRequiredParams) {
@@ -163,6 +151,13 @@ export function ResultsView() {
 
   return (
     <div className="flex flex-col gap-6">
+      <SearchSummaryBar
+        origin={origin}
+        destination={destination}
+        departureDate={departureDate}
+        adults={adults}
+      />
+
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <Link
@@ -208,17 +203,17 @@ export function ResultsView() {
               <SortBar
                 value={sort}
                 onChange={setSort}
-                resultsCount={visibleOffers.length}
+                resultsCount={uniqueItineraries.length}
               />
             )}
 
             {isLoading ? (
-              <div className="flex flex-col gap-4">
+              <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-card">
                 {Array.from({ length: 4 }).map((_, index) => (
                   <FlightCardSkeleton key={index} />
                 ))}
               </div>
-            ) : visibleOffers.length === 0 ? (
+            ) : uniqueItineraries.length === 0 ? (
               <div className="flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-10 text-center">
                 <p className="font-medium text-foreground">{t("noResults")}</p>
                 <p className="text-sm text-muted-foreground">
@@ -226,36 +221,16 @@ export function ResultsView() {
                 </p>
               </div>
             ) : (
-              <motion.div
-                className="flex flex-col gap-4"
-                initial="hidden"
-                animate="visible"
-                variants={listVariants}
-              >
-                {visibleOffers.map((offer) => (
-                  <motion.div key={offer.id} variants={cardVariants}>
-                    <FlightCard
-                      offer={offer}
-                      recommended={offer.id === recommendedId}
-                      onSelect={handleCardSelect}
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
+              <FareMatrix
+                itineraries={uniqueItineraries}
+                allOffers={allOffers}
+                recommendedItineraryKey={recommendedItineraryKey}
+                onSelect={handleFareSelect}
+              />
             )}
           </div>
         </div>
       )}
-
-      <FareComparisonDialog
-        open={comparedOffer !== null}
-        onOpenChange={(nextOpen) => {
-          if (!nextOpen) setComparedOffer(null);
-        }}
-        siblings={fareSiblings}
-        onSelect={handleFareSelect}
-        origin={selectOrigin}
-      />
     </div>
   );
 }

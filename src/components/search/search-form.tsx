@@ -14,15 +14,37 @@ import { DateRangeField } from "./date-range-field";
 import { PassengersField } from "./passengers-field";
 import { searchFormSchema } from "./search-schema";
 
-export function SearchForm() {
+export interface SearchFormInitialValues {
+  tripType?: TripType;
+  origin?: string;
+  destination?: string;
+  range?: DateRange;
+  passengers?: number;
+}
+
+export function SearchForm({
+  initialValues,
+  onSubmitted,
+}: {
+  /** Pré-remplit le formulaire (ex. barre "Modifier" des résultats) — la recherche initiale sur l'accueil reste vide (CLAUDE.md règle 10). */
+  initialValues?: SearchFormInitialValues;
+  /** Appelé après une navigation réussie (ex. fermer le popover "Modifier"). */
+  onSubmitted?: () => void;
+}) {
   const t = useTranslations("SearchForm");
   const router = useRouter();
 
-  const [tripType, setTripType] = useState<TripType>("roundtrip");
-  const [origin, setOrigin] = useState("");
-  const [destination, setDestination] = useState("");
-  const [range, setRange] = useState<DateRange | undefined>(undefined);
-  const [passengers, setPassengers] = useState(1);
+  const [tripType, setTripType] = useState<TripType>(
+    initialValues?.tripType ?? "roundtrip"
+  );
+  const [origin, setOrigin] = useState(initialValues?.origin ?? "");
+  const [destination, setDestination] = useState(
+    initialValues?.destination ?? ""
+  );
+  const [range, setRange] = useState<DateRange | undefined>(
+    initialValues?.range
+  );
+  const [passengers, setPassengers] = useState(initialValues?.passengers ?? 1);
 
   const originOptions = getServedAirports();
   const destinationOptions = useMemo(
@@ -70,6 +92,7 @@ export function SearchForm() {
     }
 
     router.push(`/resultats?${params.toString()}`);
+    onSubmitted?.();
   }
 
   return (
