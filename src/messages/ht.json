@@ -60,6 +60,41 @@
     "seat": "Chwazi plas",
     "close": "Fèmen"
   },
+  "Recap": {
+    "stepHeading": "Enfòmasyon ou yo",
+    "loading": "N ap chaje vòl ou…",
+    "notFound": "Nou pa jwenn vòl sa a. Tanpri refè rechèch ou.",
+    "backToResults": "Tounen nan rezilta yo",
+    "submit": "Kontinye nan peman"
+  },
+  "BookingSummary": {
+    "heading": "Rezime",
+    "passengersLabel": "{count, plural, one {# pasaje} other {# pasaje}}",
+    "priceEach": "pou chak pasaje",
+    "total": "Total"
+  },
+  "PassengerForm": {
+    "passengerLabel": "Pasaje {number}",
+    "firstName": "Prenon",
+    "firstNamePlaceholder": "Menm jan sou paspò a",
+    "lastName": "Siyati",
+    "lastNamePlaceholder": "Menm jan sou paspò a",
+    "passportHint": "Egzakteman jan li ekri sou paspò a.",
+    "dateOfBirth": "Dat nesans",
+    "gender": "Sèks",
+    "genderPlaceholder": "Chwazi",
+    "genderMale": "Gason",
+    "genderFemale": "Fi",
+    "genderUnspecified": "Pa presize",
+    "sectionPassport": "Paspò",
+    "passportNumber": "Nimewo paspò",
+    "passportExpiry": "Dat ekspirasyon",
+    "sectionContact": "Kontak",
+    "email": "Imèl",
+    "phone": "Telefòn",
+    "sectionLoyalty": "Pwogram fidelite (opsyonèl)",
+    "loyaltyNumber": "Nimewo fidelite"
+  },
   "Stepper": {
     "flights": "Vòl",
     "passengers": "Pasaje",

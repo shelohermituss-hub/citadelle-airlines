@@ -60,6 +60,41 @@
     "seat": "Sélection de siège",
     "close": "Fermer"
   },
+  "Recap": {
+    "stepHeading": "Vos informations",
+    "loading": "Chargement de votre vol…",
+    "notFound": "Ce vol est introuvable. Veuillez relancer votre recherche.",
+    "backToResults": "Retour aux résultats",
+    "submit": "Continuer vers le paiement"
+  },
+  "BookingSummary": {
+    "heading": "Récapitulatif",
+    "passengersLabel": "{count, plural, one {# passager} other {# passagers}}",
+    "priceEach": "par passager",
+    "total": "Total"
+  },
+  "PassengerForm": {
+    "passengerLabel": "Passager {number}",
+    "firstName": "Prénom",
+    "firstNamePlaceholder": "Comme sur le passeport",
+    "lastName": "Nom de famille",
+    "lastNamePlaceholder": "Comme sur le passeport",
+    "passportHint": "Exactement comme indiqué sur le passeport.",
+    "dateOfBirth": "Date de naissance",
+    "gender": "Sexe",
+    "genderPlaceholder": "Sélectionner",
+    "genderMale": "Homme",
+    "genderFemale": "Femme",
+    "genderUnspecified": "Non précisé",
+    "sectionPassport": "Passeport",
+    "passportNumber": "Numéro de passeport",
+    "passportExpiry": "Date d'expiration",
+    "sectionContact": "Contact",
+    "email": "Adresse e-mail",
+    "phone": "Téléphone",
+    "sectionLoyalty": "Programme de fidélité (optionnel)",
+    "loyaltyNumber": "Numéro de fidélité"
+  },
   "Stepper": {
     "flights": "Vols",
     "passengers": "Passagers",

@@ -60,6 +60,41 @@
     "seat": "Seat selection",
     "close": "Close"
   },
+  "Recap": {
+    "stepHeading": "Your details",
+    "loading": "Loading your flight…",
+    "notFound": "This flight could not be found. Please search again.",
+    "backToResults": "Back to results",
+    "submit": "Continue to payment"
+  },
+  "BookingSummary": {
+    "heading": "Summary",
+    "passengersLabel": "{count, plural, one {# passenger} other {# passengers}}",
+    "priceEach": "per passenger",
+    "total": "Total"
+  },
+  "PassengerForm": {
+    "passengerLabel": "Passenger {number}",
+    "firstName": "First name",
+    "firstNamePlaceholder": "As shown on passport",
+    "lastName": "Last name",
+    "lastNamePlaceholder": "As shown on passport",
+    "passportHint": "Exactly as printed on the passport.",
+    "dateOfBirth": "Date of birth",
+    "gender": "Gender",
+    "genderPlaceholder": "Select",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "genderUnspecified": "Prefer not to say",
+    "sectionPassport": "Passport",
+    "passportNumber": "Passport number",
+    "passportExpiry": "Expiry date",
+    "sectionContact": "Contact",
+    "email": "Email address",
+    "phone": "Phone",
+    "sectionLoyalty": "Loyalty program (optional)",
+    "loyaltyNumber": "Loyalty number"
+  },
   "Stepper": {
     "flights": "Flights",
     "passengers": "Passengers",
