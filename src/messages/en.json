@@ -60,6 +60,41 @@
     "seat": "Seat selection",
     "close": "Close"
   },
+  "Payment": {
+    "stepHeading": "Payment",
+    "loading": "Loading your flight…",
+    "notFound": "This flight could not be found. Please search again.",
+    "backToRecap": "Back to passenger details",
+    "demoNotice": "Demo only — no payment data is transmitted or stored."
+  },
+  "PaymentSummary": {
+    "heading": "Payment summary",
+    "baseFare": "Base fare",
+    "taxesAndFees": "Taxes and fees",
+    "perPassenger": "Price per passenger",
+    "passengersLabel": "{count, plural, one {# passenger} other {# passengers}}",
+    "total": "Total to pay"
+  },
+  "PaymentForm": {
+    "methodCard": "International card",
+    "methodMoncash": "MonCash",
+    "cardholderName": "Cardholder name",
+    "cardholderNamePlaceholder": "As shown on the card",
+    "cardNumber": "Card number",
+    "expiry": "Expiry",
+    "expiryPlaceholder": "MM/YY",
+    "cvc": "CVC",
+    "billingHeading": "Billing address",
+    "billingAddress": "Address",
+    "billingCity": "City",
+    "billingPostalCode": "Postal code",
+    "billingCountry": "Country",
+    "moncashHeading": "MonCash payment",
+    "moncashDescription": "You will receive a confirmation request on the MonCash app at this number.",
+    "moncashPhone": "MonCash number",
+    "termsLabel": "I accept the <terms>terms and conditions</terms> and fare policy.",
+    "pay": "Pay {amount}"
+  },
   "Recap": {
     "stepHeading": "Your details",
     "loading": "Loading your flight…",

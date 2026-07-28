@@ -60,6 +60,41 @@
     "seat": "Sélection de siège",
     "close": "Fermer"
   },
+  "Payment": {
+    "stepHeading": "Paiement",
+    "loading": "Chargement de votre vol…",
+    "notFound": "Ce vol est introuvable. Veuillez relancer votre recherche.",
+    "backToRecap": "Retour aux informations passagers",
+    "demoNotice": "Démonstration — aucune donnée de paiement n'est transmise ni conservée."
+  },
+  "PaymentSummary": {
+    "heading": "Récapitulatif du paiement",
+    "baseFare": "Tarif de base",
+    "taxesAndFees": "Taxes et frais",
+    "perPassenger": "Prix par passager",
+    "passengersLabel": "{count, plural, one {# passager} other {# passagers}}",
+    "total": "Total à payer"
+  },
+  "PaymentForm": {
+    "methodCard": "Carte internationale",
+    "methodMoncash": "MonCash",
+    "cardholderName": "Nom du titulaire",
+    "cardholderNamePlaceholder": "Comme sur la carte",
+    "cardNumber": "Numéro de carte",
+    "expiry": "Expiration",
+    "expiryPlaceholder": "MM/AA",
+    "cvc": "CVC",
+    "billingHeading": "Adresse de facturation",
+    "billingAddress": "Adresse",
+    "billingCity": "Ville",
+    "billingPostalCode": "Code postal",
+    "billingCountry": "Pays",
+    "moncashHeading": "Paiement MonCash",
+    "moncashDescription": "Vous recevrez une demande de confirmation sur l'application MonCash à ce numéro.",
+    "moncashPhone": "Numéro MonCash",
+    "termsLabel": "J'accepte les <terms>conditions générales de vente</terms> et la politique tarifaire.",
+    "pay": "Payer {amount}"
+  },
   "Recap": {
     "stepHeading": "Vos informations",
     "loading": "Chargement de votre vol…",

@@ -60,6 +60,41 @@
     "seat": "Chwazi plas",
     "close": "Fèmen"
   },
+  "Payment": {
+    "stepHeading": "Peman",
+    "loading": "N ap chaje vòl ou…",
+    "notFound": "Nou pa jwenn vòl sa a. Tanpri refè rechèch ou.",
+    "backToRecap": "Tounen nan enfòmasyon pasaje yo",
+    "demoNotice": "Demonstrasyon — okenn done peman pa transmèt ni konsève."
+  },
+  "PaymentSummary": {
+    "heading": "Rezime peman an",
+    "baseFare": "Tarif debaz",
+    "taxesAndFees": "Taks ak frè",
+    "perPassenger": "Pri pou chak pasaje",
+    "passengersLabel": "{count, plural, one {# pasaje} other {# pasaje}}",
+    "total": "Total pou peye"
+  },
+  "PaymentForm": {
+    "methodCard": "Kat entènasyonal",
+    "methodMoncash": "MonCash",
+    "cardholderName": "Non moun ki gen kat la",
+    "cardholderNamePlaceholder": "Menm jan sou kat la",
+    "cardNumber": "Nimewo kat",
+    "expiry": "Ekspirasyon",
+    "expiryPlaceholder": "MM/AA",
+    "cvc": "CVC",
+    "billingHeading": "Adrès faktirasyon",
+    "billingAddress": "Adrès",
+    "billingCity": "Vil",
+    "billingPostalCode": "Kòd postal",
+    "billingCountry": "Peyi",
+    "moncashHeading": "Peman MonCash",
+    "moncashDescription": "W ap resevwa yon demann konfimasyon sou aplikasyon MonCash nan nimewo sa a.",
+    "moncashPhone": "Nimewo MonCash",
+    "termsLabel": "Mwen aksepte <terms>kondisyon jeneral vant</terms> ak politik tarif la.",
+    "pay": "Peye {amount}"
+  },
   "Recap": {
     "stepHeading": "Enfòmasyon ou yo",
     "loading": "N ap chaje vòl ou…",
