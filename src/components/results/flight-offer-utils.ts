@@ -68,6 +68,45 @@ export function isModifiable(fare: BrandedFare): boolean {
   return fare !== "ECO";
 }
 
+/** Seul le tarif Business est remboursable (voir docs/design-system.html). */
+export function isRefundable(fare: BrandedFare): boolean {
+  return fare === "BUSINESS";
+}
+
+/** Seul le tarif Business inclut la sélection de siège (« Siège premium »). */
+export function hasSeatSelection(fare: BrandedFare): boolean {
+  return fare === "BUSINESS";
+}
+
+/**
+ * Signature d'itinéraire (numéros de vol + horaires) permettant de
+ * regrouper les offres qui représentent le même vol à des tarifs
+ * différents — c'est ce regroupement qui alimente le panneau de
+ * comparaison des classes (docs/anatomie-tunnel.md section 3).
+ */
+export function getItineraryKey(offer: FlightOffer): string {
+  return offer.itineraries[0].segments
+    .map((segment) => `${segment.carrierCode}${segment.number}-${segment.departure.at}`)
+    .join("|");
+}
+
+const FARE_ORDER: BrandedFare[] = ["ECO", "ECOFLEX", "BUSINESS"];
+
+/** Les offres partageant le même itinéraire que `target`, triées Éco → Business. */
+export function getFareSiblings(
+  offers: FlightOffer[],
+  target: FlightOffer
+): FlightOffer[] {
+  const key = getItineraryKey(target);
+  return offers
+    .filter((offer) => getItineraryKey(offer) === key)
+    .sort(
+      (a, b) =>
+        FARE_ORDER.indexOf(getOfferFare(a).brandedFare) -
+        FARE_ORDER.indexOf(getOfferFare(b).brandedFare)
+    );
+}
+
 export function getDepartureHour(offer: FlightOffer): number {
   return new Date(offer.itineraries[0].segments[0].departure.at).getHours();
 }

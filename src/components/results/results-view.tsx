@@ -9,12 +9,14 @@ import { enUS, fr } from "date-fns/locale";
 import { Link, useRouter } from "@/i18n/navigation";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { amadeusClient, type FlightOffer } from "@/services/amadeus";
+import { FareComparisonDialog } from "./fare-comparison-dialog";
 import { FlightCard } from "./flight-card";
 import { FlightCardSkeleton } from "./flight-card-skeleton";
 import { DEFAULT_FILTERS, FlightFilters, type FiltersState } from "./flight-filters";
 import { SortBar, type SortKey } from "./sort-bar";
 import {
   formatDurationMinutes,
+  getFareSiblings,
   getOfferFare,
   getTimeOfDay,
   isDirect,
@@ -76,6 +78,7 @@ export function ResultsView() {
 
   const [sort, setSort] = useState<SortKey>("price");
   const [filters, setFilters] = useState<FiltersState>(DEFAULT_FILTERS);
+  const [comparedOffer, setComparedOffer] = useState<FlightOffer | null>(null);
 
   const origin = searchParams.get("originLocationCode") ?? "";
   const destination = searchParams.get("destinationLocationCode") ?? "";
@@ -113,7 +116,12 @@ export function ResultsView() {
     [allOffers, filters, sort]
   );
 
-  function handleSelect(offer: FlightOffer) {
+  const fareSiblings = useMemo(
+    () => (comparedOffer ? getFareSiblings(allOffers, comparedOffer) : []),
+    [allOffers, comparedOffer]
+  );
+
+  function handleFareSelect(offer: FlightOffer) {
     const params = new URLSearchParams(searchParams);
     params.set("offerId", offer.id);
     router.push(`/recapitulatif?${params.toString()}`);
@@ -210,7 +218,7 @@ export function ResultsView() {
                     key={offer.id}
                     offer={offer}
                     recommended={offer.id === recommendedId}
-                    onSelect={handleSelect}
+                    onSelect={setComparedOffer}
                   />
                 ))}
               </div>
@@ -218,6 +226,15 @@ export function ResultsView() {
           </div>
         </div>
       )}
+
+      <FareComparisonDialog
+        open={comparedOffer !== null}
+        onOpenChange={(nextOpen) => {
+          if (!nextOpen) setComparedOffer(null);
+        }}
+        siblings={fareSiblings}
+        onSelect={handleFareSelect}
+      />
     </div>
   );
 }

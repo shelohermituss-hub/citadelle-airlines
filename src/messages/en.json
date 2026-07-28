@@ -48,6 +48,18 @@
     "ECOFLEX": "Economy Flex",
     "BUSINESS": "Business"
   },
+  "FareComparison": {
+    "title": "Choose your fare",
+    "description": "{origin} → {destination} · {departure} – {arrival}",
+    "select": "Select",
+    "recommended": "Recommended",
+    "notAvailable": "Not available",
+    "baggage": "Baggage",
+    "modification": "Changes",
+    "refund": "Refund",
+    "seat": "Seat selection",
+    "close": "Close"
+  },
   "Stepper": {
     "flights": "Flights",
     "passengers": "Passengers",

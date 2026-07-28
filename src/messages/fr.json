@@ -48,6 +48,18 @@
     "ECOFLEX": "Éco Flex",
     "BUSINESS": "Business"
   },
+  "FareComparison": {
+    "title": "Choisissez votre tarif",
+    "description": "{origin} → {destination} · {departure} – {arrival}",
+    "select": "Sélectionner",
+    "recommended": "Recommandé",
+    "notAvailable": "Non disponible",
+    "baggage": "Bagages",
+    "modification": "Modification",
+    "refund": "Remboursement",
+    "seat": "Sélection de siège",
+    "close": "Fermer"
+  },
   "Stepper": {
     "flights": "Vols",
     "passengers": "Passagers",

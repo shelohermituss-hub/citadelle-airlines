@@ -48,6 +48,18 @@
     "ECOFLEX": "Eko Flex",
     "BUSINESS": "Biznis"
   },
+  "FareComparison": {
+    "title": "Chwazi tarif ou",
+    "description": "{origin} → {destination} · {departure} – {arrival}",
+    "select": "Chwazi",
+    "recommended": "Rekòmande",
+    "notAvailable": "Pa disponib",
+    "baggage": "Bagaj",
+    "modification": "Modifikasyon",
+    "refund": "Ranbousman",
+    "seat": "Chwazi plas",
+    "close": "Fèmen"
+  },
   "Stepper": {
     "flights": "Vòl",
     "passengers": "Pasaje",
