@@ -1,5 +1,8 @@
+"use client";
+
 import { Fragment } from "react";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { motion } from "motion/react";
 import { Plane } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -10,10 +13,14 @@ export type BookingStep = (typeof STEPS)[number];
 /**
  * Stepper « trajectoire de vol » — pointillés + avion sur l'étape
  * active. Affiché sur les étapes 2 à 5 du tunnel (CLAUDE.md règle 6).
+ * Monté une seule fois par (tunnel)/layout.tsx : l'avion glisse d'une
+ * étape à l'autre (layoutId) au lieu de resauter, et le trait se
+ * dessine derrière lui à chaque changement de `current`.
  */
-export async function FlightStepper({ current }: { current: BookingStep }) {
-  const t = await getTranslations("Stepper");
+export function FlightStepper({ current }: { current: BookingStep }) {
+  const t = useTranslations("Stepper");
   const currentIndex = STEPS.indexOf(current);
+  const transition = { duration: 0.45, ease: "easeOut" as const };
 
   return (
     <ol className="mx-auto flex w-full max-w-xl items-start">
@@ -29,13 +36,17 @@ export async function FlightStepper({ current }: { current: BookingStep }) {
             >
               <span className="flex size-7 shrink-0 items-center justify-center">
                 {isActive ? (
-                  <span className="flex size-7 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                  <motion.span
+                    layoutId="flight-stepper-active"
+                    transition={transition}
+                    className="flex size-7 items-center justify-center rounded-full bg-primary text-primary-foreground"
+                  >
                     <Plane className="size-3.5" aria-hidden />
-                  </span>
+                  </motion.span>
                 ) : (
                   <span
                     className={cn(
-                      "size-3 rounded-full",
+                      "size-3 rounded-full transition-colors duration-300",
                       isDone ? "bg-primary" : "bg-border"
                     )}
                   />
@@ -53,12 +64,15 @@ export async function FlightStepper({ current }: { current: BookingStep }) {
               </span>
             </li>
             {index < STEPS.length - 1 && (
-              <div
-                className={cn(
-                  "mx-1.5 mt-3.5 h-0 flex-1 border-t-2 border-dashed sm:mx-2",
-                  isDone ? "border-primary" : "border-border"
-                )}
-              />
+              <div className="relative mx-1.5 mt-3.5 h-0 flex-1 sm:mx-2">
+                <div className="absolute inset-0 border-t-2 border-dashed border-border" />
+                <motion.div
+                  className="absolute inset-0 origin-left border-t-2 border-primary"
+                  initial={false}
+                  animate={{ scaleX: isDone ? 1 : 0 }}
+                  transition={transition}
+                />
+              </div>
             )}
           </Fragment>
         );

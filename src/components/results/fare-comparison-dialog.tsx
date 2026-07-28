@@ -2,6 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { Check, X } from "lucide-react";
+import { motion } from "motion/react";
 import {
   Dialog,
   DialogContent,
@@ -24,17 +25,31 @@ import {
 const FARE_ORDER: BrandedFare[] = ["ECO", "ECOFLEX", "BUSINESS"];
 const RECOMMENDED_FARE: BrandedFare = "ECOFLEX";
 
+/** Origine du transform en % de la boîte du panneau, dérivée du point de
+ * clic sur la carte — donne l'impression que le panneau « sort » de la
+ * carte cliquée plutôt que de toujours zoomer depuis le centre. */
+function getTransformOrigin(origin: { x: number; y: number } | null): string {
+  if (!origin || typeof window === "undefined") return "50% 50%";
+  const clamp = (value: number) => Math.min(80, Math.max(20, value));
+  const originX = clamp((origin.x / window.innerWidth) * 100);
+  const originY = clamp((origin.y / window.innerHeight) * 100);
+  return `${originX}% ${originY}%`;
+}
+
 export function FareComparisonDialog({
   open,
   onOpenChange,
   siblings,
   onSelect,
+  origin,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   /** Offres partageant le même itinéraire, une par palier tarifaire disponible. */
   siblings: FlightOffer[];
   onSelect: (offer: FlightOffer) => void;
+  /** Position de clic (viewport) à l'origine de l'ouverture — voir getTransformOrigin. */
+  origin?: { x: number; y: number } | null;
 }) {
   const locale = useLocale();
   const t = useTranslations("FareComparison");
@@ -46,9 +61,14 @@ export function FareComparisonDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-3xl">
+      <DialogContent className="max-h-[90vh] overflow-y-auto data-open:zoom-in-100 data-closed:zoom-out-100 sm:max-w-3xl">
         {reference && (
-          <>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            style={{ transformOrigin: getTransformOrigin(origin ?? null) }}
+          >
             <DialogHeader>
               <DialogTitle className="font-serif text-2xl">
                 {t("title")}
@@ -146,7 +166,7 @@ export function FareComparisonDialog({
                 );
               })}
             </div>
-          </>
+          </motion.div>
         )}
       </DialogContent>
     </Dialog>

@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { format } from "date-fns";
 import { enUS, fr } from "date-fns/locale";
+import { motion } from "motion/react";
 import { Link, useRouter } from "@/i18n/navigation";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { amadeusClient, type AirportCode, type FlightOffer } from "@/services/amadeus";
@@ -24,6 +25,15 @@ import {
 
 const DATE_LOCALES = { fr, ht: fr, en: enUS } as const;
 const EMPTY_OFFERS: FlightOffer[] = [];
+
+const listVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+};
+const cardVariants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" as const } },
+};
 
 function pickRecommendedId(offers: FlightOffer[]): string | undefined {
   if (offers.length === 0) return undefined;
@@ -79,6 +89,7 @@ export function ResultsView() {
   const [sort, setSort] = useState<SortKey>("price");
   const [filters, setFilters] = useState<FiltersState>(DEFAULT_FILTERS);
   const [comparedOffer, setComparedOffer] = useState<FlightOffer | null>(null);
+  const [selectOrigin, setSelectOrigin] = useState<{ x: number; y: number } | null>(null);
 
   const origin = searchParams.get("originLocationCode") ?? "";
   const destination = searchParams.get("destinationLocationCode") ?? "";
@@ -125,6 +136,11 @@ export function ResultsView() {
     const params = new URLSearchParams(searchParams);
     params.set("offerId", offer.id);
     router.push(`/recapitulatif?${params.toString()}`);
+  }
+
+  function handleCardSelect(offer: FlightOffer, event: React.MouseEvent<HTMLButtonElement>) {
+    setSelectOrigin({ x: event.clientX, y: event.clientY });
+    setComparedOffer(offer);
   }
 
   if (!hasRequiredParams) {
@@ -210,16 +226,22 @@ export function ResultsView() {
                 </p>
               </div>
             ) : (
-              <div className="flex flex-col gap-4">
+              <motion.div
+                className="flex flex-col gap-4"
+                initial="hidden"
+                animate="visible"
+                variants={listVariants}
+              >
                 {visibleOffers.map((offer) => (
-                  <FlightCard
-                    key={offer.id}
-                    offer={offer}
-                    recommended={offer.id === recommendedId}
-                    onSelect={setComparedOffer}
-                  />
+                  <motion.div key={offer.id} variants={cardVariants}>
+                    <FlightCard
+                      offer={offer}
+                      recommended={offer.id === recommendedId}
+                      onSelect={handleCardSelect}
+                    />
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             )}
           </div>
         </div>
@@ -232,6 +254,7 @@ export function ResultsView() {
         }}
         siblings={fareSiblings}
         onSelect={handleFareSelect}
+        origin={selectOrigin}
       />
     </div>
   );

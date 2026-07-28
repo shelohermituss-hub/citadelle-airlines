@@ -21,7 +21,7 @@ export function FlightCard({
 }: {
   offer: FlightOffer;
   recommended?: boolean;
-  onSelect: (offer: FlightOffer) => void;
+  onSelect: (offer: FlightOffer, event: React.MouseEvent<HTMLButtonElement>) => void;
 }) {
   const locale = useLocale();
   const t = useTranslations("Results");
@@ -87,7 +87,7 @@ export function FlightCard({
         <span className="text-2xl font-bold tabular-nums text-foreground">
           {format(offer.price.total, locale)}
         </span>
-        <Button onClick={() => onSelect(offer)}>{t("select")}</Button>
+        <Button onClick={(event) => onSelect(offer, event)}>{t("select")}</Button>
       </div>
     </div>
   );

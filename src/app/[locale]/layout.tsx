@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { CurrencyProvider } from "@/components/providers/currency-provider";
+import { MotionProvider } from "@/components/providers/motion-provider";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import "../globals.css";
@@ -61,11 +62,13 @@ export default async function LocaleLayout({
         <NextIntlClientProvider>
           <QueryProvider>
             <CurrencyProvider>
-              <div className="flex min-h-screen flex-col bg-background">
-                <SiteHeader />
-                <main className="flex-1">{children}</main>
-                <SiteFooter />
-              </div>
+              <MotionProvider>
+                <div className="flex min-h-screen flex-col bg-background">
+                  <SiteHeader />
+                  <main className="flex-1">{children}</main>
+                  <SiteFooter />
+                </div>
+              </MotionProvider>
             </CurrencyProvider>
           </QueryProvider>
         </NextIntlClientProvider>

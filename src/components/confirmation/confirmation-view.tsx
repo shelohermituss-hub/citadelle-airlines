@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
+import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import { buttonVariants } from "@/components/ui/button";
 import { amadeusClient, type Traveler } from "@/services/amadeus";
@@ -102,9 +103,14 @@ export function ConfirmationView() {
           <span className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
             {t("pnrLabel")}
           </span>
-          <span className="font-serif text-5xl font-bold tracking-[0.2em] text-foreground tabular-nums sm:text-6xl">
+          <motion.span
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 300, damping: 22, mass: 0.6 }}
+            className="font-serif text-5xl font-bold tracking-[0.2em] text-foreground tabular-nums sm:text-6xl"
+          >
             {pnr}
-          </span>
+          </motion.span>
         </div>
 
         <p className="text-sm text-muted-foreground">{t("emailReminder")}</p>
