@@ -35,7 +35,7 @@ export function PassengersField({
           <Users className="size-3.5" aria-hidden />
           {t("passengers")}
         </span>
-        <span className="truncate text-base font-semibold text-foreground">
+        <span className="min-w-0 truncate text-base font-semibold text-foreground">
           {t("passengerCount", { count: value })}
         </span>
       </PopoverTrigger>

@@ -49,25 +49,25 @@ export function DateRangeField({
         render={
           <button
             type="button"
-            className="flex min-w-0 flex-1 items-stretch overflow-hidden rounded-xl border border-border bg-background text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex min-w-0 flex-1 items-stretch overflow-hidden rounded-full border border-border bg-background text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
         }
       >
-        <span className="flex flex-1 flex-col gap-1 px-4 py-2">
+        <span className="flex min-w-0 flex-1 flex-col gap-1 px-4 py-2">
           <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
             <CalendarIcon className="size-3.5" aria-hidden />
             {t("departDate")}
           </span>
-          <span className="truncate text-base font-semibold text-foreground">
+          <span className="min-w-0 truncate text-base font-semibold text-foreground">
             {range?.from ? formatDate(range.from, dateLocale) : t("selectDate")}
           </span>
         </span>
         {tripType === "roundtrip" && (
-          <span className="flex flex-1 flex-col gap-1 border-l border-border px-4 py-2">
+          <span className="flex min-w-0 flex-1 flex-col gap-1 border-l border-border px-4 py-2">
             <span className="text-xs font-medium text-muted-foreground">
               {t("returnDate")}
             </span>
-            <span className="truncate text-base font-semibold text-foreground">
+            <span className="min-w-0 truncate text-base font-semibold text-foreground">
               {range?.to ? formatDate(range.to, dateLocale) : t("selectDate")}
             </span>
           </span>

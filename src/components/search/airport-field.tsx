@@ -15,6 +15,7 @@ export function AirportField({
   value,
   options,
   onChange,
+  variant = "standalone",
 }: {
   kind: "origin" | "destination";
   label: string;
@@ -22,6 +23,8 @@ export function AirportField({
   value: string;
   options: string[];
   onChange: (value: string) => void;
+  /** "grouped" retire la bordure/le fond propres au champ pour s'imbriquer dans une pilule commune (voir search-form.tsx). */
+  variant?: "standalone" | "grouped";
 }) {
   const tAirports = useTranslations("Airports");
   const t = useTranslations("SearchForm");
@@ -57,19 +60,24 @@ export function AirportField({
         render={
           <button
             type="button"
-            className="flex min-w-0 flex-col gap-1 rounded-xl border border-border bg-background px-4 py-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className={cn(
+              "flex min-w-0 flex-1 flex-col gap-1 px-4 py-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+              variant === "standalone"
+                ? "rounded-xl border border-border bg-background"
+                : "rounded-full"
+            )}
           />
         }
       >
         <span className="text-xs font-medium text-muted-foreground">
           {label}
         </span>
-        <span className="flex items-center gap-2 text-base font-semibold text-foreground">
+        <span className="flex min-w-0 items-center gap-2 text-base font-semibold text-foreground">
           <Icon className="size-4 shrink-0 text-muted-foreground" aria-hidden />
           {selectedLabel ? (
-            <span className="truncate">{selectedLabel}</span>
+            <span className="min-w-0 flex-1 truncate">{selectedLabel}</span>
           ) : (
-            <span className="truncate font-normal text-muted-foreground">
+            <span className="min-w-0 flex-1 truncate font-normal text-muted-foreground">
               {placeholder}
             </span>
           )}

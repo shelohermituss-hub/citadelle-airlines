@@ -76,8 +76,8 @@ export function SearchForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <TripTypeToggle value={tripType} onChange={setTripType} />
 
-      <div className="flex flex-col gap-3 lg:flex-row">
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2">
+      <div className="flex flex-col gap-3">
+        <div className="relative flex flex-1 items-stretch overflow-hidden rounded-full border border-border bg-background">
           <AirportField
             kind="origin"
             label={t("origin")}
@@ -85,17 +85,9 @@ export function SearchForm() {
             value={origin}
             options={originOptions}
             onChange={handleOriginChange}
+            variant="grouped"
           />
-          <Button
-            type="button"
-            variant="outline"
-            size="icon"
-            className="rounded-full"
-            aria-label={t("swapAirports")}
-            onClick={handleSwap}
-          >
-            <ArrowLeftRight className="size-4" aria-hidden />
-          </Button>
+          <div className="my-2 w-px bg-border" aria-hidden />
           <AirportField
             kind="destination"
             label={t("destination")}
@@ -103,7 +95,18 @@ export function SearchForm() {
             value={destination}
             options={destinationOptions}
             onChange={setDestination}
+            variant="grouped"
           />
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-card shadow-card"
+            aria-label={t("swapAirports")}
+            onClick={handleSwap}
+          >
+            <ArrowLeftRight className="size-4" aria-hidden />
+          </Button>
         </div>
 
         <DateRangeField tripType={tripType} range={range} onChange={setRange} />
@@ -114,7 +117,7 @@ export function SearchForm() {
         <Button
           type="submit"
           size="icon-lg"
-          className="size-14 shrink-0 rounded-full bg-primary text-primary-foreground shadow-md hover:bg-primary/90"
+          className="size-14 shrink-0 rounded-full bg-primary text-primary-foreground shadow-card-lg hover:bg-primary/90"
           aria-label={t("search")}
         >
           <Search className="size-5" aria-hidden />
