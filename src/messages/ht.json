@@ -1,4 +1,7 @@
 {
+  "Common": {
+    "close": "Fèmen"
+  },
   "HomePage": {
     "title": "Ki kote w prale ?",
     "subtitle": "Rezève vòl ou avèk Citadelle Airlines.",
@@ -11,7 +14,8 @@
     "flightStatus": "Estati vòl",
     "openMenu": "Louvri meni an",
     "closeMenu": "Fèmen meni an",
-    "changeLanguage": "Chanje lang"
+    "changeLanguage": "Chanje lang",
+    "mainNavLabel": "Navigasyon prensipal"
   },
   "Language": {
     "fr": "Français",
@@ -26,6 +30,7 @@
     "SDQ": "Sen Domeng"
   },
   "SearchForm": {
+    "tripTypeLabel": "Kalite vwayaj",
     "tripTypeRoundtrip": "Ale-tounen",
     "tripTypeOneway": "Ale sèlman",
     "origin": "Depa",
@@ -40,6 +45,10 @@
     "passengerCount": "{count, plural, one {# pasaje} other {# pasaje}}",
     "adults": "Granmoun",
     "adultsHint": "12 an oswa plis",
+    "decreasePassengers": "Diminye kantite granmoun",
+    "increasePassengers": "Ogmante kantite granmoun",
+    "previousMonth": "Mwa anvan an",
+    "nextMonth": "Mwa apre a",
     "done": "Fini",
     "search": "Chèche vòl"
   },
@@ -65,7 +74,7 @@
     "loading": "N ap chaje vòl ou…",
     "notFound": "Nou pa jwenn vòl sa a. Tanpri refè rechèch ou.",
     "backToRecap": "Tounen nan enfòmasyon pasaje yo",
-    "demoNotice": "Demonstrasyon — okenn done peman pa transmèt ni konsève."
+    "demoNotice": "Demo sèlman — nou pa transmèt ni konsève okenn done sou peman an."
   },
   "PaymentSummary": {
     "heading": "Rezime peman an",
@@ -93,16 +102,35 @@
     "moncashDescription": "W ap resevwa yon demann konfimasyon sou aplikasyon MonCash nan nimewo sa a.",
     "moncashPhone": "Nimewo MonCash",
     "termsLabel": "Mwen aksepte <terms>kondisyon jeneral vant</terms> ak politik tarif la.",
-    "pay": "Peye {amount}"
+    "pay": "Peye {amount}",
+    "errors": {
+      "acceptTermsRequired": "Ou dwe aksepte kondisyon jeneral vant yo.",
+      "cardholderNameRequired": "Non moun ki sou kat la obligatwa.",
+      "cardholderNameFormat": "Non an dwe gen sèlman lèt.",
+      "cardNumberRequired": "Nimewo kat la obligatwa.",
+      "cardNumberFormat": "Nimewo kat la dwe gen ant 13 ak 19 chif.",
+      "cardNumberInvalid": "Nimewo kat sa a pa valab.",
+      "expiryRequired": "Dat ekspirasyon an obligatwa.",
+      "expiryFormat": "Fòma yo mande a se MM/AA.",
+      "expiryInvalid": "Kat la ekspire oswa dat la pa valab.",
+      "cvcRequired": "CVC a obligatwa.",
+      "cvcFormat": "CVC a dwe gen 3 oswa 4 chif.",
+      "billingAddressRequired": "Adrès faktirasyon an obligatwa.",
+      "billingCityRequired": "Vil la obligatwa.",
+      "billingPostalCodeRequired": "Kòd postal la obligatwa.",
+      "billingCountryRequired": "Peyi a obligatwa.",
+      "moncashPhoneRequired": "Nimewo MonCash la obligatwa.",
+      "moncashPhoneFormat": "Nimewo MonCash la gen karaktè ki pa valab."
+    }
   },
   "Confirmation": {
-    "loading": "N ap finalize rezèvasyon w…",
+    "loading": "N ap konfime rezèvasyon w…",
     "notFound": "Nou pa jwenn vòl sa a. Tanpri refè rechèch ou.",
     "backToHome": "Tounen nan akèy la",
     "successHeading": "Rezèvasyon konfime !",
     "successSubheading": "Mèsi paske ou chwazi Citadelle Airlines.",
     "pnrLabel": "Kòd rezèvasyon",
-    "emailReminder": "Nou voye yon imèl konfimasyon ba ou ak tout detay vwayaj ou.",
+    "emailReminder": "Nou te voye yon imèl konfimasyon ba ou ak tout detay vwayaj ou.",
     "summaryHeading": "Rezime vwayaj la",
     "layoverAt": "Eskal nan {airport}",
     "passengersLabel": "{count, plural, one {# pasaje} other {# pasaje}}",
@@ -145,7 +173,33 @@
     "email": "Imèl",
     "phone": "Telefòn",
     "sectionLoyalty": "Pwogram fidelite (opsyonèl)",
-    "loyaltyNumber": "Nimewo fidelite"
+    "loyaltyNumber": "Nimewo fidelite",
+    "errors": {
+      "firstNameMin": "Prenon an dwe gen omwen 2 karaktè.",
+      "firstNameMax": "Prenon an twò long.",
+      "firstNameFormat": "Prenon an dwe gen sèlman lèt.",
+      "lastNameMin": "Siyati a dwe gen omwen 2 karaktè.",
+      "lastNameMax": "Siyati a twò long.",
+      "lastNameFormat": "Siyati a dwe gen sèlman lèt.",
+      "dobRequired": "Dat nesans lan obligatwa.",
+      "dobInvalid": "Dat nesans lan pa valab.",
+      "dobFuture": "Dat nesans lan pa ka nan lavni.",
+      "dobMinAge": "Pasaje a dwe gen omwen {age} an nan dat vòl la.",
+      "genderRequired": "Tanpri chwazi yon opsyon.",
+      "passportNumberMin": "Nimewo paspò a dwe gen omwen 6 karaktè.",
+      "passportNumberMax": "Nimewo paspò a pa dwe depase 9 karaktè.",
+      "passportNumberFormat": "Nimewo paspò a dwe gen sèlman lèt ak chif.",
+      "passportExpiryRequired": "Dat ekspirasyon paspò a obligatwa.",
+      "passportExpiryInvalid": "Dat ekspirasyon an pa valab.",
+      "passportExpiryMinValidity": "Paspò a dwe rete valab omwen 6 mwa apre dat vòl la.",
+      "emailRequired": "Adrès imèl la obligatwa.",
+      "emailInvalid": "Adrès imèl la pa valab.",
+      "phoneMin": "Nimewo telefòn nan twò kout.",
+      "phoneMax": "Nimewo telefòn nan twò long.",
+      "phoneFormat": "Nimewo telefòn nan gen karaktè ki pa valab.",
+      "loyaltyMax": "Nimewo a twò long.",
+      "allRequired": "Tout pasaje yo dwe ranpli enfòmasyon yo."
+    }
   },
   "Stepper": {
     "flights": "Vòl",
@@ -162,13 +216,13 @@
     "sortDuration": "Dire",
     "sortDeparture": "Lè depa",
     "filtersHeading": "Filtè",
-    "resetFilters": "Reyajiste",
+    "resetFilters": "Efase filtè yo",
     "stopsHeading": "Eskal",
     "directOnly": "Vòl dirèk sèlman",
     "timeHeading": "Lè depa",
-    "morning": "Maten (00 z – 12 z)",
-    "afternoon": "Aprèmidi (12 z – 18 z)",
-    "evening": "Aswè (18 z – 24 z)",
+    "morning": "Maten (00 è – 12 è)",
+    "afternoon": "Aprèmidi (12 è – 18 è)",
+    "evening": "Aswè (18 è – 24 è)",
     "fareHeading": "Klas",
     "resultsCount": "{count, plural, =0 {Pa gen vòl} one {# vòl} other {# vòl}}",
     "recommended": "Vòl rekòmande",

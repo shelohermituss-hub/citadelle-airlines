@@ -1,4 +1,7 @@
 {
+  "Common": {
+    "close": "Close"
+  },
   "HomePage": {
     "title": "Where to?",
     "subtitle": "Book your flight with Citadelle Airlines.",
@@ -11,7 +14,8 @@
     "flightStatus": "Flight status",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "changeLanguage": "Change language"
+    "changeLanguage": "Change language",
+    "mainNavLabel": "Main navigation"
   },
   "Language": {
     "fr": "Français",
@@ -26,6 +30,7 @@
     "SDQ": "Santo Domingo"
   },
   "SearchForm": {
+    "tripTypeLabel": "Trip type",
     "tripTypeRoundtrip": "Round trip",
     "tripTypeOneway": "One way",
     "origin": "From",
@@ -40,6 +45,10 @@
     "passengerCount": "{count, plural, one {# passenger} other {# passengers}}",
     "adults": "Adults",
     "adultsHint": "12 and older",
+    "decreasePassengers": "Decrease adult count",
+    "increasePassengers": "Increase adult count",
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
     "done": "Done",
     "search": "Search flights"
   },
@@ -93,7 +102,26 @@
     "moncashDescription": "You will receive a confirmation request on the MonCash app at this number.",
     "moncashPhone": "MonCash number",
     "termsLabel": "I accept the <terms>terms and conditions</terms> and fare policy.",
-    "pay": "Pay {amount}"
+    "pay": "Pay {amount}",
+    "errors": {
+      "acceptTermsRequired": "You must accept the terms and conditions.",
+      "cardholderNameRequired": "The cardholder name is required.",
+      "cardholderNameFormat": "The name must contain letters only.",
+      "cardNumberRequired": "The card number is required.",
+      "cardNumberFormat": "The card number must contain between 13 and 19 digits.",
+      "cardNumberInvalid": "This card number is not valid.",
+      "expiryRequired": "The expiry date is required.",
+      "expiryFormat": "Expected format: MM/YY.",
+      "expiryInvalid": "This card has expired or the date is invalid.",
+      "cvcRequired": "The CVC is required.",
+      "cvcFormat": "The CVC must contain 3 or 4 digits.",
+      "billingAddressRequired": "The billing address is required.",
+      "billingCityRequired": "The city is required.",
+      "billingPostalCodeRequired": "The postal code is required.",
+      "billingCountryRequired": "The country is required.",
+      "moncashPhoneRequired": "The MonCash number is required.",
+      "moncashPhoneFormat": "The MonCash number contains invalid characters."
+    }
   },
   "Confirmation": {
     "loading": "Finalizing your booking…",
@@ -145,7 +173,33 @@
     "email": "Email address",
     "phone": "Phone",
     "sectionLoyalty": "Loyalty program (optional)",
-    "loyaltyNumber": "Loyalty number"
+    "loyaltyNumber": "Loyalty number",
+    "errors": {
+      "firstNameMin": "The first name must contain at least 2 characters.",
+      "firstNameMax": "The first name is too long.",
+      "firstNameFormat": "The first name must contain letters only.",
+      "lastNameMin": "The last name must contain at least 2 characters.",
+      "lastNameMax": "The last name is too long.",
+      "lastNameFormat": "The last name must contain letters only.",
+      "dobRequired": "The date of birth is required.",
+      "dobInvalid": "Invalid date of birth.",
+      "dobFuture": "The date of birth cannot be in the future.",
+      "dobMinAge": "The passenger must be at least {age} years old on the flight date.",
+      "genderRequired": "Please select an option.",
+      "passportNumberMin": "The passport number must contain at least 6 characters.",
+      "passportNumberMax": "The passport number must not exceed 9 characters.",
+      "passportNumberFormat": "The passport number must contain letters and digits only.",
+      "passportExpiryRequired": "The passport expiry date is required.",
+      "passportExpiryInvalid": "Invalid expiry date.",
+      "passportExpiryMinValidity": "The passport must remain valid for at least 6 months after the flight date.",
+      "emailRequired": "The email address is required.",
+      "emailInvalid": "Invalid email address.",
+      "phoneMin": "The phone number is too short.",
+      "phoneMax": "The phone number is too long.",
+      "phoneFormat": "The phone number contains invalid characters.",
+      "loyaltyMax": "The number is too long.",
+      "allRequired": "All passengers must be filled in."
+    }
   },
   "Stepper": {
     "flights": "Flights",

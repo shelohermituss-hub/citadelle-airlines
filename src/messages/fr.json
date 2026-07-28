@@ -1,4 +1,7 @@
 {
+  "Common": {
+    "close": "Fermer"
+  },
   "HomePage": {
     "title": "Où allez-vous ?",
     "subtitle": "Réservez votre vol avec Citadelle Airlines.",
@@ -11,7 +14,8 @@
     "flightStatus": "Statut du vol",
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
-    "changeLanguage": "Changer de langue"
+    "changeLanguage": "Changer de langue",
+    "mainNavLabel": "Navigation principale"
   },
   "Language": {
     "fr": "Français",
@@ -26,6 +30,7 @@
     "SDQ": "Saint-Domingue"
   },
   "SearchForm": {
+    "tripTypeLabel": "Type de trajet",
     "tripTypeRoundtrip": "Aller-retour",
     "tripTypeOneway": "Aller simple",
     "origin": "Départ",
@@ -40,6 +45,10 @@
     "passengerCount": "{count, plural, one {# passager} other {# passagers}}",
     "adults": "Adultes",
     "adultsHint": "12 ans et plus",
+    "decreasePassengers": "Diminuer le nombre d'adultes",
+    "increasePassengers": "Augmenter le nombre d'adultes",
+    "previousMonth": "Mois précédent",
+    "nextMonth": "Mois suivant",
     "done": "Terminé",
     "search": "Rechercher des vols"
   },
@@ -93,7 +102,26 @@
     "moncashDescription": "Vous recevrez une demande de confirmation sur l'application MonCash à ce numéro.",
     "moncashPhone": "Numéro MonCash",
     "termsLabel": "J'accepte les <terms>conditions générales de vente</terms> et la politique tarifaire.",
-    "pay": "Payer {amount}"
+    "pay": "Payer {amount}",
+    "errors": {
+      "acceptTermsRequired": "Vous devez accepter les conditions générales de vente.",
+      "cardholderNameRequired": "Le nom du titulaire est requis.",
+      "cardholderNameFormat": "Le nom ne doit contenir que des lettres.",
+      "cardNumberRequired": "Le numéro de carte est requis.",
+      "cardNumberFormat": "Le numéro de carte doit contenir entre 13 et 19 chiffres.",
+      "cardNumberInvalid": "Ce numéro de carte n'est pas valide.",
+      "expiryRequired": "La date d'expiration est requise.",
+      "expiryFormat": "Format attendu : MM/AA.",
+      "expiryInvalid": "Cette carte a expiré ou la date est invalide.",
+      "cvcRequired": "Le CVC est requis.",
+      "cvcFormat": "Le CVC doit contenir 3 ou 4 chiffres.",
+      "billingAddressRequired": "L'adresse de facturation est requise.",
+      "billingCityRequired": "La ville est requise.",
+      "billingPostalCodeRequired": "Le code postal est requis.",
+      "billingCountryRequired": "Le pays est requis.",
+      "moncashPhoneRequired": "Le numéro MonCash est requis.",
+      "moncashPhoneFormat": "Le numéro MonCash contient des caractères invalides."
+    }
   },
   "Confirmation": {
     "loading": "Finalisation de votre réservation…",
@@ -145,7 +173,33 @@
     "email": "Adresse e-mail",
     "phone": "Téléphone",
     "sectionLoyalty": "Programme de fidélité (optionnel)",
-    "loyaltyNumber": "Numéro de fidélité"
+    "loyaltyNumber": "Numéro de fidélité",
+    "errors": {
+      "firstNameMin": "Le prénom doit contenir au moins 2 caractères.",
+      "firstNameMax": "Le prénom est trop long.",
+      "firstNameFormat": "Le prénom ne doit contenir que des lettres.",
+      "lastNameMin": "Le nom doit contenir au moins 2 caractères.",
+      "lastNameMax": "Le nom est trop long.",
+      "lastNameFormat": "Le nom ne doit contenir que des lettres.",
+      "dobRequired": "La date de naissance est requise.",
+      "dobInvalid": "Date de naissance invalide.",
+      "dobFuture": "La date de naissance ne peut pas être dans le futur.",
+      "dobMinAge": "Le passager doit avoir au moins {age} ans à la date du vol.",
+      "genderRequired": "Veuillez sélectionner une option.",
+      "passportNumberMin": "Le numéro de passeport doit contenir au moins 6 caractères.",
+      "passportNumberMax": "Le numéro de passeport ne doit pas dépasser 9 caractères.",
+      "passportNumberFormat": "Le numéro de passeport ne doit contenir que des lettres et des chiffres.",
+      "passportExpiryRequired": "La date d'expiration du passeport est requise.",
+      "passportExpiryInvalid": "Date d'expiration invalide.",
+      "passportExpiryMinValidity": "Le passeport doit rester valide au moins 6 mois après la date du vol.",
+      "emailRequired": "L'adresse e-mail est requise.",
+      "emailInvalid": "Adresse e-mail invalide.",
+      "phoneMin": "Le numéro de téléphone est trop court.",
+      "phoneMax": "Le numéro de téléphone est trop long.",
+      "phoneFormat": "Le numéro de téléphone contient des caractères invalides.",
+      "loyaltyMax": "Le numéro est trop long.",
+      "allRequired": "Tous les passagers doivent être renseignés."
+    }
   },
   "Stepper": {
     "flights": "Vols",

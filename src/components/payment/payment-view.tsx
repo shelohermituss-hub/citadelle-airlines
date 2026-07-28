@@ -12,13 +12,18 @@ import { amadeusClient } from "@/services/amadeus";
 import { formatPrice } from "@/components/results/flight-offer-utils";
 import { PaymentForm } from "./payment-form";
 import { PaymentSummary } from "./payment-summary";
-import { EMPTY_CARD_PAYMENT, paymentSchema, type PaymentFormValues } from "./payment-schema";
+import {
+  createPaymentSchema,
+  EMPTY_CARD_PAYMENT,
+  type PaymentFormValues,
+} from "./payment-schema";
 
 export function PaymentView() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("Payment");
+  const tPayment = useTranslations("PaymentForm");
 
   const origin = searchParams.get("originLocationCode") ?? "";
   const destination = searchParams.get("destinationLocationCode") ?? "";
@@ -49,8 +54,10 @@ export function PaymentView() {
     return `/recapitulatif?${params.toString()}`;
   }, [searchParams]);
 
+  const schema = useMemo(() => createPaymentSchema(tPayment), [tPayment]);
+
   const form = useForm<PaymentFormValues>({
-    resolver: zodResolver(paymentSchema),
+    resolver: zodResolver(schema),
     defaultValues: EMPTY_CARD_PAYMENT,
   });
 

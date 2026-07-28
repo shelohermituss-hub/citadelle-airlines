@@ -52,7 +52,7 @@ export function PassengersField({
               type="button"
               variant="outline"
               size="icon-sm"
-              aria-label="-"
+              aria-label={t("decreasePassengers")}
               disabled={value <= MIN_PASSENGERS}
               onClick={() => onChange(Math.max(MIN_PASSENGERS, value - 1))}
             >
@@ -65,7 +65,7 @@ export function PassengersField({
               type="button"
               variant="outline"
               size="icon-sm"
-              aria-label="+"
+              aria-label={t("increasePassengers")}
               disabled={value >= MAX_PASSENGERS}
               onClick={() => onChange(Math.min(MAX_PASSENGERS, value + 1))}
             >

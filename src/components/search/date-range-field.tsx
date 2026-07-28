@@ -35,6 +35,11 @@ export function DateRangeField({
   const dateLocale = DATE_LOCALES[locale];
   const [open, setOpen] = useState(false);
 
+  const calendarLabels = {
+    labelPrevious: () => t("previousMonth"),
+    labelNext: () => t("nextMonth"),
+  };
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -74,6 +79,7 @@ export function DateRangeField({
             mode="range"
             numberOfMonths={2}
             locale={dateLocale}
+            labels={calendarLabels}
             selected={range}
             onSelect={onChange}
             disabled={{ before: today }}
@@ -83,6 +89,7 @@ export function DateRangeField({
             mode="single"
             numberOfMonths={2}
             locale={dateLocale}
+            labels={calendarLabels}
             selected={range?.from}
             onSelect={(date) =>
               onChange(date ? { from: date, to: undefined } : undefined)

@@ -21,6 +21,7 @@ export function RecapView() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const t = useTranslations("Recap");
+  const tPassenger = useTranslations("PassengerForm");
 
   const origin = searchParams.get("originLocationCode") ?? "";
   const destination = searchParams.get("destinationLocationCode") ?? "";
@@ -56,9 +57,10 @@ export function RecapView() {
     () =>
       createPassengersSchema(
         departureDate ? new Date(`${departureDate}T00:00:00`) : new Date(),
-        adults
+        adults,
+        tPassenger
       ),
-    [departureDate, adults]
+    [departureDate, adults, tPassenger]
   );
 
   const form = useForm<PassengersFormValues>({

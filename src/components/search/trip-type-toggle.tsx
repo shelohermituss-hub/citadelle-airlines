@@ -22,7 +22,7 @@ export function TripTypeToggle({
   return (
     <div
       role="radiogroup"
-      aria-label={t("tripTypeRoundtrip")}
+      aria-label={t("tripTypeLabel")}
       className="inline-flex w-fit rounded-full border border-border bg-background p-1"
     >
       {options.map((option) => {

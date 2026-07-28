@@ -4,11 +4,18 @@ import { z } from "zod";
  * Validation du formulaire de paiement (docs/anatomie-tunnel.md
  * section 6). Aucune vraie intégration : ces champs ne sont jamais
  * envoyés à un processeur de paiement, l'écran est une interface
- * seule (voir payment-view.tsx).
+ * seule (voir payment-view.tsx). Les messages d'erreur viennent de
+ * next-intl (namespace PaymentForm.errors) — le schéma est donc
+ * construit à l'appel, avec la fonction de traduction du composant.
  */
 
 const NAME_REGEX = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/;
 const PHONE_REGEX = /^[0-9+()\s-]+$/;
+
+export type Translate = (
+  key: string,
+  values?: Record<string, string | number>
+) => string;
 
 function luhnCheck(cardNumber: string): boolean {
   const digits = cardNumber.replace(/\s+/g, "");
@@ -41,62 +48,61 @@ export function isExpiryValid(expiry: string): boolean {
   return expiryDate.getTime() >= Date.now();
 }
 
-const acceptTermsField = {
-  acceptTerms: z
-    .boolean()
-    .refine(
-      (value) => value === true,
-      "Vous devez accepter les conditions générales de vente."
-    ),
-};
+export function createPaymentSchema(t: Translate) {
+  const acceptTermsField = {
+    acceptTerms: z
+      .boolean()
+      .refine((value) => value === true, t("errors.acceptTermsRequired")),
+  };
 
-const cardSchema = z.object({
-  method: z.literal("card"),
-  cardholderName: z
-    .string()
-    .trim()
-    .min(2, "Le nom du titulaire est requis.")
-    .regex(NAME_REGEX, "Le nom ne doit contenir que des lettres."),
-  cardNumber: z
-    .string()
-    .min(1, "Le numéro de carte est requis.")
-    .refine(
-      (value) => /^\d{13,19}$/.test(value.replace(/\s+/g, "")),
-      "Le numéro de carte doit contenir entre 13 et 19 chiffres."
-    )
-    .refine(isCardNumberValid, "Ce numéro de carte n'est pas valide."),
-  expiry: z
-    .string()
-    .min(1, "La date d'expiration est requise.")
-    .regex(/^\d{2}\/\d{2}$/, "Format attendu : MM/AA.")
-    .refine(isExpiryValid, "Cette carte a expiré ou la date est invalide."),
-  cvc: z
-    .string()
-    .min(1, "Le CVC est requis.")
-    .regex(/^\d{3,4}$/, "Le CVC doit contenir 3 ou 4 chiffres."),
-  billingAddress: z.string().trim().min(3, "L'adresse de facturation est requise."),
-  billingCity: z.string().trim().min(2, "La ville est requise."),
-  billingPostalCode: z.string().trim().min(3, "Le code postal est requis."),
-  billingCountry: z.string().trim().min(2, "Le pays est requis."),
-  ...acceptTermsField,
-});
+  const cardSchema = z.object({
+    method: z.literal("card"),
+    cardholderName: z
+      .string()
+      .trim()
+      .min(2, t("errors.cardholderNameRequired"))
+      .regex(NAME_REGEX, t("errors.cardholderNameFormat")),
+    cardNumber: z
+      .string()
+      .min(1, t("errors.cardNumberRequired"))
+      .refine(
+        (value) => /^\d{13,19}$/.test(value.replace(/\s+/g, "")),
+        t("errors.cardNumberFormat")
+      )
+      .refine(isCardNumberValid, t("errors.cardNumberInvalid")),
+    expiry: z
+      .string()
+      .min(1, t("errors.expiryRequired"))
+      .regex(/^\d{2}\/\d{2}$/, t("errors.expiryFormat"))
+      .refine(isExpiryValid, t("errors.expiryInvalid")),
+    cvc: z
+      .string()
+      .min(1, t("errors.cvcRequired"))
+      .regex(/^\d{3,4}$/, t("errors.cvcFormat")),
+    billingAddress: z.string().trim().min(3, t("errors.billingAddressRequired")),
+    billingCity: z.string().trim().min(2, t("errors.billingCityRequired")),
+    billingPostalCode: z
+      .string()
+      .trim()
+      .min(3, t("errors.billingPostalCodeRequired")),
+    billingCountry: z.string().trim().min(2, t("errors.billingCountryRequired")),
+    ...acceptTermsField,
+  });
 
-const moncashSchema = z.object({
-  method: z.literal("moncash"),
-  moncashPhone: z
-    .string()
-    .trim()
-    .min(8, "Le numéro MonCash est requis.")
-    .regex(PHONE_REGEX, "Le numéro MonCash contient des caractères invalides."),
-  ...acceptTermsField,
-});
+  const moncashSchema = z.object({
+    method: z.literal("moncash"),
+    moncashPhone: z
+      .string()
+      .trim()
+      .min(8, t("errors.moncashPhoneRequired"))
+      .regex(PHONE_REGEX, t("errors.moncashPhoneFormat")),
+    ...acceptTermsField,
+  });
 
-export const paymentSchema = z.discriminatedUnion("method", [
-  cardSchema,
-  moncashSchema,
-]);
+  return z.discriminatedUnion("method", [cardSchema, moncashSchema]);
+}
 
-export type PaymentFormValues = z.infer<typeof paymentSchema>;
+export type PaymentFormValues = z.infer<ReturnType<typeof createPaymentSchema>>;
 
 export const EMPTY_CARD_PAYMENT: PaymentFormValues = {
   method: "card",

@@ -18,7 +18,7 @@ export function MainNav({
   const pathname = usePathname();
 
   return (
-    <nav className={className} aria-label={t("book")}>
+    <nav className={className} aria-label={t("mainNavLabel")}>
       {NAV_ITEMS.map((item) => {
         const isActive = pathname === item.href;
         return (
