@@ -4,11 +4,14 @@
   },
   "HomePage": {
     "title": "Where to?",
-    "subtitle": "Book your flight with Citadelle Airlines."
+    "subtitle": "Book your flight with Citadelle Airlines.",
+    "heroProofLabel": "Featured fare",
+    "heroProofToast": "Booked in just a few clicks"
   },
   "Nav": {
     "logoAlt": "Citadelle Airlines",
     "book": "Book",
+    "bookCta": "Book a flight",
     "manageBooking": "My booking",
     "flightStatus": "Flight status",
     "openMenu": "Open menu",

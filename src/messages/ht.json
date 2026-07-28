@@ -4,11 +4,14 @@
   },
   "HomePage": {
     "title": "Ki kote w prale ?",
-    "subtitle": "Rezève vòl ou avèk Citadelle Airlines."
+    "subtitle": "Rezève vòl ou avèk Citadelle Airlines.",
+    "heroProofLabel": "Òf dijou a",
+    "heroProofToast": "Rezève nan sèlman kèk klik"
   },
   "Nav": {
     "logoAlt": "Citadelle Airlines",
     "book": "Rezève",
+    "bookCta": "Rezève yon vòl",
     "manageBooking": "Rezèvasyon mwen",
     "flightStatus": "Estati vòl",
     "openMenu": "Louvri meni an",

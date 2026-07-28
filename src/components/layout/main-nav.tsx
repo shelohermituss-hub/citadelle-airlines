@@ -28,7 +28,7 @@ export function MainNav({
             onClick={onNavigate}
             aria-current={isActive ? "page" : undefined}
             className={cn(
-              "rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+              "rounded-lg px-3.5 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               isActive && "text-foreground",
               linkClassName
             )}

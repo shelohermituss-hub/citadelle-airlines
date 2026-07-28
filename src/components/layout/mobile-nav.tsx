@@ -4,7 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -51,6 +52,13 @@ export function MobileNav() {
           onNavigate={() => setOpen(false)}
         />
         <div className="mt-auto flex flex-col gap-2 border-t border-border p-4">
+          <Link
+            href="/"
+            onClick={() => setOpen(false)}
+            className={buttonVariants({ variant: "default", size: "pill", className: "w-full" })}
+          >
+            {t("bookCta")}
+          </Link>
           <CurrencySwitcher className="w-full justify-center" />
           <LanguageSwitcher className="w-full justify-center" />
         </div>

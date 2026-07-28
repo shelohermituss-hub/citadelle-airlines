@@ -4,11 +4,14 @@
   },
   "HomePage": {
     "title": "Où allez-vous ?",
-    "subtitle": "Réservez votre vol avec Citadelle Airlines."
+    "subtitle": "Réservez votre vol avec Citadelle Airlines.",
+    "heroProofLabel": "Offre du moment",
+    "heroProofToast": "Réservé en quelques clics"
   },
   "Nav": {
     "logoAlt": "Citadelle Airlines",
     "book": "Réserver",
+    "bookCta": "Réserver un vol",
     "manageBooking": "Ma réservation",
     "flightStatus": "Statut du vol",
     "openMenu": "Ouvrir le menu",
