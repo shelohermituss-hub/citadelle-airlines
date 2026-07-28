@@ -13,13 +13,19 @@ export type RoutePair = readonly [origin: string, destination: string];
 /** Codes IATA connus du réseau mock — tient le namespace next-intl "Airports" à jour. */
 export type AirportCode =
   | "PAP"
-  | "CAP"
-  | "JFK"
+  | "YUL"
+  | "YYZ"
   | "MIA"
+  | "JFK"
   | "SDQ"
-  | "CDG"
-  | "LHR"
-  | "YYZ";
+  | "HAV"
+  | "GRU"
+  | "SCL"
+  | "IST"
+  | "NAS"
+  | "KIN"
+  | "PTP"
+  | "CUR";
 
 function collectRoutePairs(): RoutePair[] {
   const seen = new Set<string>();

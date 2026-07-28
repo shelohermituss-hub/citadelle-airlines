@@ -29,13 +29,19 @@
   },
   "Airports": {
     "PAP": "Port-au-Prince",
-    "CAP": "Cap-Haïtien",
-    "JFK": "New York",
+    "YUL": "Montreal",
+    "YYZ": "Toronto",
     "MIA": "Miami",
+    "JFK": "New York",
     "SDQ": "Santo Domingo",
-    "CDG": "Paris",
-    "LHR": "London",
-    "YYZ": "Toronto"
+    "HAV": "Havana",
+    "GRU": "São Paulo",
+    "SCL": "Santiago",
+    "IST": "Istanbul",
+    "NAS": "Nassau",
+    "KIN": "Kingston",
+    "PTP": "Pointe-à-Pitre",
+    "CUR": "Curaçao"
   },
   "SearchForm": {
     "tripTypeLabel": "Trip type",

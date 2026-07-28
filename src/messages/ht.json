@@ -29,13 +29,19 @@
   },
   "Airports": {
     "PAP": "Pòtoprens",
-    "CAP": "Kap Ayisyen",
-    "JFK": "New York",
+    "YUL": "Monreyal",
+    "YYZ": "Toronto",
     "MIA": "Miami",
+    "JFK": "New York",
     "SDQ": "Sen Domeng",
-    "CDG": "Pari",
-    "LHR": "Lond",
-    "YYZ": "Toronto"
+    "HAV": "Lavàn",
+    "GRU": "São Paulo",
+    "SCL": "Santyago",
+    "IST": "Istanbul",
+    "NAS": "Nassau",
+    "KIN": "Kingston",
+    "PTP": "Pwent-a-Pit",
+    "CUR": "Curaçao"
   },
   "SearchForm": {
     "tripTypeLabel": "Kalite vwayaj",
