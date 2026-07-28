@@ -42,11 +42,9 @@ export function TripSummary({
   );
 
   return (
-    <div className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-6 shadow-sm">
+    <div className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-6 shadow-card">
       <div className="flex flex-col gap-1 border-b border-border pb-5">
-        <h2 className="font-serif text-lg font-semibold text-foreground">
-          {t("summaryHeading")}
-        </h2>
+        <h2 className="text-title text-foreground">{t("summaryHeading")}</h2>
         <p className="text-sm text-muted-foreground capitalize">{dateLabel}</p>
       </div>
 

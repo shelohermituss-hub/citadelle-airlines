@@ -22,10 +22,8 @@ export function PaymentSummary({
   const grandTotal = unitTotal * passengerCount;
 
   return (
-    <div className="flex flex-col gap-5 rounded-2xl border border-border bg-card p-5 shadow-sm">
-      <h2 className="font-serif text-lg font-semibold text-foreground">
-        {t("heading")}
-      </h2>
+    <div className="flex flex-col gap-5 rounded-2xl border border-border bg-card p-5 shadow-card">
+      <h2 className="text-title text-foreground">{t("heading")}</h2>
 
       <div className="border-b border-border pb-4">
         <FlightSummaryHeader offer={offer} />
@@ -50,7 +48,7 @@ export function PaymentSummary({
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="font-semibold text-foreground">{t("total")}</span>
+        <span className="text-title text-foreground">{t("total")}</span>
         <span className="text-2xl font-bold tabular-nums text-foreground">
           {format(grandTotal, locale)}
         </span>

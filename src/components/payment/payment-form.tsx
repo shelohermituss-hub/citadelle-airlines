@@ -34,10 +34,8 @@ export function PaymentForm({ payAmountLabel }: { payAmountLabel: string }) {
         : "invalid";
 
   return (
-    <div className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-5">
-      <h2 className="font-serif text-lg font-semibold text-foreground">
-        {t("methodCard")}
-      </h2>
+    <div className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-5 shadow-card">
+      <h2 className="text-title text-foreground">{t("methodCard")}</h2>
 
       <div className="flex flex-col gap-4">
         <FormField

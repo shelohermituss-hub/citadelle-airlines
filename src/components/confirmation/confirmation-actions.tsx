@@ -15,7 +15,7 @@ export function ConfirmationActions() {
   const t = useTranslations("Confirmation");
 
   return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6 shadow-sm">
+    <div className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6 shadow-card">
       <div className="flex flex-col gap-3 sm:flex-row">
         <Button variant="outline" size="lg" disabled className="flex-1 gap-2">
           <Download aria-hidden />
