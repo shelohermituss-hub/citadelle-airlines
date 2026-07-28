@@ -189,7 +189,7 @@ export function ResultsView() {
           </Button>
         </div>
       ) : (
-        <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_1fr]">
           <aside className="lg:sticky lg:top-20 lg:self-start">
             <FlightFilters
               filters={filters}

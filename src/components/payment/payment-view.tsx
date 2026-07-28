@@ -104,7 +104,7 @@ export function PaymentView() {
         <p className="text-sm text-muted-foreground">{t("demoNotice")}</p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_360px]">
         <FormProvider {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

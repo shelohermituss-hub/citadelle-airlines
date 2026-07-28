@@ -13,7 +13,7 @@ export async function SiteFooter() {
 
   return (
     <footer className="border-t border-border bg-card">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 sm:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:px-8 lg:py-16">
         <div>
           <h2 className="font-serif text-base font-semibold text-foreground">
             {t("legalHeading")}
