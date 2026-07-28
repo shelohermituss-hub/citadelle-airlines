@@ -1,10 +1,9 @@
-import { HeroGlobe } from "@/components/home/hero-globe";
-import { ShortcutCards } from "@/components/home/shortcut-cards";
+import { Hero } from "@/components/home/hero";
 
 export default function HomePage() {
   return (
     <div className="flex flex-col pb-16">
-      <HeroGlobe shortcuts={<ShortcutCards />} />
+      <Hero />
     </div>
   );
 }

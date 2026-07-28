@@ -40,7 +40,7 @@ export async function ShortcutCards() {
         <Link
           key={card.href}
           href={card.href}
-          className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-card transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
           <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-accent text-citadelle-noir">
             <card.icon className="size-5" aria-hidden />
