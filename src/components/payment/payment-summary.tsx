@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import type { FlightOffer } from "@/services/amadeus";
 import { FlightSummaryHeader } from "@/components/booking/flight-summary-header";
-import { formatPrice } from "@/components/results/flight-offer-utils";
+import { useCurrency } from "@/components/providers/currency-provider";
 
 export function PaymentSummary({
   offer,
@@ -14,6 +14,7 @@ export function PaymentSummary({
 }) {
   const locale = useLocale();
   const t = useTranslations("PaymentSummary");
+  const { format } = useCurrency();
 
   const base = Number(offer.price.base);
   const unitTotal = Number(offer.price.total);
@@ -33,21 +34,15 @@ export function PaymentSummary({
       <div className="flex flex-col gap-2 border-b border-border pb-4 text-sm">
         <div className="flex items-center justify-between text-muted-foreground">
           <span>{t("baseFare")}</span>
-          <span className="tabular-nums">
-            {formatPrice(base, offer.price.currency, locale)}
-          </span>
+          <span className="tabular-nums">{format(base, locale)}</span>
         </div>
         <div className="flex items-center justify-between text-muted-foreground">
           <span>{t("taxesAndFees")}</span>
-          <span className="tabular-nums">
-            {formatPrice(taxesAndFees, offer.price.currency, locale)}
-          </span>
+          <span className="tabular-nums">{format(taxesAndFees, locale)}</span>
         </div>
         <div className="flex items-center justify-between font-medium text-foreground">
           <span>{t("perPassenger")}</span>
-          <span className="tabular-nums">
-            {formatPrice(unitTotal, offer.price.currency, locale)}
-          </span>
+          <span className="tabular-nums">{format(unitTotal, locale)}</span>
         </div>
         <p className="text-muted-foreground">
           {t("passengersLabel", { count: passengerCount })}
@@ -57,7 +52,7 @@ export function PaymentSummary({
       <div className="flex items-center justify-between">
         <span className="font-semibold text-foreground">{t("total")}</span>
         <span className="text-2xl font-bold tabular-nums text-foreground">
-          {formatPrice(grandTotal, offer.price.currency, locale)}
+          {format(grandTotal, locale)}
         </span>
       </div>
     </div>

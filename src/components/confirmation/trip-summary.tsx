@@ -4,18 +4,16 @@ import { useLocale, useTranslations } from "next-intl";
 import { format } from "date-fns";
 import { enUS, fr } from "date-fns/locale";
 import { Badge } from "@/components/ui/badge";
-import type { FlightOffer } from "@/services/amadeus";
+import type { AirportCode, FlightOffer } from "@/services/amadeus";
+import { useCurrency } from "@/components/providers/currency-provider";
 import {
   formatClock,
   formatDuration,
-  formatPrice,
   getOfferFare,
   getStopCount,
 } from "@/components/results/flight-offer-utils";
 
 const DATE_LOCALES = { fr, ht: fr, en: enUS } as const;
-
-type AirportCode = "PAP" | "CAP" | "JFK" | "MIA" | "SDQ";
 
 export function TripSummary({
   offer,
@@ -29,6 +27,7 @@ export function TripSummary({
   const tFare = useTranslations("Fares");
   const tAirports = useTranslations("Airports");
   const tResults = useTranslations("Results");
+  const { format: formatCurrency } = useCurrency();
 
   const itinerary = offer.itineraries[0];
   const segments = itinerary.segments;
@@ -120,7 +119,7 @@ export function TripSummary({
             {t("totalPaid")}
           </span>
           <span className="text-xl font-bold tabular-nums text-foreground">
-            {formatPrice(total, offer.price.currency, locale)}
+            {formatCurrency(total, locale)}
           </span>
         </div>
       </div>

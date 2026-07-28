@@ -22,12 +22,20 @@
     "ht": "Kreyòl",
     "en": "English"
   },
+  "Currency": {
+    "changeCurrency": "Chanje deviz la",
+    "USD": "USD — Dola ameriken",
+    "EUR": "EUR — Ewo"
+  },
   "Airports": {
     "PAP": "Pòtoprens",
     "CAP": "Kap Ayisyen",
     "JFK": "New York",
     "MIA": "Miami",
-    "SDQ": "Sen Domeng"
+    "SDQ": "Sen Domeng",
+    "CDG": "Pari",
+    "LHR": "Lond",
+    "YYZ": "Toronto"
   },
   "SearchForm": {
     "tripTypeLabel": "Kalite vwayaj",
@@ -49,6 +57,7 @@
     "increasePassengers": "Ogmante kantite granmoun",
     "previousMonth": "Mwa anvan an",
     "nextMonth": "Mwa apre a",
+    "noAirportResults": "Nou pa jwenn okenn ayewopò.",
     "done": "Fini",
     "search": "Chèche vòl"
   },
@@ -86,7 +95,6 @@
   },
   "PaymentForm": {
     "methodCard": "Kat entènasyonal",
-    "methodMoncash": "MonCash",
     "cardholderName": "Non moun ki gen kat la",
     "cardholderNamePlaceholder": "Menm jan sou kat la",
     "cardNumber": "Nimewo kat",
@@ -98,9 +106,6 @@
     "billingCity": "Vil",
     "billingPostalCode": "Kòd postal",
     "billingCountry": "Peyi",
-    "moncashHeading": "Peman MonCash",
-    "moncashDescription": "W ap resevwa yon demann konfimasyon sou aplikasyon MonCash nan nimewo sa a.",
-    "moncashPhone": "Nimewo MonCash",
     "termsLabel": "Mwen aksepte <terms>kondisyon jeneral vant</terms> ak politik tarif la.",
     "pay": "Peye {amount}",
     "errors": {
@@ -118,9 +123,7 @@
       "billingAddressRequired": "Adrès faktirasyon an obligatwa.",
       "billingCityRequired": "Vil la obligatwa.",
       "billingPostalCodeRequired": "Kòd postal la obligatwa.",
-      "billingCountryRequired": "Peyi a obligatwa.",
-      "moncashPhoneRequired": "Nimewo MonCash la obligatwa.",
-      "moncashPhoneFormat": "Nimewo MonCash la gen karaktè ki pa valab."
+      "billingCountryRequired": "Peyi a obligatwa."
     }
   },
   "Confirmation": {

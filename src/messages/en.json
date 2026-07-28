@@ -22,12 +22,20 @@
     "ht": "Kreyòl",
     "en": "English"
   },
+  "Currency": {
+    "changeCurrency": "Change currency",
+    "USD": "USD — US Dollar",
+    "EUR": "EUR — Euro"
+  },
   "Airports": {
     "PAP": "Port-au-Prince",
     "CAP": "Cap-Haïtien",
     "JFK": "New York",
     "MIA": "Miami",
-    "SDQ": "Santo Domingo"
+    "SDQ": "Santo Domingo",
+    "CDG": "Paris",
+    "LHR": "London",
+    "YYZ": "Toronto"
   },
   "SearchForm": {
     "tripTypeLabel": "Trip type",
@@ -49,6 +57,7 @@
     "increasePassengers": "Increase adult count",
     "previousMonth": "Previous month",
     "nextMonth": "Next month",
+    "noAirportResults": "No airport found.",
     "done": "Done",
     "search": "Search flights"
   },
@@ -86,7 +95,6 @@
   },
   "PaymentForm": {
     "methodCard": "International card",
-    "methodMoncash": "MonCash",
     "cardholderName": "Cardholder name",
     "cardholderNamePlaceholder": "As shown on the card",
     "cardNumber": "Card number",
@@ -98,9 +106,6 @@
     "billingCity": "City",
     "billingPostalCode": "Postal code",
     "billingCountry": "Country",
-    "moncashHeading": "MonCash payment",
-    "moncashDescription": "You will receive a confirmation request on the MonCash app at this number.",
-    "moncashPhone": "MonCash number",
     "termsLabel": "I accept the <terms>terms and conditions</terms> and fare policy.",
     "pay": "Pay {amount}",
     "errors": {
@@ -118,9 +123,7 @@
       "billingAddressRequired": "The billing address is required.",
       "billingCityRequired": "The city is required.",
       "billingPostalCodeRequired": "The postal code is required.",
-      "billingCountryRequired": "The country is required.",
-      "moncashPhoneRequired": "The MonCash number is required.",
-      "moncashPhoneFormat": "The MonCash number contains invalid characters."
+      "billingCountryRequired": "The country is required."
     }
   },
   "Confirmation": {

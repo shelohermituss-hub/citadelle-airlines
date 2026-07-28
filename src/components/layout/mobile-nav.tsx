@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sheet";
 import { MainNav } from "./main-nav";
 import { LanguageSwitcher } from "./language-switcher";
+import { CurrencySwitcher } from "./currency-switcher";
 
 export function MobileNav() {
   const t = useTranslations("Nav");
@@ -49,7 +50,8 @@ export function MobileNav() {
           linkClassName="w-full py-3 text-base"
           onNavigate={() => setOpen(false)}
         />
-        <div className="mt-auto border-t border-border p-4">
+        <div className="mt-auto flex flex-col gap-2 border-t border-border p-4">
+          <CurrencySwitcher className="w-full justify-center" />
           <LanguageSwitcher className="w-full justify-center" />
         </div>
       </SheetContent>

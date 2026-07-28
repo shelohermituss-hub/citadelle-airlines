@@ -8,7 +8,7 @@ import { format } from "date-fns";
 import { enUS, fr } from "date-fns/locale";
 import { Link, useRouter } from "@/i18n/navigation";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { amadeusClient, type FlightOffer } from "@/services/amadeus";
+import { amadeusClient, type AirportCode, type FlightOffer } from "@/services/amadeus";
 import { FareComparisonDialog } from "./fare-comparison-dialog";
 import { FlightCard } from "./flight-card";
 import { FlightCardSkeleton } from "./flight-card-skeleton";
@@ -158,10 +158,8 @@ export function ResultsView() {
         </div>
         <h1 className="font-serif text-2xl font-semibold text-foreground sm:text-3xl">
           {t("heading", {
-            origin: tAirports(origin as "PAP" | "CAP" | "JFK" | "MIA" | "SDQ"),
-            destination: tAirports(
-              destination as "PAP" | "CAP" | "JFK" | "MIA" | "SDQ"
-            ),
+            origin: tAirports(origin as AirportCode),
+            destination: tAirports(destination as AirportCode),
           })}
         </h1>
         <p className="text-muted-foreground">

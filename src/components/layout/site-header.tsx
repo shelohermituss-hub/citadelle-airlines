@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { MainNav } from "./main-nav";
 import { LanguageSwitcher } from "./language-switcher";
+import { CurrencySwitcher } from "./currency-switcher";
 import { MobileNav } from "./mobile-nav";
 
 export async function SiteHeader() {
@@ -28,6 +29,7 @@ export async function SiteHeader() {
         <MainNav className="hidden items-center gap-1 md:flex" />
 
         <div className="flex items-center gap-2">
+          <CurrencySwitcher className="hidden md:inline-flex" />
           <LanguageSwitcher className="hidden md:inline-flex" />
           <MobileNav />
         </div>

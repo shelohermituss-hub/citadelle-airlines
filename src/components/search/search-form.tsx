@@ -7,11 +7,7 @@ import { ArrowLeftRight, Search } from "lucide-react";
 import type { DateRange } from "react-day-picker";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "@/i18n/navigation";
-import {
-  DEFAULT_ORIGIN,
-  getDestinationsFrom,
-  getServedAirports,
-} from "@/services/amadeus";
+import { getDestinationsFrom, getServedAirports } from "@/services/amadeus";
 import { TripTypeToggle, type TripType } from "./trip-type-toggle";
 import { AirportField } from "./airport-field";
 import { DateRangeField } from "./date-range-field";
@@ -23,10 +19,8 @@ export function SearchForm() {
   const router = useRouter();
 
   const [tripType, setTripType] = useState<TripType>("roundtrip");
-  const [origin, setOrigin] = useState(DEFAULT_ORIGIN);
-  const [destination, setDestination] = useState(
-    () => getDestinationsFrom(DEFAULT_ORIGIN)[0]
-  );
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
   const [range, setRange] = useState<DateRange | undefined>(undefined);
   const [passengers, setPassengers] = useState(1);
 
@@ -40,7 +34,7 @@ export function SearchForm() {
     setOrigin(nextOrigin);
     const validDestinations = getDestinationsFrom(nextOrigin);
     if (!validDestinations.includes(destination)) {
-      setDestination(validDestinations[0]);
+      setDestination("");
     }
   }
 

@@ -9,12 +9,12 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/navigation";
 import { buttonVariants } from "@/components/ui/button";
 import { amadeusClient } from "@/services/amadeus";
-import { formatPrice } from "@/components/results/flight-offer-utils";
+import { useCurrency } from "@/components/providers/currency-provider";
 import { PaymentForm } from "./payment-form";
 import { PaymentSummary } from "./payment-summary";
 import {
   createPaymentSchema,
-  EMPTY_CARD_PAYMENT,
+  EMPTY_PAYMENT,
   type PaymentFormValues,
 } from "./payment-schema";
 
@@ -24,6 +24,7 @@ export function PaymentView() {
   const locale = useLocale();
   const t = useTranslations("Payment");
   const tPayment = useTranslations("PaymentForm");
+  const { format } = useCurrency();
 
   const origin = searchParams.get("originLocationCode") ?? "";
   const destination = searchParams.get("destinationLocationCode") ?? "";
@@ -58,7 +59,7 @@ export function PaymentView() {
 
   const form = useForm<PaymentFormValues>({
     resolver: zodResolver(schema),
-    defaultValues: EMPTY_CARD_PAYMENT,
+    defaultValues: EMPTY_PAYMENT,
   });
 
   function onSubmit() {
@@ -86,7 +87,7 @@ export function PaymentView() {
   }
 
   const grandTotal = Number(offer.price.total) * adults;
-  const payAmountLabel = formatPrice(grandTotal, offer.price.currency, locale);
+  const payAmountLabel = format(grandTotal, locale);
 
   return (
     <div className="flex flex-col gap-6">

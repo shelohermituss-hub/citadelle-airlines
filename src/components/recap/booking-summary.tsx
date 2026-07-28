@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import type { FlightOffer } from "@/services/amadeus";
 import { FlightSummaryHeader } from "@/components/booking/flight-summary-header";
-import { formatPrice } from "@/components/results/flight-offer-utils";
+import { useCurrency } from "@/components/providers/currency-provider";
 
 export function BookingSummary({
   offer,
@@ -14,6 +14,7 @@ export function BookingSummary({
 }) {
   const locale = useLocale();
   const t = useTranslations("BookingSummary");
+  const { format } = useCurrency();
 
   const unitPrice = Number(offer.price.total);
   const total = unitPrice * passengerCount;
@@ -32,14 +33,13 @@ export function BookingSummary({
         <div className="flex items-center justify-between text-sm text-muted-foreground">
           <span>{t("passengersLabel", { count: passengerCount })}</span>
           <span>
-            {formatPrice(unitPrice, offer.price.currency, locale)}{" "}
-            {t("priceEach")}
+            {format(unitPrice, locale)} {t("priceEach")}
           </span>
         </div>
         <div className="flex items-center justify-between border-t border-border pt-3">
           <span className="font-semibold text-foreground">{t("total")}</span>
           <span className="text-2xl font-bold tabular-nums text-foreground">
-            {formatPrice(total, offer.price.currency, locale)}
+            {format(total, locale)}
           </span>
         </div>
       </div>

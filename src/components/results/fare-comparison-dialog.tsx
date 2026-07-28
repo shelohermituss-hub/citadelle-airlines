@@ -12,9 +12,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { BrandedFare, FlightOffer } from "@/services/amadeus";
+import { useCurrency } from "@/components/providers/currency-provider";
 import {
   formatClock,
-  formatPrice,
   getOfferFare,
   hasSeatSelection,
   isModifiable,
@@ -40,6 +40,7 @@ export function FareComparisonDialog({
   const t = useTranslations("FareComparison");
   const tFare = useTranslations("Fares");
   const tResults = useTranslations("Results");
+  const { format } = useCurrency();
 
   const reference = siblings[0];
 
@@ -100,11 +101,7 @@ export function FareComparisonDialog({
                       </h3>
                       {offer ? (
                         <p className="mt-1 text-2xl font-bold tabular-nums text-foreground">
-                          {formatPrice(
-                            offer.price.total,
-                            offer.price.currency,
-                            locale
-                          )}
+                          {format(offer.price.total, locale)}
                         </p>
                       ) : (
                         <p className="mt-1 text-sm text-muted-foreground">

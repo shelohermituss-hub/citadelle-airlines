@@ -5,10 +5,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { FlightOffer } from "@/services/amadeus";
+import { useCurrency } from "@/components/providers/currency-provider";
 import {
   formatClock,
   formatDuration,
-  formatPrice,
   getOfferFare,
   getStopCount,
   isModifiable,
@@ -26,6 +26,7 @@ export function FlightCard({
   const locale = useLocale();
   const t = useTranslations("Results");
   const tFare = useTranslations("Fares");
+  const { format } = useCurrency();
   const itinerary = offer.itineraries[0];
   const segments = itinerary.segments;
   const first = segments[0];
@@ -84,7 +85,7 @@ export function FlightCard({
 
       <div className="flex shrink-0 flex-row items-center justify-between gap-4 border-t border-border pt-4 sm:flex-col sm:items-end sm:gap-3 sm:border-t-0 sm:pt-0 sm:text-right">
         <span className="text-2xl font-bold tabular-nums text-foreground">
-          {formatPrice(offer.price.total, offer.price.currency, locale)}
+          {format(offer.price.total, locale)}
         </span>
         <Button onClick={() => onSelect(offer)}>{t("select")}</Button>
       </div>

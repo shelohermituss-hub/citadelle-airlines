@@ -22,12 +22,20 @@
     "ht": "Kreyòl",
     "en": "English"
   },
+  "Currency": {
+    "changeCurrency": "Changer de devise",
+    "USD": "USD — Dollar américain",
+    "EUR": "EUR — Euro"
+  },
   "Airports": {
     "PAP": "Port-au-Prince",
     "CAP": "Cap-Haïtien",
     "JFK": "New York",
     "MIA": "Miami",
-    "SDQ": "Saint-Domingue"
+    "SDQ": "Saint-Domingue",
+    "CDG": "Paris",
+    "LHR": "Londres",
+    "YYZ": "Toronto"
   },
   "SearchForm": {
     "tripTypeLabel": "Type de trajet",
@@ -49,6 +57,7 @@
     "increasePassengers": "Augmenter le nombre d'adultes",
     "previousMonth": "Mois précédent",
     "nextMonth": "Mois suivant",
+    "noAirportResults": "Aucun aéroport trouvé.",
     "done": "Terminé",
     "search": "Rechercher des vols"
   },
@@ -86,7 +95,6 @@
   },
   "PaymentForm": {
     "methodCard": "Carte internationale",
-    "methodMoncash": "MonCash",
     "cardholderName": "Nom du titulaire",
     "cardholderNamePlaceholder": "Comme sur la carte",
     "cardNumber": "Numéro de carte",
@@ -98,9 +106,6 @@
     "billingCity": "Ville",
     "billingPostalCode": "Code postal",
     "billingCountry": "Pays",
-    "moncashHeading": "Paiement MonCash",
-    "moncashDescription": "Vous recevrez une demande de confirmation sur l'application MonCash à ce numéro.",
-    "moncashPhone": "Numéro MonCash",
     "termsLabel": "J'accepte les <terms>conditions générales de vente</terms> et la politique tarifaire.",
     "pay": "Payer {amount}",
     "errors": {
@@ -118,9 +123,7 @@
       "billingAddressRequired": "L'adresse de facturation est requise.",
       "billingCityRequired": "La ville est requise.",
       "billingPostalCodeRequired": "Le code postal est requis.",
-      "billingCountryRequired": "Le pays est requis.",
-      "moncashPhoneRequired": "Le numéro MonCash est requis.",
-      "moncashPhoneFormat": "Le numéro MonCash contient des caractères invalides."
+      "billingCountryRequired": "Le pays est requis."
     }
   },
   "Confirmation": {

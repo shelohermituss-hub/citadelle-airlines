@@ -84,7 +84,7 @@ Voici la structure extraite des 26 écrans du flow « Booking flight » + les 8 
 
 ### 6. Paiement
 
-- Moyens de paiement en onglets ou liste (chez toi : Carte internationale / MonCash)
+- Moyen de paiement : carte internationale uniquement
 - Champs carte + adresse de facturation
 - Rappel du total + détail taxes dans la colonne récap
 - Case CGV + politique tarifaire à cocher
@@ -110,4 +110,4 @@ Voici la structure extraite des 26 écrans du flow « Booking flight » + les 8 
 2. **Sélection de sièges** (plan de cabine) — absente du flow Navan, à concevoir
 3. **Trilinguisme FR / Kreyòl / EN** dès le header
 4. **Gestion de réservation publique** (code PNR + nom) sans compte
-5. Paiement MonCash pour le marché local
+5. Sélecteur de devise USD/EUR dans le header

@@ -10,6 +10,17 @@ import { MOCK_FLIGHT_OFFERS } from "./mock-offers.data";
 
 export type RoutePair = readonly [origin: string, destination: string];
 
+/** Codes IATA connus du réseau mock — tient le namespace next-intl "Airports" à jour. */
+export type AirportCode =
+  | "PAP"
+  | "CAP"
+  | "JFK"
+  | "MIA"
+  | "SDQ"
+  | "CDG"
+  | "LHR"
+  | "YYZ";
+
 function collectRoutePairs(): RoutePair[] {
   const seen = new Set<string>();
   const pairs: RoutePair[] = [];
@@ -31,9 +42,6 @@ function collectRoutePairs(): RoutePair[] {
 
 /** Paires de routes uniques desservies par Citadelle (ex. ["PAP", "JFK"]). */
 export const ROUTE_PAIRS: RoutePair[] = collectRoutePairs();
-
-/** Aéroport de départ par défaut du tunnel de réservation. */
-export const DEFAULT_ORIGIN = "PAP";
 
 /** Tous les aéroports desservis, triés alphabétiquement. */
 export function getServedAirports(): string[] {

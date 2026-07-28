@@ -2,15 +2,13 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
-import type { FlightOffer } from "@/services/amadeus";
+import type { AirportCode, FlightOffer } from "@/services/amadeus";
 import {
   formatClock,
   formatDuration,
   getOfferFare,
   getStopCount,
 } from "@/components/results/flight-offer-utils";
-
-type AirportCode = "PAP" | "CAP" | "JFK" | "MIA" | "SDQ";
 
 /** Bloc « vol choisi » réutilisé par les cartes récap (passagers, paiement). */
 export function FlightSummaryHeader({ offer }: { offer: FlightOffer }) {

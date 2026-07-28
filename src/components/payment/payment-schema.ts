@@ -2,15 +2,15 @@ import { z } from "zod";
 
 /**
  * Validation du formulaire de paiement (docs/anatomie-tunnel.md
- * section 6). Aucune vraie intégration : ces champs ne sont jamais
- * envoyés à un processeur de paiement, l'écran est une interface
- * seule (voir payment-view.tsx). Les messages d'erreur viennent de
- * next-intl (namespace PaymentForm.errors) — le schéma est donc
- * construit à l'appel, avec la fonction de traduction du composant.
+ * section 6). Carte internationale uniquement (CLAUDE.md, règle 9).
+ * Aucune vraie intégration : ces champs ne sont jamais envoyés à un
+ * processeur de paiement, l'écran est une interface seule (voir
+ * payment-view.tsx). Les messages d'erreur viennent de next-intl
+ * (namespace PaymentForm.errors) — le schéma est donc construit à
+ * l'appel, avec la fonction de traduction du composant.
  */
 
 const NAME_REGEX = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/;
-const PHONE_REGEX = /^[0-9+()\s-]+$/;
 
 export type Translate = (
   key: string,
@@ -49,14 +49,7 @@ export function isExpiryValid(expiry: string): boolean {
 }
 
 export function createPaymentSchema(t: Translate) {
-  const acceptTermsField = {
-    acceptTerms: z
-      .boolean()
-      .refine((value) => value === true, t("errors.acceptTermsRequired")),
-  };
-
-  const cardSchema = z.object({
-    method: z.literal("card"),
+  return z.object({
     cardholderName: z
       .string()
       .trim()
@@ -86,26 +79,15 @@ export function createPaymentSchema(t: Translate) {
       .trim()
       .min(3, t("errors.billingPostalCodeRequired")),
     billingCountry: z.string().trim().min(2, t("errors.billingCountryRequired")),
-    ...acceptTermsField,
+    acceptTerms: z
+      .boolean()
+      .refine((value) => value === true, t("errors.acceptTermsRequired")),
   });
-
-  const moncashSchema = z.object({
-    method: z.literal("moncash"),
-    moncashPhone: z
-      .string()
-      .trim()
-      .min(8, t("errors.moncashPhoneRequired"))
-      .regex(PHONE_REGEX, t("errors.moncashPhoneFormat")),
-    ...acceptTermsField,
-  });
-
-  return z.discriminatedUnion("method", [cardSchema, moncashSchema]);
 }
 
 export type PaymentFormValues = z.infer<ReturnType<typeof createPaymentSchema>>;
 
-export const EMPTY_CARD_PAYMENT: PaymentFormValues = {
-  method: "card",
+export const EMPTY_PAYMENT: PaymentFormValues = {
   cardholderName: "",
   cardNumber: "",
   expiry: "",
@@ -114,12 +96,6 @@ export const EMPTY_CARD_PAYMENT: PaymentFormValues = {
   billingCity: "",
   billingPostalCode: "",
   billingCountry: "",
-  acceptTerms: false,
-};
-
-export const EMPTY_MONCASH_PAYMENT: PaymentFormValues = {
-  method: "moncash",
-  moncashPhone: "",
   acceptTerms: false,
 };
 

@@ -10,8 +10,10 @@ import type {
 } from "./types";
 
 /**
- * 20 offres de référence sur les 4 routes Citadelle : PAP↔JFK,
- * PAP↔MIA, PAP↔SDQ et CAP↔MIA.
+ * 29 offres de référence sur 7 routes Citadelle : PAP↔JFK, PAP↔MIA,
+ * PAP↔SDQ, CAP↔MIA (réseau historique), et les liaisons long-courrier
+ * JFK↔CDG, JFK↔LHR, MIA↔YYZ (réseau international — CLAUDE.md,
+ * Contexte : compagnie internationale, pas centrée sur Haïti).
  *
  * Les horaires sont figés sur une date de gabarit (REFERENCE_DATE) ;
  * mock.client.ts réapplique la date réellement recherchée au moment
@@ -29,11 +31,15 @@ export const DICTIONARIES: Dictionaries = {
     JFK: { cityCode: "NYC", countryCode: "US" },
     MIA: { cityCode: "MIA", countryCode: "US" },
     SDQ: { cityCode: "SDQ", countryCode: "DO" },
+    CDG: { cityCode: "PAR", countryCode: "FR" },
+    LHR: { cityCode: "LON", countryCode: "GB" },
+    YYZ: { cityCode: "YTO", countryCode: "CA" },
   },
   aircraft: {
     "738": "737-800",
     "7M8": "737 MAX 8",
     E90: "EMBRAER 190",
+    "788": "787-8 DREAMLINER",
   },
   currencies: {
     USD: "US DOLLAR",
@@ -575,6 +581,174 @@ const OFFER_SPECS: OfferSpec[] = [
         flightNumber: "CD204",
         aircraft: "738",
         duration: "PT1H55M",
+      },
+    ],
+  },
+
+  // ---- JFK ↔ CDG (long-courrier) ---------------------------------------
+  {
+    id: "21",
+    fare: "ECO",
+    totalPrice: 649,
+    numberOfBookableSeats: 18,
+    totalDuration: "PT7H15M",
+    segments: [
+      {
+        departureAirport: "JFK",
+        arrivalAirport: "CDG",
+        departureTime: "09:00",
+        arrivalTime: "22:15",
+        flightNumber: "CD500",
+        aircraft: "788",
+        duration: "PT7H15M",
+      },
+    ],
+  },
+  {
+    id: "22",
+    fare: "ECOFLEX",
+    totalPrice: 829,
+    numberOfBookableSeats: 14,
+    totalDuration: "PT7H15M",
+    segments: [
+      {
+        departureAirport: "JFK",
+        arrivalAirport: "CDG",
+        departureTime: "09:00",
+        arrivalTime: "22:15",
+        flightNumber: "CD500",
+        aircraft: "788",
+        duration: "PT7H15M",
+      },
+    ],
+  },
+  {
+    id: "23",
+    fare: "BUSINESS",
+    totalPrice: 2199,
+    numberOfBookableSeats: 6,
+    totalDuration: "PT7H15M",
+    segments: [
+      {
+        departureAirport: "JFK",
+        arrivalAirport: "CDG",
+        departureTime: "09:00",
+        arrivalTime: "22:15",
+        flightNumber: "CD500",
+        aircraft: "788",
+        duration: "PT7H15M",
+      },
+    ],
+  },
+
+  // ---- JFK ↔ LHR (long-courrier) ---------------------------------------
+  {
+    id: "24",
+    fare: "ECO",
+    totalPrice: 599,
+    numberOfBookableSeats: 18,
+    totalDuration: "PT7H00M",
+    segments: [
+      {
+        departureAirport: "JFK",
+        arrivalAirport: "LHR",
+        departureTime: "10:00",
+        arrivalTime: "22:00",
+        flightNumber: "CD600",
+        aircraft: "788",
+        duration: "PT7H00M",
+      },
+    ],
+  },
+  {
+    id: "25",
+    fare: "ECOFLEX",
+    totalPrice: 779,
+    numberOfBookableSeats: 14,
+    totalDuration: "PT7H00M",
+    segments: [
+      {
+        departureAirport: "JFK",
+        arrivalAirport: "LHR",
+        departureTime: "10:00",
+        arrivalTime: "22:00",
+        flightNumber: "CD600",
+        aircraft: "788",
+        duration: "PT7H00M",
+      },
+    ],
+  },
+  {
+    id: "26",
+    fare: "BUSINESS",
+    totalPrice: 2099,
+    numberOfBookableSeats: 6,
+    totalDuration: "PT7H00M",
+    segments: [
+      {
+        departureAirport: "JFK",
+        arrivalAirport: "LHR",
+        departureTime: "10:00",
+        arrivalTime: "22:00",
+        flightNumber: "CD600",
+        aircraft: "788",
+        duration: "PT7H00M",
+      },
+    ],
+  },
+
+  // ---- MIA ↔ YYZ ---------------------------------------------------------
+  {
+    id: "27",
+    fare: "ECO",
+    totalPrice: 229,
+    numberOfBookableSeats: 12,
+    totalDuration: "PT3H10M",
+    segments: [
+      {
+        departureAirport: "MIA",
+        arrivalAirport: "YYZ",
+        departureTime: "08:00",
+        arrivalTime: "11:10",
+        flightNumber: "CD700",
+        aircraft: "738",
+        duration: "PT3H10M",
+      },
+    ],
+  },
+  {
+    id: "28",
+    fare: "ECOFLEX",
+    totalPrice: 289,
+    numberOfBookableSeats: 10,
+    totalDuration: "PT3H10M",
+    segments: [
+      {
+        departureAirport: "MIA",
+        arrivalAirport: "YYZ",
+        departureTime: "08:00",
+        arrivalTime: "11:10",
+        flightNumber: "CD700",
+        aircraft: "738",
+        duration: "PT3H10M",
+      },
+    ],
+  },
+  {
+    id: "29",
+    fare: "BUSINESS",
+    totalPrice: 649,
+    numberOfBookableSeats: 5,
+    totalDuration: "PT3H10M",
+    segments: [
+      {
+        departureAirport: "MIA",
+        arrivalAirport: "YYZ",
+        departureTime: "08:00",
+        arrivalTime: "11:10",
+        flightNumber: "CD700",
+        aircraft: "738",
+        duration: "PT3H10M",
       },
     ],
   },

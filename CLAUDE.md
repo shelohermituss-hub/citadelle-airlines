@@ -1,14 +1,17 @@
 # Citadelle Airlines — Site web + réservation en ligne
 
 ## Contexte
-Site public de Citadelle Airlines, compagnie aérienne haïtienne
-(vols internationaux). Le PSS sera Amadeus — AUCUN appel réel :
-toute donnée vol passe par une couche mock au format Amadeus
-Flight Offers.
+Site public de Citadelle Airlines, compagnie aérienne
+INTERNATIONALE d'envergure mondiale — pas centrée sur Haïti. Le nom
+et l'emblème « Citadelle » sont un héritage de marque (référence à
+la Citadelle Laferrière), pas un positionnement géographique : ne
+jamais présenter la compagnie comme « haïtienne » dans les textes.
+Le PSS sera Amadeus — AUCUN appel réel : toute donnée vol passe par
+une couche mock au format Amadeus Flight Offers.
 
 ## Stack
 Next.js 15 (App Router) + TypeScript strict + Tailwind + shadcn/ui
-+ next-intl (locales : fr par défaut, ht, en) + TanStack Query
++ next-intl (locales : en par défaut, fr, ht) + TanStack Query
 + Zod + date-fns.
 
 ## Design tokens Citadelle (OBLIGATOIRES)
@@ -52,3 +55,9 @@ Next.js 15 (App Router) + TypeScript strict + Tailwind + shadcn/ui
 7. Mobile-first, focus clavier visible.
 8. Après chaque écran validé : proposer un commit git avec un
    message clair en français.
+9. Sélecteur de devise USD/EUR dans le header (à côté des langues),
+   appliqué à tous les prix affichés. Paiement en carte
+   internationale uniquement (pas de moyen de paiement local).
+10. Le champ « départ » de la recherche démarre toujours vide, avec
+    autocomplétion sur les aéroports internationaux desservis —
+    jamais de ville présélectionnée par défaut.
