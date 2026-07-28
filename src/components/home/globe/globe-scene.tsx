@@ -1,10 +1,13 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Line, OrbitControls, QuadraticBezierLine } from "@react-three/drei";
+import { Html, Line, OrbitControls, QuadraticBezierLine } from "@react-three/drei";
+import { useTranslations } from "next-intl";
 import {
+  AdditiveBlending,
   BackSide,
+  Color,
   QuadraticBezierCurve3,
   type Group,
   type Mesh,
@@ -18,18 +21,46 @@ import { createArcPoints, latLonToVector3 } from "./geo";
 
 const GLOBE_RADIUS = 1.6;
 const GOLD = "#F2A81D";
+const ATMOSPHERE_COLOR = new Color(GOLD);
+
+/** Halo atmosphérique en Fresnel — plus lumineux en bord de silhouette,
+ * transparent au centre. Peu coûteux : c'est le shader qui fait le
+ * dégradé, pas la géométrie (sphère basse résolution). */
+const ATMOSPHERE_VERTEX = /* glsl */ `
+  varying vec3 vNormal;
+  void main() {
+    vNormal = normalize(normalMatrix * normal);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+const ATMOSPHERE_FRAGMENT = /* glsl */ `
+  varying vec3 vNormal;
+  uniform vec3 color;
+  void main() {
+    float rim = pow(0.62 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.5);
+    gl_FragColor = vec4(color, clamp(rim, 0.0, 1.0) * 0.55);
+  }
+`;
 
 function GlobeSphere() {
   return (
     <group>
       <mesh>
-        <sphereGeometry args={[GLOBE_RADIUS, 32, 32]} />
+        <sphereGeometry args={[GLOBE_RADIUS, 24, 24]} />
         <meshStandardMaterial color="#0b0e14" roughness={0.95} metalness={0.05} />
       </mesh>
-      {/* fine halo autour du globe, purement décoratif */}
-      <mesh>
-        <sphereGeometry args={[GLOBE_RADIUS * 1.015, 24, 24]} />
-        <meshBasicMaterial color={GOLD} transparent opacity={0.04} side={BackSide} />
+      {/* halo atmosphérique or, discret */}
+      <mesh scale={1.06}>
+        <sphereGeometry args={[GLOBE_RADIUS, 20, 20]} />
+        <shaderMaterial
+          vertexShader={ATMOSPHERE_VERTEX}
+          fragmentShader={ATMOSPHERE_FRAGMENT}
+          uniforms={{ color: { value: ATMOSPHERE_COLOR } }}
+          transparent
+          depthWrite={false}
+          side={BackSide}
+          blending={AdditiveBlending}
+        />
       </mesh>
     </group>
   );
@@ -63,12 +94,17 @@ function ContinentOutlines() {
 function DestinationPoint({
   position,
   isHub,
+  code,
 }: {
   position: Vector3;
   isHub: boolean;
+  code: AirportCode;
 }) {
   const haloRef = useRef<Mesh>(null);
+  const [hovered, setHovered] = useState(false);
+  const tAirports = useTranslations("Airports");
   const phase = useMemo(() => position.x + position.z, [position]);
+  const dotSize = isHub ? 0.022 : 0.013;
 
   useFrame(({ clock }) => {
     const halo = haloRef.current;
@@ -82,13 +118,36 @@ function DestinationPoint({
   return (
     <group position={position}>
       <mesh>
-        <sphereGeometry args={[isHub ? 0.022 : 0.013, 10, 10]} />
+        <sphereGeometry args={[dotSize, 8, 8]} />
         <meshBasicMaterial color={isHub ? "#ffffff" : GOLD} />
       </mesh>
       <mesh ref={haloRef}>
-        <sphereGeometry args={[(isHub ? 0.022 : 0.013) * 1.8, 10, 10]} />
+        <sphereGeometry args={[dotSize * 1.8, 8, 8]} />
         <meshBasicMaterial color={GOLD} transparent opacity={0.3} depthWrite={false} />
       </mesh>
+      {/* zone de survol plus généreuse que le point visible, pour rester facile à cibler */}
+      <mesh
+        onPointerOver={(event) => {
+          event.stopPropagation();
+          setHovered(true);
+          document.body.style.cursor = "pointer";
+        }}
+        onPointerOut={(event) => {
+          event.stopPropagation();
+          setHovered(false);
+          document.body.style.cursor = "auto";
+        }}
+      >
+        <sphereGeometry args={[dotSize * 3.5, 8, 8]} />
+        <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+      </mesh>
+      {hovered && (
+        <Html center style={{ pointerEvents: "none" }}>
+          <span className="-translate-y-5 whitespace-nowrap rounded-md bg-citadelle-noir/90 px-2 py-1 text-xs font-medium text-white shadow-lg">
+            {tAirports(code)}
+          </span>
+        </Html>
+      )}
     </group>
   );
 }
@@ -109,7 +168,7 @@ function FlightMarker({ curve }: { curve: QuadraticBezierCurve3 }) {
   return (
     <group ref={ref}>
       <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <coneGeometry args={[0.01, 0.032, 6]} />
+        <coneGeometry args={[0.01, 0.032, 5]} />
         <meshBasicMaterial color="#ffffff" />
       </mesh>
     </group>
@@ -183,14 +242,19 @@ export function GlobeScene() {
           mid={points[1]}
           end={points[2]}
           color={GOLD}
-          lineWidth={1.3}
+          lineWidth={0.9}
           transparent
-          opacity={0.65}
+          opacity={0.55}
         />
       ))}
 
       {destinationPoints.map(({ code, position }) => (
-        <DestinationPoint key={code} position={position} isHub={code === HUB_AIRPORT} />
+        <DestinationPoint
+          key={code}
+          position={position}
+          isHub={code === HUB_AIRPORT}
+          code={code}
+        />
       ))}
 
       {flightCurve && <FlightMarker curve={flightCurve} />}

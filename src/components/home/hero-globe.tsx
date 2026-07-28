@@ -24,10 +24,10 @@ export function HeroGlobe({ shortcuts }: { shortcuts: ReactNode }) {
         {capability === "fallback" && <GlobeFallback />}
         {capability === "checking" && <GlobeSkeleton />}
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-citadelle-noir/85 via-citadelle-noir/35 to-citadelle-noir/10" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-citadelle-noir/85 via-citadelle-noir/35 to-citadelle-noir/10" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col justify-center px-4 py-16 sm:px-6 lg:px-8">
-        <div className="rounded-[24px] bg-card p-6 shadow-xl sm:p-8">
+      <div className="pointer-events-none relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col justify-center px-4 py-16 sm:px-6 lg:px-8">
+        <div className="pointer-events-auto rounded-[24px] bg-card p-6 shadow-xl sm:p-8">
           <h1 className="font-serif text-3xl font-semibold text-foreground sm:text-4xl">
             {t("title")}
           </h1>
@@ -37,7 +37,7 @@ export function HeroGlobe({ shortcuts }: { shortcuts: ReactNode }) {
           </div>
         </div>
 
-        <div className="mt-8">{shortcuts}</div>
+        <div className="pointer-events-auto mt-8">{shortcuts}</div>
       </div>
     </section>
   );
