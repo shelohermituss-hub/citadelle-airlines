@@ -21,6 +21,21 @@ Next.js 15 (App Router) + TypeScript strict + Tailwind + shadcn/ui
   bleue est OBSOLÈTE — seuls les tokens or/noir ci-dessus comptent,
   reprendre uniquement la structure des composants)
 
+## Animations
+- Librairie : `motion` (successeur de Framer Motion) — import depuis
+  `"motion/react"`, jamais `"framer-motion"`.
+- Durées : 150–300 ms pour les micro-interactions (survol, clic,
+  apparition d'un élément) ; 400–600 ms pour les transitions de
+  page/écran.
+- Easing doux (`easeOut`) — jamais de rebond ni d'accélération
+  agressive.
+- Respect strict de `prefers-reduced-motion` : si l'utilisateur l'a
+  activé, aucune animation (pas de version réduite, désactivation
+  complète).
+- Jamais d'animation qui bloque une action utilisateur : un bouton
+  reste cliquable, un formulaire reste soumettable, même pendant une
+  transition en cours.
+
 ## Règles absolues
 1. Jamais de données vol en dur dans les composants : tout passe
    par src/services/amadeus/ (interface IAmadeusClient,
