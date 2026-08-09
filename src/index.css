@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-citadelle-cream text-citadelle-black font-sans antialiased;
+    margin: 0;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-citadelle-gold ring-offset-2 ring-offset-white rounded-sm;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  ::selection {
+    @apply bg-citadelle-gold/30;
+  }
+}
+
+@layer components {
+  .skeleton {
+    @apply relative overflow-hidden bg-citadelle-cream rounded-md;
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    background-size: 1000px 100%;
+    @apply animate-shimmer;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-citadelle-gold text-citadelle-black hover:bg-citadelle-gold-dark hover:text-white px-6 py-3 shadow-sm hover:shadow-md;
+  }
+  .btn-secondary {
+    @apply btn bg-citadelle-black text-white hover:bg-citadelle-black-soft px-6 py-3;
+  }
+  .btn-outline {
+    @apply btn border border-citadelle-black/15 text-citadelle-black hover:border-citadelle-gold hover:text-citadelle-gold-dark px-6 py-3 bg-white;
+  }
+  .btn-ghost {
+    @apply btn text-citadelle-black hover:bg-citadelle-cream px-3 py-2;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-card border border-black/[0.04];
+  }
+  .card-hover {
+    @apply card transition-all duration-300 hover:shadow-card-hover hover:border-citadelle-gold/30;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-citadelle-black placeholder:text-black/30 transition-colors focus:border-citadelle-gold focus:ring-1 focus:ring-citadelle-gold;
+  }
+  .input-error {
+    @apply border-citadelle-error focus:border-citadelle-error focus:ring-citadelle-error;
+  }
+  .label {
+    @apply block text-sm font-semibold text-citadelle-black mb-1.5;
+  }
+  .helper {
+    @apply text-xs text-black/50 mt-1;
+  }
+  .error-text {
+    @apply text-xs text-citadelle-error mt-1 font-medium;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+}

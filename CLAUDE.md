@@ -7,57 +7,73 @@ et l'emblème « Citadelle » sont un héritage de marque (référence à
 la Citadelle Laferrière), pas un positionnement géographique : ne
 jamais présenter la compagnie comme « haïtienne » dans les textes.
 Le PSS sera Amadeus — AUCUN appel réel : toute donnée vol passe par
-une couche mock au format Amadeus Flight Offers.
+une couche mock (src/data/bookingService.ts) qui reproduit la forme
+des réponses Amadeus Flight Offers, pour pouvoir être remplacée par
+de vrais appels sans toucher aux écrans. Un bandeau (`DemoBanner`)
+rappelle en permanence qu'il s'agit d'une démo.
 
-## Stack
-Next.js 15 (App Router) + TypeScript strict + Tailwind + shadcn/ui
-+ next-intl (locales : en par défaut, fr, ht) + TanStack Query
-+ Zod + date-fns.
+## Stack (projet Bolt.new — remplace l'ancienne base Next.js)
+Vite + React 18 + TypeScript strict + react-router-dom + Tailwind
+CSS (config classique `tailwind.config.js`, pas de shadcn/ui) +
+lucide-react pour les icônes + date-fns. Contexte i18n maison
+(src/i18n/I18nContext.tsx + translations.ts, locales : en par
+défaut, fr, ht) — pas next-intl. Contexte de réservation maison
+(src/contexts/BookingContext.tsx) porte l'état du tunnel entre les
+pages. `@react-three/fiber`/`three` sont installés pour l'avion 3D
+du hero (Airplane3D.tsx/ThreeAirplane.tsx). `@supabase/supabase-js`
+est une dépendance installée mais non câblée à un backend réel —
+tout reste mock tant que rule ci-dessus n'est pas levée.
+
+Alias d'import : `@/` → `src/` (voir vite.config.ts /
+tsconfig.app.json), ex. `@/components/Foo` == `src/components/Foo`.
 
 ## Design tokens Citadelle (OBLIGATOIRES)
-- Or Citadelle #F2A81D — CTA et accents
-- Noir Citadelle #141414 — texte, header
-- Fond #F7F6F3 · Cartes #FFFFFF · Succès #178A5B · Erreur #D14343
-- Titres : Fraunces (serif) · Texte : Inter · chiffres tabulaires
-- Coins arrondis généreux (cartes 20px), ombres douces
-- Référence de composants : docs/design-system.html (sa palette
-  bleue est OBSOLÈTE — seuls les tokens or/noir ci-dessus comptent,
-  reprendre uniquement la structure des composants)
+Définis dans `tailwind.config.js` sous `colors.citadelle` :
+- `citadelle-gold` #F2A81D (+ `gold-light`/`gold-dark`) — CTA et accents
+- `citadelle-black` #141414 (+ `black-soft`) — texte, header
+- `citadelle-cream` #F7F6F3 — fond · `citadelle-white` #FFFFFF — cartes
+- `citadelle-success` #178A5B · `citadelle-error` #D14343
+- Polices : `font-display` (Plus Jakarta Sans) pour les titres,
+  `font-sans` (Inter) pour le texte courant, chiffres tabulaires
+- Ombres dédiées : `shadow-card` / `shadow-card-hover` / `shadow-elevated`
+- Coins arrondis généreux, ombres douces
 
 ## Animations
-- Librairie : `motion` (successeur de Framer Motion) — import depuis
-  `"motion/react"`, jamais `"framer-motion"`.
-- Durées : 150–300 ms pour les micro-interactions (survol, clic,
-  apparition d'un élément) ; 400–600 ms pour les transitions de
-  page/écran.
-- Easing doux (`easeOut`) — jamais de rebond ni d'accélération
-  agressive.
-- Respect strict de `prefers-reduced-motion` : si l'utilisateur l'a
-  activé, aucune animation (pas de version réduite, désactivation
-  complète).
-- Jamais d'animation qui bloque une action utilisateur : un bouton
-  reste cliquable, un formulaire reste soumettable, même pendant une
-  transition en cours.
+Pas de librairie externe (`motion`/framer-motion) dans ce projet —
+tout passe par les utilitaires Tailwind définis dans
+`tailwind.config.js` (`animate-fade-in`, `animate-slide-up`,
+`animate-slide-down`, `animate-shimmer`, `animate-float`) et des
+transitions CSS classiques. `prefers-reduced-motion` est déjà
+respecté globalement dans `src/index.css` (désactivation complète
+des animations/transitions, pas de version réduite). Toute nouvelle
+animation doit suivre le même principe : rester dans ces utilitaires
+Tailwind (ou en ajouter de similaires dans `tailwind.config.js`),
+easing doux, jamais de rebond agressif, jamais bloquant pour
+l'utilisateur.
 
 ## Règles absolues
-1. Jamais de données vol en dur dans les composants : tout passe
-   par src/services/amadeus/ (interface IAmadeusClient,
-   implémentation mock.client.ts).
-2. Structure des écrans : suivre docs/anatomie-tunnel.md.
-3. Les images de docs/references/ servent UNIQUEMENT de référence
-   de structure — ne jamais reprendre leurs couleurs, logos, textes
-   ou marque (Navan).
-4. En cas de conflit entre une skill de design et ce fichier, les
+1. Jamais de données vol en dur dans les composants : tout passe par
+   src/data/ (`bookingService.ts` pour les opérations, `mockOffers.ts`
+   pour la génération, `airports.ts`/`fareFamilies.ts` pour le
+   référentiel, `types.ts` pour les types façon Amadeus).
+2. Tunnel de réservation : `/search` → `/booking/fare` →
+   `/booking/passengers` → `/booking/payment` →
+   `/booking/confirmation` (voir src/App.tsx pour le routing complet,
+   qui inclut aussi Destinations/Check-in/Statut vol/Gérer ma
+   réservation/À propos/Aide/Contact/Légal).
+3. En cas de conflit entre une skill de design et ce fichier, les
    tokens Citadelle de ce fichier gagnent toujours.
-5. Tous les textes via next-intl (fr/ht/en), jamais en dur.
-6. Stepper « trajectoire de vol » (pointillés + avion) sur les
-   étapes 2 à 5 du tunnel.
-7. Mobile-first, focus clavier visible.
-8. Après chaque écran validé : proposer un commit git avec un
+4. Tous les textes via le contexte i18n (`useI18n()` /
+   src/i18n/translations.ts), jamais en dur — les 3 locales (en/fr/ht)
+   doivent rester synchronisées clé pour clé.
+5. Mobile-first, focus clavier visible (`*:focus-visible` géré
+   globalement dans src/index.css).
+6. Après chaque écran validé : proposer un commit git avec un
    message clair en français.
-9. Sélecteur de devise USD/EUR dans le header (à côté des langues),
-   appliqué à tous les prix affichés. Paiement en carte
-   internationale uniquement (pas de moyen de paiement local).
-10. Le champ « départ » de la recherche démarre toujours vide, avec
-    autocomplétion sur les aéroports internationaux desservis —
-    jamais de ville présélectionnée par défaut.
+7. Sélecteur de devise USD/EUR dans le header (à côté des langues,
+   voir `LanguageCurrencySelector.tsx`), appliqué à tous les prix
+   affichés. Paiement en carte internationale uniquement (pas de
+   moyen de paiement local).
+8. Le champ « départ » de la recherche démarre toujours vide, avec
+   autocomplétion sur les aéroports internationaux desservis (hub
+   PAP) — jamais de ville présélectionnée par défaut.
