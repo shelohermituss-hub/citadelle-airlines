@@ -1,8 +1,8 @@
 import { useI18n } from '@/i18n/I18nContext';
 import { getAirport } from '@/data/airports';
 import type { FlightResult } from '@/data/types';
-import { Plane } from 'lucide-react';
-import { FcClock, FcRight } from 'react-icons/fc';
+import { Plane, ArrowRight } from 'lucide-react';
+import { FcClock } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 
 interface FlightCardProps {
@@ -118,7 +118,7 @@ export function FlightCard({ result, onSelect, isReturn = false }: FlightCardPro
             className="btn-primary text-sm px-5 py-2.5"
           >
             {t('results.select')}
-            {isReturn && <FcRight className="h-4 w-4" />}
+            {isReturn && <ArrowRight className="h-4 w-4" />}
           </button>
         </div>
       </div>

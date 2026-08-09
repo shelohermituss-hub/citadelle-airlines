@@ -9,7 +9,8 @@ import { convertUsd } from '@/data/mockOffers';
 import { SeatGrid2D } from '@/components/SeatGrid2D';
 import { canRender3D } from '@/utils/deviceCapabilities';
 import type { AircraftCode } from '@/data/fleet';
-import { FcLeft, FcRight, FcOk } from 'react-icons/fc';
+import { ChevronLeft, ChevronRight, ArrowLeft, ArrowRight } from 'lucide-react';
+import { FcOk } from 'react-icons/fc';
 
 const SeatMap3D = lazy(() => import('@/components/SeatMap3D').then((m) => ({ default: m.SeatMap3D })));
 
@@ -181,7 +182,7 @@ export default function SeatsPage() {
                   aria-label={t('seats.prevRows')}
                   className="absolute left-2 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-citadelle-black shadow-elevated hover:bg-white transition-colors disabled:opacity-30"
                 >
-                  <FcLeft className="h-5 w-5" />
+                  <ChevronLeft className="h-5 w-5" />
                 </button>
                 <button
                   type="button"
@@ -190,7 +191,7 @@ export default function SeatsPage() {
                   aria-label={t('seats.nextRows')}
                   className="absolute right-2 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-citadelle-black shadow-elevated hover:bg-white transition-colors disabled:opacity-30"
                 >
-                  <FcRight className="h-5 w-5" />
+                  <ChevronRight className="h-5 w-5" />
                 </button>
               </div>
               <p className="text-center text-xs text-black/40 mt-2">
@@ -229,12 +230,12 @@ export default function SeatsPage() {
 
           <div className="flex justify-between mt-2">
             <Link to="/booking/passengers" className="btn-ghost">
-              <FcLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4" />
               {t('common.back')}
             </Link>
             <button onClick={handleContinue} disabled={!allSeated} className="btn-primary">
               {t('common.continue')}
-              <FcRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </div>

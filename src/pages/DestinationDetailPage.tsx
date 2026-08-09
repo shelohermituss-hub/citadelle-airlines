@@ -2,8 +2,8 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
 import { getAirport, HUB_IATA } from '@/data/airports';
 import { getFromPrice } from '@/data/mockOffers';
-import { Plane } from 'lucide-react';
-import { FcClock, FcOrganization, FcRight, FcLeft } from 'react-icons/fc';
+import { Plane, ArrowRight, ArrowLeft } from 'lucide-react';
+import { FcClock, FcOrganization } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 import { StatTile } from '@/components/StatTile';
 import { getDestinationImage } from '@/data/destinationImages';
@@ -55,7 +55,7 @@ export default function DestinationDetailPage() {
   return (
     <div className="container-page py-8">
       <Link to="/destinations" className="btn-ghost mb-4">
-        <FcLeft className="h-4 w-4" />
+        <ArrowLeft className="h-4 w-4" />
         {t('nav.destinations')}
       </Link>
 
@@ -129,12 +129,12 @@ export default function DestinationDetailPage() {
             <div className="flex items-center gap-2 text-sm text-black/50 mb-4">
               <Plane className="h-4 w-4 text-citadelle-gold-dark" />
               <span>{HUB_IATA} → {airport.iata}</span>
-              <FcRight className="h-3 w-3" />
+              <ArrowRight className="h-3 w-3" />
               <span>{formatDuration(airport.durationFromHubMin)}</span>
             </div>
             <button onClick={handleBook} className="btn-primary w-full">
               {t('destinations.bookNow')}
-              <FcRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </aside>

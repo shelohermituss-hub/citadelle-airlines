@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { FcLeft, FcRight, FcCollaboration, FcPositiveDynamic, FcRuler, FcExpand } from 'react-icons/fc';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { FcCollaboration, FcPositiveDynamic, FcRuler, FcExpand } from 'react-icons/fc';
 import { useI18n } from '@/i18n/I18nContext';
 import { Airplane3D } from './Airplane3D';
 import { StatTile } from './StatTile';
@@ -28,7 +29,7 @@ export function FleetCarousel() {
           aria-label={t('fleet.prev')}
           className="absolute left-0 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-citadelle-black shadow-elevated hover:bg-white transition-colors"
         >
-          <FcLeft className="h-5 w-5" />
+          <ChevronLeft className="h-5 w-5" />
         </button>
         <button
           type="button"
@@ -36,7 +37,7 @@ export function FleetCarousel() {
           aria-label={t('fleet.next')}
           className="absolute right-0 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-citadelle-black shadow-elevated hover:bg-white transition-colors"
         >
-          <FcRight className="h-5 w-5" />
+          <ChevronRight className="h-5 w-5" />
         </button>
       </div>
 

@@ -5,8 +5,8 @@ import { useBooking } from '@/contexts/BookingContext';
 import { FARE_FAMILIES, FARE_FAMILY_ORDER } from '@/data/fareFamilies';
 import { getAirport } from '@/data/airports';
 import type { FareFamily, FlightOffer, FlightResult } from '@/data/types';
-import { Plane } from 'lucide-react';
-import { FcCheckmark, FcCancel, FcRight, FcLeft, FcClock, FcCollaboration } from 'react-icons/fc';
+import { Plane, ArrowRight, ArrowLeft } from 'lucide-react';
+import { FcCheckmark, FcCancel, FcClock, FcCollaboration } from 'react-icons/fc';
 
 export default function FareSelectionPage() {
   const { t, locale, formatPrice, formatTime, formatDate, formatDuration } = useI18n();
@@ -114,7 +114,7 @@ export default function FareSelectionPage() {
             <div className="flex flex-wrap items-center gap-3 text-sm">
               <Plane className="h-4 w-4 text-citadelle-gold-dark" />
               <span className="font-semibold">{getCityName(outboundResult.outbound.segments[0].departure.iataCode)}</span>
-              <FcRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 text-black/30" />
               <span className="font-semibold">{getCityName(outboundResult.outbound.segments[outboundResult.outbound.segments.length - 1].arrival.iataCode)}</span>
               <span className="text-black/40">·</span>
               <span className="text-black/60">{formatDate(criteria?.departureDate ?? outboundResult.departureTime)}</span>
@@ -125,7 +125,7 @@ export default function FareSelectionPage() {
               <div className="flex flex-wrap items-center gap-3 text-sm mt-3 pt-3 border-t border-black/[0.06]">
                 <Plane className="h-4 w-4 text-citadelle-gold-dark rotate-180" />
                 <span className="font-semibold">{getCityName(returnResult.outbound.segments[0].departure.iataCode)}</span>
-                <FcRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 text-black/30" />
                 <span className="font-semibold">{getCityName(returnResult.outbound.segments[returnResult.outbound.segments.length - 1].arrival.iataCode)}</span>
                 <span className="text-black/40">·</span>
                 <span className="text-black/60">{formatDate(criteria?.returnDate ?? returnResult.departureTime)}</span>
@@ -224,12 +224,12 @@ export default function FareSelectionPage() {
 
           <div className="flex justify-between mt-6">
             <Link to="/search" className="btn-ghost">
-              <FcLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4" />
               {t('common.back')}
             </Link>
             <button onClick={handleContinue} className="btn-primary">
               {t('common.continue')}
-              <FcRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { useI18n, LOCALES, CURRENCIES } from '@/i18n/I18nContext';
 import { useState, useRef, useEffect } from 'react';
-import { FcGlobe, FcDown, FcCheckmark } from 'react-icons/fc';
+import { ChevronDown } from 'lucide-react';
+import { FcGlobe, FcCheckmark } from 'react-icons/fc';
 import type { Locale, Currency } from '@/i18n/translations';
 
 export function LanguageCurrencySelector() {
@@ -29,7 +30,7 @@ export function LanguageCurrencySelector() {
         >
           <FcGlobe className="h-4 w-4" />
           <span className="hidden sm:inline uppercase">{locale}</span>
-          <FcDown className="h-3.5 w-3.5" />
+          <ChevronDown className="h-3.5 w-3.5" />
         </button>
         {open === 'lang' && (
           <div className="absolute right-0 z-50 mt-2 w-44 rounded-xl border border-black/5 bg-white py-1 shadow-elevated animate-slide-down">
@@ -58,7 +59,7 @@ export function LanguageCurrencySelector() {
           aria-label={t('common.currency')}
         >
           <span className="font-semibold">{currency}</span>
-          <FcDown className="h-3.5 w-3.5" />
+          <ChevronDown className="h-3.5 w-3.5" />
         </button>
         {open === 'currency' && (
           <div className="absolute right-0 z-50 mt-2 w-32 rounded-xl border border-black/5 bg-white py-1 shadow-elevated animate-slide-down">

@@ -4,7 +4,8 @@ import { useI18n } from '@/i18n/I18nContext';
 import { useBooking } from '@/contexts/BookingContext';
 import { bookingService } from '@/data/bookingService';
 import { BookingSummary } from './PassengersPage';
-import { FcLeft, FcMoneyTransfer, FcLock, FcApproval, FcHighPriority, FcSynchronize } from 'react-icons/fc';
+import { ArrowLeft } from 'lucide-react';
+import { FcMoneyTransfer, FcLock, FcApproval, FcHighPriority, FcSynchronize } from 'react-icons/fc';
 
 export default function PaymentPage() {
   const { t, formatPrice, currency } = useI18n();
@@ -208,7 +209,7 @@ export default function PaymentPage() {
 
           <div className="flex justify-between mt-6">
             <Link to="/booking/passengers" className="btn-ghost" onClick={(e) => { if (processing) e.preventDefault(); }}>
-              <FcLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4" />
               {t('common.back')}
             </Link>
             <button onClick={handlePay} disabled={processing} className="btn-primary">

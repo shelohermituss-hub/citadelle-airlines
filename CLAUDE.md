@@ -16,13 +16,20 @@ rappelle en permanence qu'il s'agit d'une démo.
 Vite + React 18 + TypeScript strict + react-router-dom + Tailwind
 CSS (config classique `tailwind.config.js`, pas de shadcn/ui) +
 flat-color-icons (via `react-icons/fc`, ex. `import { FcClock } from
-'react-icons/fc'`) pour l'iconographie générale + date-fns. Exception :
-`lucide-react` est conservé uniquement pour l'icône `Plane` (avion),
-faute d'équivalent aviation dans le pack flat-color-icons — ne pas
-introduire d'autre icône lucide-react. Les icônes flat-color-icons
-sont des SVG multicolores à teinte fixe : les classes `text-*`
-n'affectent pas leur couleur (seulement `className="h-x w-x"` pour la
-taille) — ne pas essayer de les teinter avec les tokens Citadelle.
+'react-icons/fc'`) pour l'iconographie générale + date-fns. Exceptions
+`lucide-react` : l'icône `Plane` (avion, faute d'équivalent aviation
+dans flat-color-icons) et toutes les icônes directionnelles/flèches
+(`ArrowLeft`, `ArrowRight`, `ArrowLeftRight`, `ChevronLeft`,
+`ChevronRight`, `ChevronDown`) utilisées pour la navigation (carousel
+flotte, pagination sièges, retour/continuer du tunnel, chevrons des
+menus déroulants langue/devise/dropdowns) — ces icônes doivent
+retrouver la couleur de marque via `text-*` (`currentColor`), ce que
+les flat-color-icons ne permettent pas. Ne pas introduire d'autre
+icône lucide-react en dehors de ces deux exceptions. Les icônes
+flat-color-icons sont des SVG multicolores à teinte fixe : les classes
+`text-*` n'affectent pas leur couleur (seulement `className="h-x w-x"`
+pour la taille) — ne pas essayer de les teinter avec les tokens
+Citadelle.
 Contexte i18n maison
 (src/i18n/I18nContext.tsx + translations.ts, locales : en par
 défaut, fr, ht) — pas next-intl. Contexte de réservation maison

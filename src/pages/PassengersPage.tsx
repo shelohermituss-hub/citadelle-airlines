@@ -6,7 +6,8 @@ import { getAirport } from '@/data/airports';
 import { PET_FEE_USD } from '@/data/ancillaries';
 import { convertUsd } from '@/data/mockOffers';
 import type { PassengerInfo, ContactInfo } from '@/data/types';
-import { FcLeft, FcRight, FcCollaboration, FcInvite, FcPaid } from 'react-icons/fc';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { FcCollaboration, FcInvite, FcPaid } from 'react-icons/fc';
 
 const TITLES = ['MR', 'MS', 'MRS', 'MX', 'MISS', 'MSTR'] as const;
 const COUNTRY_CODES = ['+1', '+33', '+509', '+1 809', '+1 876', '+1 868', '+55', '+1 786', '+44', '+49', '+90'];
@@ -326,12 +327,12 @@ export default function PassengersPage() {
 
           <div className="flex justify-between mt-6">
             <Link to="/booking/fare" className="btn-ghost">
-              <FcLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4" />
               {t('common.back')}
             </Link>
             <button onClick={handleContinue} className="btn-primary">
               {t('common.continue')}
-              <FcRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </div>

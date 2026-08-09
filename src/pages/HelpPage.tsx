@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
-import { FcDown, FcFaq, FcInvite } from 'react-icons/fc';
+import { ChevronDown } from 'lucide-react';
+import { FcFaq, FcInvite } from 'react-icons/fc';
 
 const FAQ_ITEMS: Record<string, { q: string; a: string }[]> = {
   booking: [
@@ -77,7 +78,7 @@ export default function HelpPage() {
                 className="flex w-full items-center justify-between gap-3 p-4 text-left"
               >
                 <span className="font-medium text-citadelle-black text-sm">{item.q}</span>
-                <FcDown className={`h-4 w-4 shrink-0 transition-transform ${openItem === i ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`h-4 w-4 text-black/30 shrink-0 transition-transform ${openItem === i ? 'rotate-180' : ''}`} />
               </button>
               {openItem === i && (
                 <div className="px-4 pb-4 animate-slide-down">

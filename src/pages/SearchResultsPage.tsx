@@ -8,8 +8,8 @@ import { FARE_FAMILY_ORDER } from '@/data/fareFamilies';
 import type { FlightResult, SearchCriteria } from '@/data/types';
 import { SearchForm } from '@/components/SearchForm';
 import { FlightCard } from '@/components/FlightCard';
-import { Plane } from 'lucide-react';
-import { FcGenericSortingAsc, FcFilledFilter, FcCancel, FcClock, FcRight, FcRefresh, FcCalendar } from 'react-icons/fc';
+import { Plane, ArrowRight } from 'lucide-react';
+import { FcGenericSortingAsc, FcFilledFilter, FcCancel, FcClock, FcRefresh, FcCalendar } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 
 type SortKey = 'price' | 'duration' | 'departure' | 'arrival';
@@ -155,7 +155,7 @@ export default function SearchResultsPage() {
               <span className="font-bold text-citadelle-black text-lg">{getCityName(criteria.originLocationCode)}</span>
               <span className="text-citadelle-black/30 text-sm">({criteria.originLocationCode})</span>
             </div>
-            <FcRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4 text-citadelle-gold-dark" />
             <div className="flex items-center gap-2">
               <Flag countryCode={getAirport(criteria.destinationLocationCode)?.countryCode ?? ''} className="h-3 w-4" />
               <span className="font-bold text-citadelle-black text-lg">{getCityName(criteria.destinationLocationCode)}</span>

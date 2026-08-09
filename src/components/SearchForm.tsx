@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
 import { useBooking } from '@/contexts/BookingContext';
 import { AirportAutocomplete } from './AirportAutocomplete';
-import { FcSynchronize, FcCollaboration, FcBusinessman, FcCalendar, FcDown, FcCheckmark } from 'react-icons/fc';
+import { ChevronDown } from 'lucide-react';
+import { FcSynchronize, FcCollaboration, FcBusinessman, FcCalendar, FcCheckmark } from 'react-icons/fc';
 import type { SearchCriteria } from '@/data/types';
 
 interface SearchFormProps {
@@ -226,7 +227,7 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
               <FcCollaboration className="h-4 w-4" />
               <span className="truncate">{paxLabel}</span>
             </span>
-            <FcDown className={`h-4 w-4 transition-transform ${paxOpen ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`h-4 w-4 text-citadelle-black/40 transition-transform ${paxOpen ? 'rotate-180' : ''}`} />
           </button>
           {errors.passengers && <p className="error-text">{errors.passengers}</p>}
           {paxOpen && (
@@ -254,7 +255,7 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
             className="input flex items-center justify-between text-left"
           >
             <span className={`chip ${selectedClassOption.badgeClass}`}>{selectedClassOption.label}</span>
-            <FcDown className={`h-4 w-4 transition-transform ${classOpen ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`h-4 w-4 text-citadelle-black/40 transition-transform ${classOpen ? 'rotate-180' : ''}`} />
           </button>
           {classOpen && (
             <div className="absolute z-50 mt-1 w-full rounded-xl border border-black/5 bg-white p-2 shadow-elevated animate-slide-down">
