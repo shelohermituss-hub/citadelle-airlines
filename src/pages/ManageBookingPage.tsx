@@ -4,7 +4,8 @@ import { bookingService } from '@/data/bookingService';
 import { getAirport } from '@/data/airports';
 import type { PNRRecord } from '@/data/types';
 import { generatePdfSummary } from '@/utils/pdf';
-import { Search, Loader2, BookOpen, Download, Info, Plane, Users, User } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { FcSearch, FcSynchronize, FcReading, FcDownload, FcInfo, FcCollaboration, FcBusinessman } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 import { ListRow } from '@/components/ListRow';
 
@@ -63,7 +64,7 @@ export default function ManageBookingPage() {
         <div className="mb-6 text-center">
           <div className="flex justify-center mb-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-citadelle-cream">
-              <BookOpen className="h-6 w-6 text-citadelle-gold-dark" />
+              <FcReading className="h-6 w-6" />
             </div>
           </div>
           <h1 className="font-display text-2xl sm:text-3xl font-bold text-citadelle-black">{t('manage.title')}</h1>
@@ -99,7 +100,7 @@ export default function ManageBookingPage() {
             </div>
           </div>
           <button type="submit" disabled={loading} className="btn-primary w-full mt-4">
-            {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
+            {loading ? <FcSynchronize className="h-4 w-4 animate-spin" /> : <FcSearch className="h-4 w-4" />}
             {t('manage.find')}
           </button>
         </form>
@@ -108,7 +109,7 @@ export default function ManageBookingPage() {
         {notFound && (
           <div className="card p-5 mb-6 border-citadelle-error/20">
             <div className="flex items-center gap-2 text-citadelle-error">
-              <Info className="h-5 w-5" />
+              <FcInfo className="h-5 w-5" />
               <p className="text-sm font-medium">{t('manage.notFound')}</p>
             </div>
           </div>
@@ -172,7 +173,7 @@ export default function ManageBookingPage() {
             {/* Passengers */}
             <div className="card p-5">
               <h3 className="font-semibold text-citadelle-black mb-3 flex items-center gap-2">
-                <Users className="h-4 w-4 text-citadelle-gold-dark" />
+                <FcCollaboration className="h-4 w-4" />
                 {t('confirm.passengers')}
               </h3>
               <div className="space-y-1">
@@ -181,7 +182,7 @@ export default function ManageBookingPage() {
                     key={i}
                     badge={
                       <span className="flex h-9 w-9 items-center justify-center rounded-full bg-citadelle-gold/10 text-citadelle-gold-dark">
-                        <User className="h-4 w-4" />
+                        <FcBusinessman className="h-4 w-4" />
                       </span>
                     }
                     title={`${pax.title} ${pax.firstName} ${pax.lastName}`}
@@ -210,14 +211,14 @@ export default function ManageBookingPage() {
             {/* Modify notice */}
             <div className="card p-4 bg-citadelle-cream">
               <div className="flex items-start gap-2 text-sm text-black/60">
-                <Info className="h-4 w-4 text-citadelle-gold-dark shrink-0 mt-0.5" />
+                <FcInfo className="h-4 w-4 shrink-0 mt-0.5" />
                 <p>{t('manage.modifyNotice')}</p>
               </div>
             </div>
 
             {/* Download */}
             <button onClick={handleDownload} className="btn-outline w-full">
-              <Download className="h-4 w-4" />
+              <FcDownload className="h-4 w-4" />
               {t('manage.download')}
             </button>
           </div>

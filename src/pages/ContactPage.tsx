@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useI18n } from '@/i18n/I18nContext';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { FcInvite, FcPhone, FcGlobe, FcUpload, FcOk } from 'react-icons/fc';
 
 export default function ContactPage() {
   const { t } = useI18n();
@@ -40,7 +40,7 @@ export default function ContactPage() {
               <div className="card p-8 text-center">
                 <div className="flex justify-center mb-4">
                   <div className="flex h-14 w-14 items-center justify-center rounded-full bg-citadelle-success/10">
-                    <CheckCircle className="h-8 w-8 text-citadelle-success" />
+                    <FcOk className="h-8 w-8" />
                   </div>
                 </div>
                 <p className="text-sm text-black/60">{t('contact.sent')}</p>
@@ -71,7 +71,7 @@ export default function ContactPage() {
                   {errors.message && <p className="error-text">{errors.message}</p>}
                 </div>
                 <button type="submit" className="btn-primary w-full">
-                  <Send className="h-4 w-4" />
+                  <FcUpload className="h-4 w-4" />
                   {t('contact.send')}
                 </button>
               </form>
@@ -82,21 +82,21 @@ export default function ContactPage() {
           <aside>
             <div className="card p-5 space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-citadelle-gold-dark shrink-0 mt-0.5" />
+                <FcGlobe className="h-5 w-5 shrink-0 mt-0.5" />
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-black/40">{t('contact.address')}</p>
                   <p className="text-sm text-black/60">Avenue Toussaint Louverture<br />Port-au-Prince, Haiti</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Phone className="h-5 w-5 text-citadelle-gold-dark shrink-0 mt-0.5" />
+                <FcPhone className="h-5 w-5 shrink-0 mt-0.5" />
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-black/40">{t('contact.phone')}</p>
                   <p className="text-sm text-black/60">+1 (509) 000-0000</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Mail className="h-5 w-5 text-citadelle-gold-dark shrink-0 mt-0.5" />
+                <FcInvite className="h-5 w-5 shrink-0 mt-0.5" />
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-black/40">{t('contact.emailLabel')}</p>
                   <p className="text-sm text-black/60">contact@citadelleairlines.com</p>

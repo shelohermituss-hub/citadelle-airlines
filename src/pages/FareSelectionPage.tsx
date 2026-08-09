@@ -5,7 +5,8 @@ import { useBooking } from '@/contexts/BookingContext';
 import { FARE_FAMILIES, FARE_FAMILY_ORDER } from '@/data/fareFamilies';
 import { getAirport } from '@/data/airports';
 import type { FareFamily, FlightOffer, FlightResult } from '@/data/types';
-import { Check, X, ArrowRight, ArrowLeft, Plane, Clock, Users } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { FcCheckmark, FcCancel, FcRight, FcLeft, FcClock, FcCollaboration } from 'react-icons/fc';
 
 export default function FareSelectionPage() {
   const { t, locale, formatPrice, formatTime, formatDate, formatDuration } = useI18n();
@@ -113,7 +114,7 @@ export default function FareSelectionPage() {
             <div className="flex flex-wrap items-center gap-3 text-sm">
               <Plane className="h-4 w-4 text-citadelle-gold-dark" />
               <span className="font-semibold">{getCityName(outboundResult.outbound.segments[0].departure.iataCode)}</span>
-              <ArrowRight className="h-4 w-4 text-black/30" />
+              <FcRight className="h-4 w-4" />
               <span className="font-semibold">{getCityName(outboundResult.outbound.segments[outboundResult.outbound.segments.length - 1].arrival.iataCode)}</span>
               <span className="text-black/40">·</span>
               <span className="text-black/60">{formatDate(criteria?.departureDate ?? outboundResult.departureTime)}</span>
@@ -124,7 +125,7 @@ export default function FareSelectionPage() {
               <div className="flex flex-wrap items-center gap-3 text-sm mt-3 pt-3 border-t border-black/[0.06]">
                 <Plane className="h-4 w-4 text-citadelle-gold-dark rotate-180" />
                 <span className="font-semibold">{getCityName(returnResult.outbound.segments[0].departure.iataCode)}</span>
-                <ArrowRight className="h-4 w-4 text-black/30" />
+                <FcRight className="h-4 w-4" />
                 <span className="font-semibold">{getCityName(returnResult.outbound.segments[returnResult.outbound.segments.length - 1].arrival.iataCode)}</span>
                 <span className="text-black/40">·</span>
                 <span className="text-black/60">{formatDate(criteria?.returnDate ?? returnResult.departureTime)}</span>
@@ -223,12 +224,12 @@ export default function FareSelectionPage() {
 
           <div className="flex justify-between mt-6">
             <Link to="/search" className="btn-ghost">
-              <ArrowLeft className="h-4 w-4" />
+              <FcLeft className="h-4 w-4" />
               {t('common.back')}
             </Link>
             <button onClick={handleContinue} className="btn-primary">
               {t('common.continue')}
-              <ArrowRight className="h-4 w-4" />
+              <FcRight className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -239,11 +240,11 @@ export default function FareSelectionPage() {
             <h3 className="font-semibold text-citadelle-black mb-4">{t('fare.summary')}</h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-center gap-2 text-black/60">
-                <Users className="h-4 w-4 text-black/30" />
+                <FcCollaboration className="h-4 w-4" />
                 <span>{(criteria?.adults ?? 0) + (criteria?.children ?? 0) + (criteria?.infants ?? 0)} {t('common.passengers').toLowerCase()}</span>
               </div>
               <div className="flex items-center gap-2 text-black/60">
-                <Clock className="h-4 w-4 text-black/30" />
+                <FcClock className="h-4 w-4" />
                 <span>{formatDuration(outboundResult.durationMin)}</span>
               </div>
               <div className="border-t border-black/[0.06] pt-3">
@@ -278,7 +279,7 @@ function FareFeature({
       <div className="flex items-center gap-1 shrink-0">
         {status === 'included' && (
           <>
-            <Check className={`h-3.5 w-3.5 ${dark ? 'text-citadelle-gold' : 'text-citadelle-success'}`} />
+            <FcCheckmark className="h-3.5 w-3.5" />
             <span className={`text-xs font-medium ${dark ? 'text-citadelle-gold' : 'text-citadelle-success'}`}>{value || t('fare.included')}</span>
           </>
         )}
@@ -289,7 +290,7 @@ function FareFeature({
         )}
         {status === 'notAvailable' && (
           <>
-            <X className={`h-3.5 w-3.5 ${dark ? 'text-white/25' : 'text-black/25'}`} />
+            <FcCancel className="h-3.5 w-3.5 opacity-40" />
             <span className={`text-xs ${dark ? 'text-white/30' : 'text-black/30'}`}>{t('fare.notAvailable')}</span>
           </>
         )}

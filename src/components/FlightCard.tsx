@@ -1,7 +1,8 @@
 import { useI18n } from '@/i18n/I18nContext';
 import { getAirport } from '@/data/airports';
 import type { FlightResult } from '@/data/types';
-import { Clock, Plane, ArrowRight } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { FcClock, FcRight } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 
 interface FlightCardProps {
@@ -97,7 +98,7 @@ export function FlightCard({ result, onSelect, isReturn = false }: FlightCardPro
                 const layoverMin = Math.round((nextDep.getTime() - prevArr.getTime()) / 60000);
                 return (
                   <span key={i} className="text-xs text-black/40 flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
+                    <FcClock className="h-3 w-3" />
                     {t('results.layover', { duration: formatDuration(layoverMin) })} {getCityName(seg.departure.iataCode)}
                   </span>
                 );
@@ -117,7 +118,7 @@ export function FlightCard({ result, onSelect, isReturn = false }: FlightCardPro
             className="btn-primary text-sm px-5 py-2.5"
           >
             {t('results.select')}
-            {isReturn && <ArrowRight className="h-4 w-4" />}
+            {isReturn && <FcRight className="h-4 w-4" />}
           </button>
         </div>
       </div>

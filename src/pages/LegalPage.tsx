@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
-import { FileText, AlertTriangle } from 'lucide-react';
+import { FcDocument, FcHighPriority } from 'react-icons/fc';
 
 const LEGAL_CONTENT: Record<string, { titleKey: string; body: string }> = {
   tcs: {
@@ -41,14 +41,14 @@ export default function LegalPage() {
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center gap-3 mb-6">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-citadelle-cream">
-            <FileText className="h-5 w-5 text-citadelle-gold-dark" />
+            <FcDocument className="h-5 w-5" />
           </div>
           <h1 className="font-display text-2xl sm:text-3xl font-bold text-citadelle-black">{t(content.titleKey)}</h1>
         </div>
 
         <div className="card p-6">
           <div className="flex items-start gap-2 rounded-lg bg-citadelle-gold/5 p-3 mb-4">
-            <AlertTriangle className="h-4 w-4 text-citadelle-gold-dark shrink-0 mt-0.5" />
+            <FcHighPriority className="h-4 w-4 shrink-0 mt-0.5" />
             <p className="text-xs text-black/50">{t('legal.provisional')}</p>
           </div>
           <p className="text-sm text-black/60 leading-relaxed">{content.body}</p>

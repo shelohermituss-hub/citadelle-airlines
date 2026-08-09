@@ -1,5 +1,6 @@
 import { useI18n } from '@/i18n/I18nContext';
-import { Plane, Shield, Heart, Globe } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { FcPrivacy, FcLike, FcGlobe } from 'react-icons/fc';
 
 export default function AboutPage() {
   const { t } = useI18n();
@@ -51,17 +52,17 @@ export default function AboutPage() {
           <h2 className="font-display text-2xl font-bold text-citadelle-black mb-4">{t('about.values')}</h2>
           <div className="grid sm:grid-cols-3 gap-4">
             <div className="card p-5">
-              <Shield className="h-6 w-6 text-citadelle-gold-dark mb-3" />
+              <FcPrivacy className="h-6 w-6 mb-3" />
               <h3 className="font-semibold text-citadelle-black mb-1">Safety</h3>
               <p className="text-sm text-black/50">Sécurité / Sekirite</p>
             </div>
             <div className="card p-5">
-              <Heart className="h-6 w-6 text-citadelle-gold-dark mb-3" />
+              <FcLike className="h-6 w-6 mb-3" />
               <h3 className="font-semibold text-citadelle-black mb-1">Hospitality</h3>
               <p className="text-sm text-black/50">Hospitalité / Ospitalite</p>
             </div>
             <div className="card p-5">
-              <Globe className="h-6 w-6 text-citadelle-gold-dark mb-3" />
+              <FcGlobe className="h-6 w-6 mb-3" />
               <h3 className="font-semibold text-citadelle-black mb-1">Connection</h3>
               <p className="text-sm text-black/50">Connexion / Koneksyon</p>
             </div>

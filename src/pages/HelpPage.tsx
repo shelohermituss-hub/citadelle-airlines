@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
-import { ChevronDown, HelpCircle, Mail } from 'lucide-react';
+import { FcDown, FcFaq, FcInvite } from 'react-icons/fc';
 
 const FAQ_ITEMS: Record<string, { q: string; a: string }[]> = {
   booking: [
@@ -44,7 +44,7 @@ export default function HelpPage() {
         <div className="text-center mb-8">
           <div className="flex justify-center mb-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-citadelle-cream">
-              <HelpCircle className="h-6 w-6 text-citadelle-gold-dark" />
+              <FcFaq className="h-6 w-6" />
             </div>
           </div>
           <h1 className="font-display text-2xl sm:text-3xl font-bold text-citadelle-black">{t('faq.title')}</h1>
@@ -77,7 +77,7 @@ export default function HelpPage() {
                 className="flex w-full items-center justify-between gap-3 p-4 text-left"
               >
                 <span className="font-medium text-citadelle-black text-sm">{item.q}</span>
-                <ChevronDown className={`h-4 w-4 text-black/30 shrink-0 transition-transform ${openItem === i ? 'rotate-180' : ''}`} />
+                <FcDown className={`h-4 w-4 shrink-0 transition-transform ${openItem === i ? 'rotate-180' : ''}`} />
               </button>
               {openItem === i && (
                 <div className="px-4 pb-4 animate-slide-down">
@@ -92,7 +92,7 @@ export default function HelpPage() {
         <div className="mt-8 text-center">
           <p className="text-sm text-black/50 mb-3">{t('faq.contact')}</p>
           <Link to="/contact" className="btn-outline">
-            <Mail className="h-4 w-4" />
+            <FcInvite className="h-4 w-4" />
             {t('nav.contact')}
           </Link>
         </div>

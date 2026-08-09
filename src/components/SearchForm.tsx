@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
 import { useBooking } from '@/contexts/BookingContext';
 import { AirportAutocomplete } from './AirportAutocomplete';
-import { ArrowLeftRight, Users, User, PersonStanding, Baby, Calendar, ChevronDown, Check } from 'lucide-react';
+import { FcSynchronize, FcCollaboration, FcBusinessman, FcCalendar, FcDown, FcCheckmark } from 'react-icons/fc';
 import type { SearchCriteria } from '@/data/types';
 
 interface SearchFormProps {
@@ -173,13 +173,13 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
           aria-label={t('search.swap')}
           title={t('search.swap')}
         >
-          <ArrowLeftRight className="h-4 w-4" />
+          <FcSynchronize className="h-4 w-4" />
         </button>
 
         <div>
           <label htmlFor="departDate" className="label">{t('search.departDate')}</label>
           <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-citadelle-black/30 pointer-events-none" />
+            <FcCalendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 pointer-events-none" />
             <input
               id="departDate"
               type="date"
@@ -197,7 +197,7 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
             {t('search.returnDate')}
           </label>
           <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-citadelle-black/30 pointer-events-none" />
+            <FcCalendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 pointer-events-none" />
             <input
               id="returnDate"
               type="date"
@@ -223,17 +223,17 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
             className={`input flex items-center justify-between text-left ${errors.passengers ? 'input-error' : ''}`}
           >
             <span className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-citadelle-black/40" />
+              <FcCollaboration className="h-4 w-4" />
               <span className="truncate">{paxLabel}</span>
             </span>
-            <ChevronDown className={`h-4 w-4 text-citadelle-black/40 transition-transform ${paxOpen ? 'rotate-180' : ''}`} />
+            <FcDown className={`h-4 w-4 transition-transform ${paxOpen ? 'rotate-180' : ''}`} />
           </button>
           {errors.passengers && <p className="error-text">{errors.passengers}</p>}
           {paxOpen && (
             <div className="absolute z-50 mt-1 w-full rounded-xl border border-black/5 bg-white p-4 shadow-elevated animate-slide-down">
-              <PaxCounter icon={User} label={t('search.adults')} desc={t('search.adultsDesc')} value={adults} setValue={setAdults} min={1} max={9} />
-              <PaxCounter icon={PersonStanding} label={t('search.children')} desc={t('search.childrenDesc')} value={children} setValue={setChildren} min={0} max={9} />
-              <PaxCounter icon={Baby} label={t('search.infants')} desc={t('search.infantsDesc')} value={infants} setValue={setInfants} min={0} max={adults} />
+              <PaxCounter icon={FcBusinessman} label={t('search.adults')} desc={t('search.adultsDesc')} value={adults} setValue={setAdults} min={1} max={9} />
+              <PaxCounter icon={FcBusinessman} label={t('search.children')} desc={t('search.childrenDesc')} value={children} setValue={setChildren} min={0} max={9} />
+              <PaxCounter icon={FcBusinessman} label={t('search.infants')} desc={t('search.infantsDesc')} value={infants} setValue={setInfants} min={0} max={adults} />
               <button
                 type="button"
                 onClick={() => setPaxOpen(false)}
@@ -254,7 +254,7 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
             className="input flex items-center justify-between text-left"
           >
             <span className={`chip ${selectedClassOption.badgeClass}`}>{selectedClassOption.label}</span>
-            <ChevronDown className={`h-4 w-4 text-citadelle-black/40 transition-transform ${classOpen ? 'rotate-180' : ''}`} />
+            <FcDown className={`h-4 w-4 transition-transform ${classOpen ? 'rotate-180' : ''}`} />
           </button>
           {classOpen && (
             <div className="absolute z-50 mt-1 w-full rounded-xl border border-black/5 bg-white p-2 shadow-elevated animate-slide-down">
@@ -269,7 +269,7 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
                   className="flex w-full items-center justify-between gap-2 rounded-lg px-2.5 py-2 text-left hover:bg-citadelle-cream transition-colors"
                 >
                   <span className={`chip ${opt.badgeClass}`}>{opt.label}</span>
-                  {opt.value === travelClass && <Check className="h-4 w-4 text-citadelle-gold-dark" />}
+                  {opt.value === travelClass && <FcCheckmark className="h-4 w-4" />}
                 </button>
               ))}
             </div>

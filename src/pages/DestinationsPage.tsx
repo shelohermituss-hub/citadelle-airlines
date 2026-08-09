@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
 import { AIRPORTS, HUB_IATA } from '@/data/airports';
 import { getFromPrice } from '@/data/mockOffers';
-import { Clock, ArrowRight } from 'lucide-react';
+import { FcClock, FcRight } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 
 export default function DestinationsPage() {
@@ -47,7 +47,7 @@ export default function DestinationsPage() {
                     className="absolute -bottom-1.5 -right-1.5 h-4 w-6 ring-2 ring-white"
                   />
                 </div>
-                <ArrowRight className="h-4 w-4 text-black/20 group-hover:text-citadelle-gold group-hover:translate-x-1 transition-all" />
+                <FcRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </div>
               <h3 className="font-display text-lg font-bold text-citadelle-black">{getCityName(a)}</h3>
               <p className="text-sm text-black/40 flex items-center gap-1.5">
@@ -61,7 +61,7 @@ export default function DestinationsPage() {
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-black/40 flex items-center gap-1 justify-end">
-                    <Clock className="h-3 w-3" />
+                    <FcClock className="h-3 w-3" />
                     {t('destinations.flightTime')}
                   </p>
                   <p className="text-sm font-medium text-citadelle-black">{formatDuration(a.durationFromHubMin)}</p>

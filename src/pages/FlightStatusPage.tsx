@@ -3,7 +3,8 @@ import { useI18n } from '@/i18n/I18nContext';
 import { bookingService } from '@/data/bookingService';
 import { AirportAutocomplete } from '@/components/AirportAutocomplete';
 import type { FlightStatusInfo } from '@/data/types';
-import { Search, Loader2, Plane, Building, DoorOpen, AlertCircle } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { FcSearch, FcSynchronize, FcOrganization, FcExport, FcHighPriority } from 'react-icons/fc';
 
 export default function FlightStatusPage() {
   const { t, formatTime } = useI18n();
@@ -112,7 +113,7 @@ export default function FlightStatusPage() {
             />
           </div>
           <button type="submit" disabled={loading} className="btn-primary w-full mt-4">
-            {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
+            {loading ? <FcSynchronize className="h-4 w-4 animate-spin" /> : <FcSearch className="h-4 w-4" />}
             {t('status.search')}
           </button>
         </form>
@@ -121,7 +122,7 @@ export default function FlightStatusPage() {
         {notFound && (
           <div className="card p-5 border-citadelle-error/20">
             <div className="flex items-center gap-2 text-citadelle-error">
-              <AlertCircle className="h-5 w-5" />
+              <FcHighPriority className="h-5 w-5" />
               <p className="text-sm font-medium">{t('status.notFound')}</p>
             </div>
           </div>
@@ -153,12 +154,12 @@ export default function FlightStatusPage() {
                 <p className="text-sm text-black/50">{result.departure.iataCode}</p>
                 {result.departure.terminal && (
                   <p className="text-xs text-black/40 flex items-center gap-1 mt-1">
-                    <Building className="h-3 w-3" /> {t('status.terminal')} {result.departure.terminal}
+                    <FcOrganization className="h-3 w-3" /> {t('status.terminal')} {result.departure.terminal}
                   </p>
                 )}
                 {result.departure.gate && (
                   <p className="text-xs text-black/40 flex items-center gap-1">
-                    <DoorOpen className="h-3 w-3" /> {t('status.gate')} {result.departure.gate}
+                    <FcExport className="h-3 w-3" /> {t('status.gate')} {result.departure.gate}
                   </p>
                 )}
                 {result.departure.estimated && (
@@ -173,12 +174,12 @@ export default function FlightStatusPage() {
                 <p className="text-sm text-black/50">{result.arrival.iataCode}</p>
                 {result.arrival.terminal && (
                   <p className="text-xs text-black/40 flex items-center gap-1 mt-1">
-                    <Building className="h-3 w-3" /> {t('status.terminal')} {result.arrival.terminal}
+                    <FcOrganization className="h-3 w-3" /> {t('status.terminal')} {result.arrival.terminal}
                   </p>
                 )}
                 {result.arrival.gate && (
                   <p className="text-xs text-black/40 flex items-center gap-1">
-                    <DoorOpen className="h-3 w-3" /> {t('status.gate')} {result.arrival.gate}
+                    <FcExport className="h-3 w-3" /> {t('status.gate')} {result.arrival.gate}
                   </p>
                 )}
                 {result.arrival.estimated && (

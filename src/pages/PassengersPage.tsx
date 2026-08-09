@@ -4,7 +4,7 @@ import { useI18n } from '@/i18n/I18nContext';
 import { useBooking } from '@/contexts/BookingContext';
 import { getAirport } from '@/data/airports';
 import type { PassengerInfo, ContactInfo } from '@/data/types';
-import { ArrowLeft, ArrowRight, Users, Mail } from 'lucide-react';
+import { FcLeft, FcRight, FcCollaboration, FcInvite } from 'react-icons/fc';
 
 const TITLES = ['MR', 'MS', 'MRS', 'MX', 'MISS', 'MSTR'] as const;
 const COUNTRY_CODES = ['+1', '+33', '+509', '+1 809', '+1 876', '+1 868', '+55', '+1 786', '+44', '+49', '+90'];
@@ -217,7 +217,7 @@ export default function PassengersPage() {
             {/* Contact info */}
             <div className="card p-5">
               <h3 className="font-semibold text-citadelle-black mb-4 flex items-center gap-2">
-                <Mail className="h-4 w-4 text-citadelle-gold-dark" />
+                <FcInvite className="h-4 w-4" />
                 {t('passengers.contact')}
               </h3>
               <div className="grid sm:grid-cols-2 gap-3">
@@ -274,12 +274,12 @@ export default function PassengersPage() {
 
           <div className="flex justify-between mt-6">
             <Link to="/booking/fare" className="btn-ghost">
-              <ArrowLeft className="h-4 w-4" />
+              <FcLeft className="h-4 w-4" />
               {t('common.back')}
             </Link>
             <button onClick={handleContinue} className="btn-primary">
               {t('common.continue')}
-              <ArrowRight className="h-4 w-4" />
+              <FcRight className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -334,7 +334,7 @@ export function BookingSummary() {
         )}
         {/* Passengers */}
         <div className="flex items-center gap-2 text-black/60 pt-2 border-t border-black/[0.06]">
-          <Users className="h-4 w-4 text-black/30" />
+          <FcCollaboration className="h-4 w-4" />
           <span>{passengers.length || (criteria.adults + criteria.children + criteria.infants)} {t('common.passengers').toLowerCase()}</span>
         </div>
         {/* Fare */}

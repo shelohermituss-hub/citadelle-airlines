@@ -8,7 +8,8 @@ import { FARE_FAMILY_ORDER } from '@/data/fareFamilies';
 import type { FlightResult, SearchCriteria } from '@/data/types';
 import { SearchForm } from '@/components/SearchForm';
 import { FlightCard } from '@/components/FlightCard';
-import { ArrowUpDown, Filter, X, Plane, Clock, ArrowRight, RefreshCw, Calendar } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { FcGenericSortingAsc, FcFilledFilter, FcCancel, FcClock, FcRight, FcRefresh, FcCalendar } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 
 type SortKey = 'price' | 'duration' | 'departure' | 'arrival';
@@ -154,7 +155,7 @@ export default function SearchResultsPage() {
               <span className="font-bold text-citadelle-black text-lg">{getCityName(criteria.originLocationCode)}</span>
               <span className="text-citadelle-black/30 text-sm">({criteria.originLocationCode})</span>
             </div>
-            <ArrowRight className="h-4 w-4 text-citadelle-gold-dark" />
+            <FcRight className="h-4 w-4" />
             <div className="flex items-center gap-2">
               <Flag countryCode={getAirport(criteria.destinationLocationCode)?.countryCode ?? ''} className="h-3 w-4" />
               <span className="font-bold text-citadelle-black text-lg">{getCityName(criteria.destinationLocationCode)}</span>
@@ -198,7 +199,7 @@ export default function SearchResultsPage() {
         <aside className="hidden lg:block">
           <div className="card p-5 sticky top-24">
             <div className="flex items-center gap-2 mb-4">
-              <Filter className="h-4 w-4 text-citadelle-gold-dark" />
+              <FcFilledFilter className="h-4 w-4" />
               <h3 className="font-semibold text-citadelle-black">{t('results.filters')}</h3>
             </div>
             <FilterControls
@@ -221,8 +222,8 @@ export default function SearchResultsPage() {
             <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
               <span className="text-sm text-black/40 whitespace-nowrap">{t('results.sortBy')}:</span>
               {([
-                { key: 'price', label: t('results.sort.price'), icon: ArrowUpDown },
-                { key: 'duration', label: t('results.sort.duration'), icon: Clock },
+                { key: 'price', label: t('results.sort.price'), icon: FcGenericSortingAsc },
+                { key: 'duration', label: t('results.sort.duration'), icon: FcClock },
                 { key: 'departure', label: t('results.sort.departure'), icon: Plane },
                 { key: 'arrival', label: t('results.sort.arrival'), icon: Plane },
               ] as const).map((s) => (
@@ -245,7 +246,7 @@ export default function SearchResultsPage() {
               onClick={() => setShowFilters(true)}
               className="lg:hidden flex items-center gap-1.5 rounded-lg border border-black/10 px-3 py-1.5 text-sm font-medium"
             >
-              <Filter className="h-4 w-4" />
+              <FcFilledFilter className="h-4 w-4" />
               {t('results.filters')}
             </button>
           </div>
@@ -273,13 +274,13 @@ export default function SearchResultsPage() {
             <div className="card p-8 text-center">
               <div className="flex justify-center mb-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-citadelle-error/10">
-                  <X className="h-7 w-7 text-citadelle-error" />
+                  <FcCancel className="h-7 w-7" />
                 </div>
               </div>
               <h3 className="font-display text-lg font-bold text-citadelle-black mb-2">{t('results.error.title')}</h3>
               <p className="text-sm text-black/50 mb-4">{t('results.error.desc')}</p>
               <button onClick={doSearch} className="btn-primary">
-                <RefreshCw className="h-4 w-4" />
+                <FcRefresh className="h-4 w-4" />
                 {t('common.retry')}
               </button>
             </div>
@@ -308,7 +309,7 @@ export default function SearchResultsPage() {
                         }}
                         className="rounded-lg border border-black/10 px-3 py-2 text-sm hover:border-citadelle-gold transition-colors flex items-center gap-1.5"
                       >
-                        <Calendar className="h-3.5 w-3.5 text-black/30" />
+                        <FcCalendar className="h-3.5 w-3.5" />
                         {formatDate(d)}
                       </button>
                     ))}
@@ -341,7 +342,7 @@ export default function SearchResultsPage() {
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-citadelle-black">{t('results.filters')}</h3>
               <button onClick={() => setShowFilters(false)} className="p-2 hover:bg-citadelle-cream rounded-lg">
-                <X className="h-5 w-5" />
+                <FcCancel className="h-5 w-5" />
               </button>
             </div>
             <FilterControls

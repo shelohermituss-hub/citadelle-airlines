@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import { searchAirports, getAirport } from '@/data/airports';
 import type { Airport } from '@/data/types';
 import { useI18n } from '@/i18n/I18nContext';
-import { MapPin, X } from 'lucide-react';
+import { FcGlobe, FcCancel } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 import { ListRow } from '@/components/ListRow';
 
@@ -60,7 +60,7 @@ export function AirportAutocomplete({ value, onChange, placeholder, label, id, e
     <div ref={ref} className="relative">
       <label htmlFor={id} className="label">{label}</label>
       <div className="relative">
-        <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-citadelle-black/30 pointer-events-none" />
+        <FcGlobe className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 pointer-events-none" />
         <input
           ref={inputRef}
           id={id}
@@ -109,7 +109,7 @@ export function AirportAutocomplete({ value, onChange, placeholder, label, id, e
               aria-label="Clear"
               type="button"
             >
-              <X className="h-4 w-4" />
+              <FcCancel className="h-4 w-4" />
             </button>
           </>
         )}

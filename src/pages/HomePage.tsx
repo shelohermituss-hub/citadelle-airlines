@@ -4,7 +4,8 @@ import { SearchForm } from '@/components/SearchForm';
 import { FleetCarousel } from '@/components/FleetCarousel';
 import { AIRPORTS, HUB_IATA } from '@/data/airports';
 import { getFromPrice } from '@/data/mockOffers';
-import { BookOpen, BarChart3, Plane, ArrowRight, Sparkles } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { FcReading, FcBarChart, FcRight, FcIdea } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 
 const FEATURED_DESTINATIONS = ['YUL', 'MIA', 'IST', 'SDQ', 'NAS', 'PTP'];
@@ -37,7 +38,7 @@ export default function HomePage() {
             {/* Left: text + search */}
             <div className="order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 rounded-full bg-citadelle-gold/10 px-3 py-1 mb-4">
-                <Sparkles className="h-3.5 w-3.5 text-citadelle-gold-dark" />
+                <FcIdea className="h-3.5 w-3.5" />
                 <span className="text-xs font-semibold text-citadelle-gold-dark">{t('home.hero.subtitle')}</span>
               </div>
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-citadelle-black text-balance leading-[1.1]">
@@ -65,8 +66,8 @@ export default function HomePage() {
       <section className="container-page py-8">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-black/40 mb-4">{t('home.quickAccess')}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <QuickAccessCard to="/manage-booking" icon={BookOpen} title={t('nav.manageBooking')} />
-          <QuickAccessCard to="/flight-status" icon={BarChart3} title={t('nav.flightStatus')} />
+          <QuickAccessCard to="/manage-booking" icon={FcReading} title={t('nav.manageBooking')} />
+          <QuickAccessCard to="/flight-status" icon={FcBarChart} title={t('nav.flightStatus')} />
           <QuickAccessCard to="/check-in" icon={Plane} title={t('nav.checkin')} />
         </div>
       </section>
@@ -79,7 +80,7 @@ export default function HomePage() {
             <p className="text-sm text-black/50 mt-1">{t('home.destinations.subtitle')}</p>
           </div>
           <Link to="/destinations" className="hidden sm:flex items-center gap-1 text-sm font-semibold text-citadelle-gold-dark hover:gap-2 transition-all">
-            {t('destinations.viewDetail')} <ArrowRight className="h-4 w-4" />
+            {t('destinations.viewDetail')} <FcRight className="h-4 w-4" />
           </Link>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -154,7 +155,7 @@ function QuickAccessCard({ to, icon: Icon, title }: { to: string; icon: React.El
       <div className="flex-1">
         <p className="font-semibold text-citadelle-black">{title}</p>
       </div>
-      <ArrowRight className="h-4 w-4 text-black/20 group-hover:text-citadelle-gold group-hover:translate-x-1 transition-all" />
+      <FcRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
     </Link>
   );
 }

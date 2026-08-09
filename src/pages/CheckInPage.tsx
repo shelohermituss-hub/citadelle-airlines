@@ -1,5 +1,6 @@
 import { useI18n } from '@/i18n/I18nContext';
-import { Clock, Plane } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { FcClock } from 'react-icons/fc';
 
 export default function CheckInPage() {
   const { t } = useI18n();
@@ -18,7 +19,7 @@ export default function CheckInPage() {
         </span>
         <div className="card p-6 mt-4">
           <div className="flex justify-center mb-4">
-            <Clock className="h-10 w-10 text-black/20" />
+            <FcClock className="h-10 w-10" />
           </div>
           <p className="text-sm text-black/60 leading-relaxed max-w-md mx-auto">
             {t('checkin.desc')}

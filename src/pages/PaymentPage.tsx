@@ -4,7 +4,7 @@ import { useI18n } from '@/i18n/I18nContext';
 import { useBooking } from '@/contexts/BookingContext';
 import { bookingService } from '@/data/bookingService';
 import { BookingSummary } from './PassengersPage';
-import { ArrowLeft, CreditCard, Lock, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
+import { FcLeft, FcMoneyTransfer, FcLock, FcApproval, FcHighPriority, FcSynchronize } from 'react-icons/fc';
 
 export default function PaymentPage() {
   const { t, formatPrice, currency } = useI18n();
@@ -96,7 +96,7 @@ export default function PaymentPage() {
           {/* Card form */}
           <div className="card p-5 mb-4">
             <div className="flex items-center gap-2 mb-4">
-              <CreditCard className="h-5 w-5 text-citadelle-gold-dark" />
+              <FcMoneyTransfer className="h-5 w-5" />
               <h3 className="font-semibold text-citadelle-black">{t('payment.acceptCards')}</h3>
               <div className="flex gap-1.5 ml-auto">
                 <div className="flex h-6 w-10 items-center justify-center rounded bg-citadelle-cream text-[0.625rem] font-bold text-citadelle-black">VISA</div>
@@ -184,7 +184,7 @@ export default function PaymentPage() {
 
             {/* Simulated notice */}
             <div className="mt-4 flex items-start gap-2 rounded-lg bg-citadelle-cream p-3">
-              <Lock className="h-4 w-4 text-black/40 shrink-0 mt-0.5" />
+              <FcLock className="h-4 w-4 shrink-0 mt-0.5" />
               <p className="text-xs text-black/50">{t('payment.simulated')}</p>
             </div>
           </div>
@@ -193,7 +193,7 @@ export default function PaymentPage() {
           {paymentError && (
             <div className="card p-4 mb-4 border-citadelle-error/30 bg-citadelle-error/5 animate-slide-down">
               <div className="flex items-center gap-2 text-citadelle-error">
-                <AlertCircle className="h-5 w-5" />
+                <FcHighPriority className="h-5 w-5" />
                 <p className="text-sm font-medium">{t('payment.fail.simulated')}</p>
               </div>
             </div>
@@ -201,18 +201,18 @@ export default function PaymentPage() {
 
           <div className="flex justify-between mt-6">
             <Link to="/booking/passengers" className="btn-ghost" onClick={(e) => { if (processing) e.preventDefault(); }}>
-              <ArrowLeft className="h-4 w-4" />
+              <FcLeft className="h-4 w-4" />
               {t('common.back')}
             </Link>
             <button onClick={handlePay} disabled={processing} className="btn-primary">
               {processing ? (
                 <>
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <FcSynchronize className="h-4 w-4 animate-spin" />
                   {t('payment.processing')}
                 </>
               ) : (
                 <>
-                  <ShieldCheck className="h-4 w-4" />
+                  <FcApproval className="h-4 w-4" />
                   {t('payment.pay', { amount: formatPrice(totalPrice) })}
                 </>
               )}

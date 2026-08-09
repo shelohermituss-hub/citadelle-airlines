@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
 import { HUB_IATA } from '@/data/airports';
 import { Emblem } from './Logo';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { FcInvite, FcPhone, FcGlobe } from 'react-icons/fc';
 
 export function Footer() {
   const { t } = useI18n();
@@ -57,9 +57,9 @@ export function Footer() {
               <li><Link to="/legal/baggage" className="hover:text-citadelle-gold transition-colors">{t('footer.baggage')}</Link></li>
             </ul>
             <div className="mt-4 space-y-1.5 text-xs text-white/40">
-              <p className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" />{HUB_IATA} Hub — Port-au-Prince</p>
-              <p className="flex items-center gap-1.5"><Phone className="h-3.5 w-3.5" />+1 (509) 000-0000</p>
-              <p className="flex items-center gap-1.5"><Mail className="h-3.5 w-3.5" />contact@citadelleairlines.com</p>
+              <p className="flex items-center gap-1.5"><FcGlobe className="h-3.5 w-3.5" />{HUB_IATA} Hub — Port-au-Prince</p>
+              <p className="flex items-center gap-1.5"><FcPhone className="h-3.5 w-3.5" />+1 (509) 000-0000</p>
+              <p className="flex items-center gap-1.5"><FcInvite className="h-3.5 w-3.5" />contact@citadelleairlines.com</p>
             </div>
           </div>
         </div>

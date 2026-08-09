@@ -5,7 +5,8 @@ import { useBooking } from '@/contexts/BookingContext';
 import { getAirport } from '@/data/airports';
 import { generatePdfSummary } from '@/utils/pdf';
 import { generateIcsFile } from '@/utils/ics';
-import { CheckCircle, Download, Calendar, Mail, BookOpen, Home, Plane, Clock, Users } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { FcOk, FcDownload, FcCalendar, FcInvite, FcReading, FcHome, FcClock, FcCollaboration } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 
 export default function ConfirmationPage() {
@@ -53,7 +54,7 @@ export default function ConfirmationPage() {
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-citadelle-success/10 animate-fade-in">
-              <CheckCircle className="h-9 w-9 text-citadelle-success" />
+              <FcOk className="h-9 w-9" />
             </div>
           </div>
           <h1 className="font-display text-3xl sm:text-4xl font-bold text-citadelle-black">{t('confirm.title')}</h1>
@@ -136,7 +137,7 @@ export default function ConfirmationPage() {
         <div className="grid sm:grid-cols-2 gap-4 mb-6">
           <div className="card p-5">
             <h2 className="font-semibold text-citadelle-black mb-3 flex items-center gap-2">
-              <Users className="h-5 w-5 text-citadelle-gold-dark" />
+              <FcCollaboration className="h-5 w-5" />
               {t('confirm.passengers')}
             </h2>
             <ul className="space-y-2 text-sm">
@@ -149,7 +150,7 @@ export default function ConfirmationPage() {
           </div>
           <div className="card p-5">
             <h2 className="font-semibold text-citadelle-black mb-3 flex items-center gap-2">
-              <Clock className="h-5 w-5 text-citadelle-gold-dark" />
+              <FcClock className="h-5 w-5" />
               {t('confirm.fare')}
             </h2>
             <p className="text-sm text-black/70">{fareLabel}</p>
@@ -163,7 +164,7 @@ export default function ConfirmationPage() {
         {/* Email notice */}
         <div className="card p-4 mb-6 bg-citadelle-cream">
           <div className="flex items-center gap-2 text-sm text-black/60">
-            <Mail className="h-4 w-4 text-citadelle-gold-dark" />
+            <FcInvite className="h-4 w-4" />
             <span>{t('confirm.emailSent', { email: confirmedBooking.contact.email })}</span>
           </div>
         </div>
@@ -171,11 +172,11 @@ export default function ConfirmationPage() {
         {/* Actions */}
         <div className="grid sm:grid-cols-2 gap-3 mb-6">
           <button onClick={handleDownloadPdf} className="btn-outline">
-            <Download className="h-4 w-4" />
+            <FcDownload className="h-4 w-4" />
             {t('confirm.downloadPdf')}
           </button>
           <button onClick={handleAddToCalendar} className="btn-outline">
-            <Calendar className="h-4 w-4" />
+            <FcCalendar className="h-4 w-4" />
             {t('confirm.addToCalendar')}
           </button>
         </div>
@@ -187,11 +188,11 @@ export default function ConfirmationPage() {
             onClick={() => { setTimeout(() => resetBooking(), 100); }}
             className="btn-secondary"
           >
-            <BookOpen className="h-4 w-4" />
+            <FcReading className="h-4 w-4" />
             {t('confirm.manageBooking')}
           </Link>
           <Link to="/" onClick={() => resetBooking()} className="btn-ghost">
-            <Home className="h-4 w-4" />
+            <FcHome className="h-4 w-4" />
             {t('confirm.backHome')}
           </Link>
         </div>

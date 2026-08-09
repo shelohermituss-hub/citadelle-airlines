@@ -3,19 +3,20 @@ import { Link, NavLink } from 'react-router-dom';
 import { Logo } from './Logo';
 import { LanguageCurrencySelector } from './LanguageCurrencySelector';
 import { useI18n } from '@/i18n/I18nContext';
-import { Menu, X, Plane, Search, BookOpen, BarChart3, MapPin, HelpCircle } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { FcMenu, FcCancel, FcSearch, FcReading, FcBarChart, FcGlobe, FcFaq } from 'react-icons/fc';
 
 export function Header() {
   const { t } = useI18n();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [
-    { to: '/search', label: t('nav.book'), icon: Search },
-    { to: '/manage-booking', label: t('nav.manageBooking'), icon: BookOpen },
-    { to: '/flight-status', label: t('nav.flightStatus'), icon: BarChart3 },
-    { to: '/destinations', label: t('nav.destinations'), icon: MapPin },
+    { to: '/search', label: t('nav.book'), icon: FcSearch },
+    { to: '/manage-booking', label: t('nav.manageBooking'), icon: FcReading },
+    { to: '/flight-status', label: t('nav.flightStatus'), icon: FcBarChart },
+    { to: '/destinations', label: t('nav.destinations'), icon: FcGlobe },
     { to: '/about', label: t('nav.about'), icon: Plane },
-    { to: '/help', label: t('nav.help'), icon: HelpCircle },
+    { to: '/help', label: t('nav.help'), icon: FcFaq },
   ];
 
   return (
@@ -54,7 +55,7 @@ export function Header() {
               aria-label="Menu"
               aria-expanded={mobileOpen}
             >
-              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileOpen ? <FcCancel className="h-5 w-5" /> : <FcMenu className="h-5 w-5" />}
             </button>
           </div>
         </div>

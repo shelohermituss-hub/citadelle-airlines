@@ -2,7 +2,8 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
 import { getAirport, HUB_IATA } from '@/data/airports';
 import { getFromPrice } from '@/data/mockOffers';
-import { Plane, Clock, Building, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { FcClock, FcOrganization, FcRight, FcLeft } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 import { StatTile } from '@/components/StatTile';
 import { getDestinationImage } from '@/data/destinationImages';
@@ -54,7 +55,7 @@ export default function DestinationDetailPage() {
   return (
     <div className="container-page py-8">
       <Link to="/destinations" className="btn-ghost mb-4">
-        <ArrowLeft className="h-4 w-4" />
+        <FcLeft className="h-4 w-4" />
         {t('nav.destinations')}
       </Link>
 
@@ -105,13 +106,13 @@ export default function DestinationDetailPage() {
           <h2 className="font-display text-xl font-bold text-citadelle-black mb-3">{t('destinations.airport')}</h2>
           <div className="grid grid-cols-2 gap-3 mb-6">
             <StatTile
-              icon={Building}
+              icon={FcOrganization}
               label={t('destinations.airport')}
               value={`${airport.iata} — ${getCityName(airport)}`}
             />
             <StatTile
               delay={60}
-              icon={Clock}
+              icon={FcClock}
               label={`${t('destinations.flightTime')} (${t('destinations.fromHub')})`}
               value={formatDuration(airport.durationFromHubMin)}
             />
@@ -128,12 +129,12 @@ export default function DestinationDetailPage() {
             <div className="flex items-center gap-2 text-sm text-black/50 mb-4">
               <Plane className="h-4 w-4 text-citadelle-gold-dark" />
               <span>{HUB_IATA} → {airport.iata}</span>
-              <ArrowRight className="h-3 w-3" />
+              <FcRight className="h-3 w-3" />
               <span>{formatDuration(airport.durationFromHubMin)}</span>
             </div>
             <button onClick={handleBook} className="btn-primary w-full">
               {t('destinations.bookNow')}
-              <ArrowRight className="h-4 w-4" />
+              <FcRight className="h-4 w-4" />
             </button>
           </div>
         </aside>
