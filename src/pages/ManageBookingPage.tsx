@@ -4,8 +4,9 @@ import { bookingService } from '@/data/bookingService';
 import { getAirport } from '@/data/airports';
 import type { PNRRecord } from '@/data/types';
 import { generatePdfSummary } from '@/utils/pdf';
-import { Search, Loader2, BookOpen, Download, Info, Plane, Users } from 'lucide-react';
+import { Search, Loader2, BookOpen, Download, Info, Plane, Users, User } from 'lucide-react';
 import { Flag } from '@/components/Flag';
+import { ListRow } from '@/components/ListRow';
 
 export default function ManageBookingPage() {
   const { t, locale, formatPrice, formatTime, formatDate } = useI18n();
@@ -174,11 +175,24 @@ export default function ManageBookingPage() {
                 <Users className="h-4 w-4 text-citadelle-gold-dark" />
                 {t('confirm.passengers')}
               </h3>
-              <ul className="space-y-1.5 text-sm">
+              <div className="space-y-1">
                 {booking.travelers.map((pax, i) => (
-                  <li key={i} className="text-black/70">{pax.title} {pax.firstName} {pax.lastName}</li>
+                  <ListRow
+                    key={i}
+                    badge={
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-citadelle-gold/10 text-citadelle-gold-dark">
+                        <User className="h-4 w-4" />
+                      </span>
+                    }
+                    title={`${pax.title} ${pax.firstName} ${pax.lastName}`}
+                    subtitle={
+                      pax.travelerType === 'ADULT' ? t('search.adults')
+                        : pax.travelerType === 'CHILD' ? t('search.children')
+                        : t('search.infants')
+                    }
+                  />
                 ))}
-              </ul>
+              </div>
             </div>
 
             {/* Fare + total */}

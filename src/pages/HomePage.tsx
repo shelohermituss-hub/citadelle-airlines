@@ -134,6 +134,7 @@ export default function HomePage() {
             title={t('fare.business')}
             desc={t('fare.priority')}
             tag={t('fare.included')}
+            premium
           />
         </div>
       </section>
@@ -158,7 +159,19 @@ function QuickAccessCard({ to, icon: Icon, title }: { to: string; icon: React.El
   );
 }
 
-function PromoCard({ title, desc, tag }: { title: string; desc: string; tag: string }) {
+function PromoCard({ title, desc, tag, premium = false }: { title: string; desc: string; tag: string; premium?: boolean }) {
+  if (premium) {
+    return (
+      <div className="card-hover p-5 flex flex-col gap-3 bg-gradient-to-br from-citadelle-black to-citadelle-black-soft">
+        <div className="flex items-center justify-between">
+          <span className="chip bg-citadelle-gold text-citadelle-black">{tag}</span>
+        </div>
+        <h3 className="font-display text-lg font-bold text-white">{title}</h3>
+        <p className="text-sm text-white/50">{desc}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="card-hover p-5 flex flex-col gap-3 bg-gradient-to-br from-white to-citadelle-cream">
       <div className="flex items-center justify-between">

@@ -4,6 +4,7 @@ import type { Airport } from '@/data/types';
 import { useI18n } from '@/i18n/I18nContext';
 import { MapPin, X } from 'lucide-react';
 import { Flag } from '@/components/Flag';
+import { ListRow } from '@/components/ListRow';
 
 interface AirportAutocompleteProps {
   value: string;
@@ -64,7 +65,7 @@ export function AirportAutocomplete({ value, onChange, placeholder, label, id, e
           ref={inputRef}
           id={id}
           type="text"
-          className={`input pl-10 ${selectedAirport && !open ? 'pr-16' : ''} ${error ? 'input-error' : ''}`}
+          className={`input rounded-full pl-10 ${selectedAirport && !open ? 'pr-16' : ''} ${error ? 'input-error' : ''}`}
           placeholder={placeholder ?? t('search.airportPlaceholder')}
           value={open ? query : (selectedAirport ? `${getCityName(selectedAirport)} (${selectedAirport.iata})` : '')}
           onChange={(e) => {
@@ -122,29 +123,22 @@ export function AirportAutocomplete({ value, onChange, placeholder, label, id, e
         >
           {results.map((a, idx) => (
             <li key={a.iata} role="option" aria-selected={idx === highlighted}>
-              <button
-                type="button"
+              <ListRow
+                active={idx === highlighted}
                 onMouseEnter={() => setHighlighted(idx)}
                 onClick={() => selectAirport(a)}
-                className={`flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors ${
-                  idx === highlighted ? 'bg-citadelle-cream' : ''
-                }`}
-              >
-                <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-citadelle-black text-xs font-bold text-citadelle-gold">
-                  {a.iata}
-                  <Flag
-                    countryCode={a.countryCode}
-                    className="absolute -bottom-1 -right-1 h-3 w-[1.1rem] ring-2 ring-white"
-                  />
-                </span>
-                <span className="flex flex-col">
-                  <span className="text-sm font-semibold text-citadelle-black">{getCityName(a)}</span>
-                  <span className="text-xs text-black/50 flex items-center gap-1">
-                    <Flag countryCode={a.countryCode} className="h-2 w-3" />
-                    {getCountryName(a)}
+                badge={
+                  <span className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-citadelle-black text-xs font-bold text-citadelle-gold">
+                    {a.iata}
+                    <Flag
+                      countryCode={a.countryCode}
+                      className="absolute -bottom-1 -right-1 h-3 w-[1.1rem] ring-2 ring-white"
+                    />
                   </span>
-                </span>
-              </button>
+                }
+                title={getCityName(a)}
+                subtitle={<><Flag countryCode={a.countryCode} className="h-2 w-3" />{getCountryName(a)}</>}
+              />
             </li>
           ))}
         </ul>

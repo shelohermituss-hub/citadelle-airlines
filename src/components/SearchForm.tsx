@@ -121,11 +121,11 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
     <form onSubmit={handleSearch} className={`card ${compact ? 'p-4' : 'p-5 sm:p-6'}`}>
       {/* Trip type */}
       <div className="flex flex-wrap items-center gap-2 mb-4">
-        <div className="flex rounded-lg bg-citadelle-cream p-1">
+        <div className="flex rounded-full bg-citadelle-cream p-1">
           <button
             type="button"
             onClick={() => setTripType('roundTrip')}
-            className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
               tripType === 'roundTrip' ? 'bg-white text-citadelle-black shadow-sm' : 'text-black/50'
             }`}
           >
@@ -134,7 +134,7 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
           <button
             type="button"
             onClick={() => setTripType('oneWay')}
-            className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
               tripType === 'oneWay' ? 'bg-white text-citadelle-black shadow-sm' : 'text-black/50'
             }`}
           >
@@ -278,7 +278,7 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
 
         {/* Submit */}
         <div className="flex items-end">
-          <button type="submit" className="btn-primary w-full sm:w-auto whitespace-nowrap h-[50px]">
+          <button type="submit" className="btn-primary rounded-full w-full sm:w-auto whitespace-nowrap h-[50px]">
             {t('search.searchBtn')}
           </button>
         </div>

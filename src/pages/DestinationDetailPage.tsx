@@ -4,6 +4,7 @@ import { getAirport, HUB_IATA } from '@/data/airports';
 import { getFromPrice } from '@/data/mockOffers';
 import { Plane, Clock, Building, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Flag } from '@/components/Flag';
+import { StatTile } from '@/components/StatTile';
 import { getDestinationImage } from '@/data/destinationImages';
 
 export default function DestinationDetailPage() {
@@ -102,21 +103,18 @@ export default function DestinationDetailPage() {
 
           {/* Practical info */}
           <h2 className="font-display text-xl font-bold text-citadelle-black mb-3">{t('destinations.airport')}</h2>
-          <div className="grid sm:grid-cols-2 gap-3 mb-6">
-            <div className="card p-4 flex items-center gap-3">
-              <Building className="h-5 w-5 text-citadelle-gold-dark" />
-              <div>
-                <p className="text-xs text-black/40">{t('destinations.airport')}</p>
-                <p className="font-semibold text-citadelle-black">{airport.iata} — {getCityName(airport)}</p>
-              </div>
-            </div>
-            <div className="card p-4 flex items-center gap-3">
-              <Clock className="h-5 w-5 text-citadelle-gold-dark" />
-              <div>
-                <p className="text-xs text-black/40">{t('destinations.flightTime')} ({t('destinations.fromHub')})</p>
-                <p className="font-semibold text-citadelle-black">{formatDuration(airport.durationFromHubMin)}</p>
-              </div>
-            </div>
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            <StatTile
+              icon={Building}
+              label={t('destinations.airport')}
+              value={`${airport.iata} — ${getCityName(airport)}`}
+            />
+            <StatTile
+              delay={60}
+              icon={Clock}
+              label={`${t('destinations.flightTime')} (${t('destinations.fromHub')})`}
+              value={formatDuration(airport.durationFromHubMin)}
+            />
           </div>
         </div>
 

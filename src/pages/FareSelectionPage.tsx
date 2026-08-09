@@ -144,64 +144,73 @@ export default function FareSelectionPage() {
                 <div
                   key={fare}
                   className={`card p-5 cursor-pointer transition-all relative ${
-                    isSelected ? 'ring-2 ring-citadelle-gold border-citadelle-gold' : 'hover:border-citadelle-gold/30'
-                  } ${isPremium ? 'bg-gradient-to-b from-citadelle-cream to-white' : ''}`}
+                    isPremium
+                      ? `bg-gradient-to-br from-citadelle-black to-citadelle-black-soft ${isSelected ? 'ring-2 ring-citadelle-gold' : 'hover:ring-1 hover:ring-citadelle-gold/40'}`
+                      : isSelected ? 'ring-2 ring-citadelle-gold border-citadelle-gold' : 'hover:border-citadelle-gold/30'
+                  }`}
                   onClick={() => setFareFamily(fare)}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setFareFamily(fare); } }}
                 >
                   {isPremium && (
-                    <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 chip bg-citadelle-black text-citadelle-gold text-[0.625rem]">
+                    <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 chip bg-citadelle-gold text-citadelle-black text-[0.625rem]">
                       ★
                     </div>
                   )}
                   <div className="text-center mb-4">
-                    <h3 className="font-display text-lg font-bold text-citadelle-black">{label}</h3>
-                    <p className="font-display text-2xl font-bold text-citadelle-gold-dark mt-1">
+                    <h3 className={`font-display text-lg font-bold ${isPremium ? 'text-white' : 'text-citadelle-black'}`}>{label}</h3>
+                    <p className={`font-display text-2xl font-bold mt-1 ${isPremium ? 'text-citadelle-gold' : 'text-citadelle-gold-dark'}`}>
                       {formatPrice(fareTotals[fare])}
                     </p>
                   </div>
 
                   <div className="space-y-2.5">
                     <FareFeature
+                      dark={isPremium}
                       label={t('fare.cabinBag')}
                       status={def.includedCabinBags > 0 ? 'included' : 'notAvailable'}
                       value={def.includedCabinBags > 0 ? `${def.includedCabinBags}` : ''}
                     />
                     <FareFeature
+                      dark={isPremium}
                       label={t('fare.checkedBag')}
                       status={def.includedCheckedBags > 0 ? 'included' : 'notAvailable'}
                       value={def.includedCheckedBags > 0 ? `${def.includedCheckedBags}` : ''}
                     />
                     <FareFeature
+                      dark={isPremium}
                       label={t('fare.modification')}
                       status={def.isModificationIncluded ? 'included' : def.modificationFeeUsd ? 'paid' : 'notAvailable'}
                       value={def.modificationFeeUsd ? formatPrice(def.modificationFeeUsd) : ''}
                     />
                     <FareFeature
+                      dark={isPremium}
                       label={t('fare.refund')}
                       status={def.isRefundable ? 'included' : 'notAvailable'}
                     />
                     <FareFeature
+                      dark={isPremium}
                       label={t('fare.seatSelection')}
                       status={def.isSeatSelectionIncluded ? 'included' : 'notAvailable'}
                     />
                     <FareFeature
+                      dark={isPremium}
                       label={t('fare.priority')}
                       status={def.isPriorityBoardingIncluded ? 'included' : 'notAvailable'}
                     />
                     <FareFeature
+                      dark={isPremium}
                       label={t('fare.meal')}
                       status={def.isMealIncluded ? 'included' : 'notAvailable'}
                     />
                   </div>
 
                   <button
-                    className={`mt-4 w-full text-sm font-semibold py-2.5 rounded-xl transition-all ${
-                      isSelected
-                        ? 'bg-citadelle-gold text-citadelle-black'
-                        : 'bg-citadelle-cream text-citadelle-black hover:bg-citadelle-gold/20'
+                    className={`mt-4 w-full text-sm font-semibold py-2.5 rounded-full transition-all ${
+                      isPremium
+                        ? isSelected ? 'bg-citadelle-gold text-citadelle-black' : 'bg-white/10 text-white hover:bg-white/20'
+                        : isSelected ? 'bg-citadelle-gold text-citadelle-black' : 'bg-citadelle-cream text-citadelle-black hover:bg-citadelle-gold/20'
                     }`}
                     onClick={(e) => { e.stopPropagation(); setFareFamily(fare); }}
                   >
@@ -255,31 +264,33 @@ function FareFeature({
   label,
   status,
   value,
+  dark = false,
 }: {
   label: string;
   status: 'included' | 'paid' | 'notAvailable';
   value?: string;
+  dark?: boolean;
 }) {
   const { t } = useI18n();
   return (
     <div className="flex items-center justify-between gap-2">
-      <span className="text-xs text-black/60">{label}</span>
+      <span className={`text-xs ${dark ? 'text-white/60' : 'text-black/60'}`}>{label}</span>
       <div className="flex items-center gap-1 shrink-0">
         {status === 'included' && (
           <>
-            <Check className="h-3.5 w-3.5 text-citadelle-success" />
-            <span className="text-xs font-medium text-citadelle-success">{value || t('fare.included')}</span>
+            <Check className={`h-3.5 w-3.5 ${dark ? 'text-citadelle-gold' : 'text-citadelle-success'}`} />
+            <span className={`text-xs font-medium ${dark ? 'text-citadelle-gold' : 'text-citadelle-success'}`}>{value || t('fare.included')}</span>
           </>
         )}
         {status === 'paid' && (
           <>
-            <span className="text-xs font-medium text-citadelle-gold-dark">{value || t('fare.paid')}</span>
+            <span className={`text-xs font-medium ${dark ? 'text-citadelle-gold' : 'text-citadelle-gold-dark'}`}>{value || t('fare.paid')}</span>
           </>
         )}
         {status === 'notAvailable' && (
           <>
-            <X className="h-3.5 w-3.5 text-black/25" />
-            <span className="text-xs text-black/30">{t('fare.notAvailable')}</span>
+            <X className={`h-3.5 w-3.5 ${dark ? 'text-white/25' : 'text-black/25'}`} />
+            <span className={`text-xs ${dark ? 'text-white/30' : 'text-black/30'}`}>{t('fare.notAvailable')}</span>
           </>
         )}
       </div>
