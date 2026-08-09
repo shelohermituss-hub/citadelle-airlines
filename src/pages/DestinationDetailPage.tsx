@@ -4,6 +4,7 @@ import { getAirport, HUB_IATA } from '@/data/airports';
 import { getFromPrice } from '@/data/mockOffers';
 import { Plane, Clock, Building, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Flag } from '@/components/Flag';
+import { getDestinationImage } from '@/data/destinationImages';
 
 export default function DestinationDetailPage() {
   const { code } = useParams<{ code: string }>();
@@ -34,6 +35,7 @@ export default function DestinationDetailPage() {
   }
 
   const price = getFromPrice(airport.iata, currency);
+  const heroImage = getDestinationImage(airport.iata);
 
   function handleBook() {
     const params = new URLSearchParams({
@@ -60,10 +62,21 @@ export default function DestinationDetailPage() {
           {/* Hero */}
           <div className="card overflow-hidden mb-6">
             <div className="h-48 sm:h-64 bg-gradient-to-br from-citadelle-black to-citadelle-black-soft relative flex items-center justify-center">
-              <div className="absolute inset-0 opacity-10" style={{
-                backgroundImage: 'radial-gradient(circle at 30% 50%, #F2A81D 1px, transparent 1px)',
-                backgroundSize: '24px 24px',
-              }} />
+              {heroImage ? (
+                <>
+                  <img
+                    src={heroImage}
+                    alt={getCityName(airport)}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-citadelle-black/85 via-citadelle-black/25 to-citadelle-black/50" />
+                </>
+              ) : (
+                <div className="absolute inset-0 opacity-10" style={{
+                  backgroundImage: 'radial-gradient(circle at 30% 50%, #F2A81D 1px, transparent 1px)',
+                  backgroundSize: '24px 24px',
+                }} />
+              )}
               <div className="text-center relative z-10">
                 <p className="font-display text-5xl sm:text-6xl font-extrabold text-citadelle-gold tracking-tight">{airport.iata}</p>
                 <p className="text-white/60 text-sm mt-1 flex items-center justify-center gap-1.5">
