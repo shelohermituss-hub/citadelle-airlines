@@ -64,7 +64,7 @@ export function AirportAutocomplete({ value, onChange, placeholder, label, id, e
           ref={inputRef}
           id={id}
           type="text"
-          className={`input pl-10 ${error ? 'input-error' : ''}`}
+          className={`input pl-10 ${selectedAirport && !open ? 'pr-16' : ''} ${error ? 'input-error' : ''}`}
           placeholder={placeholder ?? t('search.airportPlaceholder')}
           value={open ? query : (selectedAirport ? `${getCityName(selectedAirport)} (${selectedAirport.iata})` : '')}
           onChange={(e) => {
@@ -97,14 +97,20 @@ export function AirportAutocomplete({ value, onChange, placeholder, label, id, e
           role="combobox"
         />
         {selectedAirport && !open && (
-          <button
-            onClick={() => { onChange(''); setQuery(''); setOpen(true); inputRef.current?.focus(); }}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-citadelle-black/30 hover:text-citadelle-black"
-            aria-label="Clear"
-            type="button"
-          >
-            <X className="h-4 w-4" />
-          </button>
+          <>
+            <Flag
+              countryCode={selectedAirport.countryCode}
+              className="absolute right-9 top-1/2 -translate-y-1/2 h-3.5 w-5 pointer-events-none"
+            />
+            <button
+              onClick={() => { onChange(''); setQuery(''); setOpen(true); inputRef.current?.focus(); }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-citadelle-black/30 hover:text-citadelle-black"
+              aria-label="Clear"
+              type="button"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </>
         )}
       </div>
       {error && <p className="error-text">{error}</p>}

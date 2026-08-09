@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
 import { useBooking } from '@/contexts/BookingContext';
 import { AirportAutocomplete } from './AirportAutocomplete';
-import { ArrowLeftRight, Users, Calendar, ChevronDown } from 'lucide-react';
+import { ArrowLeftRight, Users, User, PersonStanding, Baby, Calendar, ChevronDown, Check } from 'lucide-react';
 import type { SearchCriteria } from '@/data/types';
 
 interface SearchFormProps {
@@ -28,10 +28,21 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
   const [infants, setInfants] = useState(initialCriteria?.infants ?? 0);
   const [travelClass, setTravelClass] = useState(initialCriteria?.travelClass ?? '');
   const [paxOpen, setPaxOpen] = useState(false);
+  const [classOpen, setClassOpen] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const today = useMemo(() => new Date().toISOString().slice(0, 10), []);
   const totalPax = adults + children + infants;
+
+  const classOptions = useMemo(
+    () => [
+      { value: '', label: t('search.anyClass'), badgeClass: 'bg-black/5 text-black/50' },
+      { value: 'ECONOMY', label: t('search.economy'), badgeClass: 'bg-citadelle-gold/10 text-citadelle-gold-dark' },
+      { value: 'BUSINESS', label: t('search.business'), badgeClass: 'bg-citadelle-black text-citadelle-gold' },
+    ],
+    [t],
+  );
+  const selectedClassOption = classOptions.find((o) => o.value === travelClass) ?? classOptions[0];
 
   const paxLabel = useMemo(() => {
     const parts: string[] = [];
@@ -220,9 +231,9 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
           {errors.passengers && <p className="error-text">{errors.passengers}</p>}
           {paxOpen && (
             <div className="absolute z-50 mt-1 w-full rounded-xl border border-black/5 bg-white p-4 shadow-elevated animate-slide-down">
-              <PaxCounter label={t('search.adults')} desc={t('search.adultsDesc')} value={adults} setValue={setAdults} min={1} max={9} />
-              <PaxCounter label={t('search.children')} desc={t('search.childrenDesc')} value={children} setValue={setChildren} min={0} max={9} />
-              <PaxCounter label={t('search.infants')} desc={t('search.infantsDesc')} value={infants} setValue={setInfants} min={0} max={adults} />
+              <PaxCounter icon={User} label={t('search.adults')} desc={t('search.adultsDesc')} value={adults} setValue={setAdults} min={1} max={9} />
+              <PaxCounter icon={PersonStanding} label={t('search.children')} desc={t('search.childrenDesc')} value={children} setValue={setChildren} min={0} max={9} />
+              <PaxCounter icon={Baby} label={t('search.infants')} desc={t('search.infantsDesc')} value={infants} setValue={setInfants} min={0} max={adults} />
               <button
                 type="button"
                 onClick={() => setPaxOpen(false)}
@@ -235,18 +246,34 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
         </div>
 
         {/* Class */}
-        <div>
-          <label htmlFor="travelClass" className="label">{t('search.travelClass')}</label>
-          <select
-            id="travelClass"
-            className="input"
-            value={travelClass}
-            onChange={(e) => setTravelClass(e.target.value)}
+        <div className="relative">
+          <label className="label">{t('search.travelClass')}</label>
+          <button
+            type="button"
+            onClick={() => setClassOpen(!classOpen)}
+            className="input flex items-center justify-between text-left"
           >
-            <option value="">{t('search.anyClass')}</option>
-            <option value="ECONOMY">{t('search.economy')}</option>
-            <option value="BUSINESS">{t('search.business')}</option>
-          </select>
+            <span className={`chip ${selectedClassOption.badgeClass}`}>{selectedClassOption.label}</span>
+            <ChevronDown className={`h-4 w-4 text-citadelle-black/40 transition-transform ${classOpen ? 'rotate-180' : ''}`} />
+          </button>
+          {classOpen && (
+            <div className="absolute z-50 mt-1 w-full rounded-xl border border-black/5 bg-white p-2 shadow-elevated animate-slide-down">
+              {classOptions.map((opt) => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => {
+                    setTravelClass(opt.value);
+                    setClassOpen(false);
+                  }}
+                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2.5 py-2 text-left hover:bg-citadelle-cream transition-colors"
+                >
+                  <span className={`chip ${opt.badgeClass}`}>{opt.label}</span>
+                  {opt.value === travelClass && <Check className="h-4 w-4 text-citadelle-gold-dark" />}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Submit */}
@@ -261,6 +288,7 @@ export function SearchForm({ compact = false, initialCriteria }: SearchFormProps
 }
 
 function PaxCounter({
+  icon: Icon,
   label,
   desc,
   value,
@@ -268,6 +296,7 @@ function PaxCounter({
   min,
   max,
 }: {
+  icon: React.ElementType;
   label: string;
   desc: string;
   value: number;
@@ -277,9 +306,14 @@ function PaxCounter({
 }) {
   return (
     <div className="flex items-center justify-between py-2.5 border-b border-black/[0.06] last:border-0">
-      <div>
-        <p className="text-sm font-semibold text-citadelle-black">{label}</p>
-        <p className="text-xs text-black/40">{desc}</p>
+      <div className="flex items-center gap-2.5">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-citadelle-gold/10 text-citadelle-gold-dark">
+          <Icon className="h-4 w-4" />
+        </span>
+        <div>
+          <p className="text-sm font-semibold text-citadelle-black">{label}</p>
+          <p className="text-xs text-black/40">{desc}</p>
+        </div>
       </div>
       <div className="flex items-center gap-3">
         <button
