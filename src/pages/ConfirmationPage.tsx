@@ -6,7 +6,7 @@ import { getAirport } from '@/data/airports';
 import { generatePdfSummary } from '@/utils/pdf';
 import { generateIcsFile } from '@/utils/ics';
 import { Plane } from 'lucide-react';
-import { FcOk, FcDownload, FcCalendar, FcInvite, FcReading, FcHome, FcClock, FcCollaboration } from 'react-icons/fc';
+import { FcOk, FcDownload, FcCalendar, FcInvite, FcReading, FcHome, FcClock, FcCollaboration, FcPaid } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 
 export default function ConfirmationPage() {
@@ -142,8 +142,12 @@ export default function ConfirmationPage() {
             </h2>
             <ul className="space-y-2 text-sm">
               {confirmedBooking.travelers.map((pax, i) => (
-                <li key={i} className="text-black/70">
-                  {pax.title} {pax.firstName} {pax.lastName}
+                <li key={i} className="text-black/70 flex items-center justify-between gap-2">
+                  <span className="flex items-center gap-1.5">
+                    {pax.title} {pax.firstName} {pax.lastName}
+                    {pax.travelingWithPet && <FcPaid className="h-3.5 w-3.5" />}
+                  </span>
+                  {pax.seatNumber && <span className="chip bg-citadelle-gold/10 text-citadelle-gold-dark text-[0.65rem]">{pax.seatNumber}</span>}
                 </li>
               ))}
             </ul>

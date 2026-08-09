@@ -8,12 +8,19 @@ import { FcLeft, FcMoneyTransfer, FcLock, FcApproval, FcHighPriority, FcSynchron
 
 export default function PaymentPage() {
   const { t, formatPrice, currency } = useI18n();
-  const { selectedOffers, passengers, contact, totalPrice, fareFamily, setConfirmedBooking } = useBooking();
+  const { selectedOffers, passengers, contact, totalPrice, ancillariesTotal, fareFamily, setConfirmedBooking } = useBooking();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (selectedOffers.length === 0 || passengers.length === 0) navigate('/search');
+    if (selectedOffers.length === 0 || passengers.length === 0) {
+      navigate('/search');
+      return;
+    }
+    const missingSeat = passengers.some((p) => p.travelerType !== 'HELD_INFANT' && !p.seatNumber);
+    if (missingSeat) navigate('/booking/seats');
   }, [selectedOffers, passengers, navigate]);
+
+  const grandTotal = totalPrice + ancillariesTotal;
 
   const [cardNumber, setCardNumber] = useState('');
   const [cardName, setCardName] = useState('');
@@ -69,7 +76,7 @@ export default function PaymentPage() {
         selectedOffers,
         passengers,
         contact,
-        totalPrice,
+        grandTotal,
         currency,
         fareFamily,
       );
@@ -213,7 +220,7 @@ export default function PaymentPage() {
               ) : (
                 <>
                   <FcApproval className="h-4 w-4" />
-                  {t('payment.pay', { amount: formatPrice(totalPrice) })}
+                  {t('payment.pay', { amount: formatPrice(grandTotal) })}
                 </>
               )}
             </button>
@@ -234,9 +241,15 @@ export default function PaymentPage() {
                   <span className="text-black/50">{t('payment.taxes')}</span>
                   <span className="font-medium">{formatPrice(taxes)}</span>
                 </div>
+                {ancillariesTotal > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-black/50">{t('seats.seatTotal')}</span>
+                    <span className="font-medium">{formatPrice(ancillariesTotal)}</span>
+                  </div>
+                )}
                 <div className="border-t border-black/[0.06] pt-2 flex justify-between items-center">
                   <span className="text-black/50">{t('payment.total')}</span>
-                  <span className="font-display text-xl font-bold text-citadelle-black">{formatPrice(totalPrice)}</span>
+                  <span className="font-display text-xl font-bold text-citadelle-black">{formatPrice(grandTotal)}</span>
                 </div>
               </div>
             </div>

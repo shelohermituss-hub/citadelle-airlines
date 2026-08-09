@@ -1,29 +1,9 @@
 import { Suspense, lazy, useState, useEffect, useRef } from 'react';
 import { Plane } from 'lucide-react';
 import type { BodyType } from '@/data/fleet';
+import { supportsWebGL, prefersReducedMotion, isSlowConnection } from '@/utils/deviceCapabilities';
 
 const ThreeAirplane = lazy(() => import('./ThreeAirplane'));
-
-function supportsWebGL(): boolean {
-  try {
-    const canvas = document.createElement('canvas');
-    return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
-  } catch {
-    return false;
-  }
-}
-
-function prefersReducedMotion(): boolean {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
-
-function isSlowConnection(): boolean {
-  const nav = navigator as Navigator & { connection?: { effectiveType?: string; saveData?: boolean } };
-  if (nav.connection?.saveData) return true;
-  const et = nav.connection?.effectiveType;
-  if (et === '2g' || et === 'slow-2g') return true;
-  return false;
-}
 
 export function Airplane3D({ bodyType = 'narrow' }: { bodyType?: BodyType }) {
   const [canRender3D, setCanRender3D] = useState(false);

@@ -3,14 +3,16 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
 import { useBooking } from '@/contexts/BookingContext';
 import { getAirport } from '@/data/airports';
+import { PET_FEE_USD } from '@/data/ancillaries';
+import { convertUsd } from '@/data/mockOffers';
 import type { PassengerInfo, ContactInfo } from '@/data/types';
-import { FcLeft, FcRight, FcCollaboration, FcInvite } from 'react-icons/fc';
+import { FcLeft, FcRight, FcCollaboration, FcInvite, FcPaid } from 'react-icons/fc';
 
 const TITLES = ['MR', 'MS', 'MRS', 'MX', 'MISS', 'MSTR'] as const;
 const COUNTRY_CODES = ['+1', '+33', '+509', '+1 809', '+1 876', '+1 868', '+55', '+1 786', '+44', '+49', '+90'];
 
 export default function PassengersPage() {
-  const { t } = useI18n();
+  const { t, currency, formatPrice } = useI18n();
   const { criteria, outboundResult, passengers, setPassengers, contact, setContact, selectedOffers } = useBooking();
   const navigate = useNavigate();
 
@@ -57,6 +59,16 @@ export default function PassengersPage() {
     setPassengers(passengers.map((p) => (p.id === id ? { ...p, [field]: value } : p)));
   }
 
+  function togglePet(id: string, checked: boolean) {
+    setPassengers(passengers.map((p) => (
+      p.id === id ? { ...p, travelingWithPet: checked, petType: checked ? (p.petType ?? 'CABIN') : undefined } : p
+    )));
+  }
+
+  function setPetType(id: string, petType: 'CABIN' | 'CARGO') {
+    setPassengers(passengers.map((p) => (p.id === id ? { ...p, petType } : p)));
+  }
+
   function validatePassenger(p: PassengerInfo, idx: number): Record<string, string> {
     const errs: Record<string, string> = {};
     const prefix = `pax-${idx}`;
@@ -100,7 +112,7 @@ export default function PassengersPage() {
     setErrors(allErrors);
     setContactErrors(validateContact(contact));
     if (Object.keys(allErrors).length === 0) {
-      navigate('/booking/payment');
+      navigate('/booking/seats');
     }
   }
 
@@ -209,6 +221,46 @@ export default function PassengersPage() {
                       />
                       {errors[`pax-${idx}-passportExpiry`] && <p className="error-text">{errors[`pax-${idx}-passportExpiry`]}</p>}
                     </div>
+                  </div>
+
+                  {/* Pet */}
+                  <div className="mt-4 pt-4 border-t border-black/[0.06]">
+                    <label className="flex items-center gap-2.5 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={pax.travelingWithPet ?? false}
+                        onChange={(e) => togglePet(pax.id, e.target.checked)}
+                        className="h-4 w-4 rounded border-black/20 text-citadelle-gold focus:ring-citadelle-gold"
+                      />
+                      <FcPaid className="h-4 w-4" />
+                      <span className="text-sm font-medium text-citadelle-black">{t('passengers.pet.question')}</span>
+                    </label>
+                    {pax.travelingWithPet && (
+                      <div className="mt-3 flex flex-wrap gap-2 animate-slide-down">
+                        <button
+                          type="button"
+                          onClick={() => setPetType(pax.id, 'CABIN')}
+                          className={`chip border transition-colors ${
+                            pax.petType === 'CABIN'
+                              ? 'bg-citadelle-gold text-citadelle-black border-citadelle-gold'
+                              : 'bg-white text-black/60 border-black/10 hover:border-citadelle-gold/50'
+                          }`}
+                        >
+                          {t('passengers.pet.cabin', { fee: formatPrice(convertUsd(PET_FEE_USD.CABIN, currency)) })}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setPetType(pax.id, 'CARGO')}
+                          className={`chip border transition-colors ${
+                            pax.petType === 'CARGO'
+                              ? 'bg-citadelle-gold text-citadelle-black border-citadelle-gold'
+                              : 'bg-white text-black/60 border-black/10 hover:border-citadelle-gold/50'
+                          }`}
+                        >
+                          {t('passengers.pet.cargo', { fee: formatPrice(convertUsd(PET_FEE_USD.CARGO, currency)) })}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               );

@@ -30,9 +30,13 @@ interface BookingContextValue {
   contact: ContactInfo;
   setContact: (c: ContactInfo) => void;
 
-  // Total price
+  // Total price (fare only — see ancillariesTotal for seats/pets add-ons)
   totalPrice: number;
   setTotalPrice: (p: number) => void;
+
+  // Seat + pet surcharges, in the traveler's selected currency, added on top of totalPrice at payment time
+  ancillariesTotal: number;
+  setAncillariesTotal: (p: number) => void;
 
   // Confirmed booking
   confirmedBooking: PNRRecord | null;
@@ -59,6 +63,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   const [passengers, setPassengers] = useState<PassengerInfo[]>([]);
   const [contact, setContact] = useState<ContactInfo>(DEFAULT_CONTACT);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [ancillariesTotal, setAncillariesTotal] = useState(0);
   const [confirmedBooking, setConfirmedBooking] = useState<PNRRecord | null>(null);
 
   const resetBooking = useCallback(() => {
@@ -70,6 +75,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     setPassengers([]);
     setContact(DEFAULT_CONTACT);
     setTotalPrice(0);
+    setAncillariesTotal(0);
     setConfirmedBooking(null);
   }, []);
 
@@ -91,11 +97,13 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       setContact,
       totalPrice,
       setTotalPrice,
+      ancillariesTotal,
+      setAncillariesTotal,
       confirmedBooking,
       setConfirmedBooking,
       resetBooking,
     }),
-    [criteria, outboundResult, returnResult, fareFamily, selectedOffers, passengers, contact, totalPrice, confirmedBooking, resetBooking],
+    [criteria, outboundResult, returnResult, fareFamily, selectedOffers, passengers, contact, totalPrice, ancillariesTotal, confirmedBooking, resetBooking],
   );
 
   return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>;

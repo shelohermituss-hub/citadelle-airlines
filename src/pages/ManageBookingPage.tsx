@@ -5,7 +5,7 @@ import { getAirport } from '@/data/airports';
 import type { PNRRecord } from '@/data/types';
 import { generatePdfSummary } from '@/utils/pdf';
 import { Plane } from 'lucide-react';
-import { FcSearch, FcSynchronize, FcReading, FcDownload, FcInfo, FcCollaboration, FcBusinessman } from 'react-icons/fc';
+import { FcSearch, FcSynchronize, FcReading, FcDownload, FcInfo, FcCollaboration, FcBusinessman, FcPaid } from 'react-icons/fc';
 import { Flag } from '@/components/Flag';
 import { ListRow } from '@/components/ListRow';
 
@@ -187,10 +187,16 @@ export default function ManageBookingPage() {
                     }
                     title={`${pax.title} ${pax.firstName} ${pax.lastName}`}
                     subtitle={
-                      pax.travelerType === 'ADULT' ? t('search.adults')
-                        : pax.travelerType === 'CHILD' ? t('search.children')
-                        : t('search.infants')
+                      <>
+                        {pax.travelerType === 'ADULT' ? t('search.adults')
+                          : pax.travelerType === 'CHILD' ? t('search.children')
+                          : t('search.infants')}
+                        {pax.travelingWithPet && <FcPaid className="h-3 w-3" />}
+                      </>
                     }
+                    trailing={pax.seatNumber && (
+                      <span className="chip bg-citadelle-gold/10 text-citadelle-gold-dark text-[0.65rem]">{pax.seatNumber}</span>
+                    )}
                   />
                 ))}
               </div>

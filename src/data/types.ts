@@ -165,6 +165,11 @@ export interface PassengerInfo {
   nationality: string;
   passportNumber: string;
   passportExpiry: string; // YYYY-MM-DD
+  /** Seat assigned during the seat-selection step, e.g. "14C". Unset until chosen. */
+  seatNumber?: string;
+  /** Whether this passenger is traveling with a pet (special service request). */
+  travelingWithPet?: boolean;
+  petType?: 'CABIN' | 'CARGO';
 }
 
 export interface ContactInfo {

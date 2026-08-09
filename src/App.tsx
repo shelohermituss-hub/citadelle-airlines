@@ -9,6 +9,7 @@ import HomePage from '@/pages/HomePage';
 import SearchResultsPage from '@/pages/SearchResultsPage';
 import FareSelectionPage from '@/pages/FareSelectionPage';
 import PassengersPage from '@/pages/PassengersPage';
+import SeatsPage from '@/pages/SeatsPage';
 import PaymentPage from '@/pages/PaymentPage';
 import ConfirmationPage from '@/pages/ConfirmationPage';
 import ManageBookingPage from '@/pages/ManageBookingPage';
@@ -37,6 +38,7 @@ export default function App() {
                 <Route path="/search" element={<SearchResultsPage />} />
                 <Route path="/booking/fare" element={<FareSelectionPage />} />
                 <Route path="/booking/passengers" element={<PassengersPage />} />
+                <Route path="/booking/seats" element={<SeatsPage />} />
                 <Route path="/booking/payment" element={<PaymentPage />} />
                 <Route path="/booking/confirmation" element={<ConfirmationPage />} />
                 <Route path="/manage-booking" element={<ManageBookingPage />} />

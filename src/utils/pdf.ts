@@ -102,7 +102,8 @@ export function generatePdfSummary(
   booking.travelers.forEach((pax) => {
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text(`${pax.title} ${pax.firstName} ${pax.lastName}`, margin, y);
+    const seatSuffix = pax.seatNumber ? ` — ${pax.seatNumber}` : '';
+    doc.text(`${pax.title} ${pax.firstName} ${pax.lastName}${seatSuffix}`, margin, y);
     y += 14;
   });
 
