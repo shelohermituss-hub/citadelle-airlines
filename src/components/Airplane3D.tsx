@@ -1,11 +1,11 @@
 import { Suspense, lazy, useState, useEffect, useRef } from 'react';
 import { Plane } from 'lucide-react';
-import type { BodyType } from '@/data/fleet';
+import type { BodyType, AircraftCode } from '@/data/fleet';
 import { supportsWebGL, prefersReducedMotion, isSlowConnection } from '@/utils/deviceCapabilities';
 
 const ThreeAirplane = lazy(() => import('./ThreeAirplane'));
 
-export function Airplane3D({ bodyType = 'narrow' }: { bodyType?: BodyType }) {
+export function Airplane3D({ bodyType = 'narrow', aircraftCode }: { bodyType?: BodyType; aircraftCode?: AircraftCode }) {
   const [canRender3D, setCanRender3D] = useState(false);
   const [, setLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -93,7 +93,7 @@ export function Airplane3D({ bodyType = 'narrow' }: { bodyType?: BodyType }) {
           </div>
         }
       >
-        <ThreeAirplane onLoad={() => setLoaded(true)} bodyType={bodyType} />
+        <ThreeAirplane onLoad={() => setLoaded(true)} bodyType={bodyType} aircraftCode={aircraftCode} />
       </Suspense>
     </div>
   );

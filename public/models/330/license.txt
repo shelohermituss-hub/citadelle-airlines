@@ -1,0 +1,11 @@
+Model Information:
+* title:	Airbus_a330-900_neo
+* source:	https://sketchfab.com/3d-models/airbus-a330-900-neo-0cc4dcda3db8459687138e8dde33ac9d
+* author:	Ahmed Mahdi (https://sketchfab.com/mhmdshwatahmdmhdy922)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Airbus_a330-900_neo" (https://sketchfab.com/3d-models/airbus-a330-900-neo-0cc4dcda3db8459687138e8dde33ac9d) by Ahmed Mahdi (https://sketchfab.com/mhmdshwatahmdmhdy922) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

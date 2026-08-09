@@ -20,7 +20,7 @@ export function FleetCarousel() {
   return (
     <div className="w-full">
       <div className="relative h-[220px] sm:h-[260px] lg:h-[300px]">
-        <Airplane3D bodyType={aircraft.bodyType} />
+        <Airplane3D bodyType={aircraft.bodyType} aircraftCode={aircraft.code} />
 
         <button
           type="button"

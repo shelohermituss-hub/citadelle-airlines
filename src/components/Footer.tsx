@@ -70,6 +70,16 @@ export function Footer() {
           </p>
           <p className="text-xs text-white/40">{t('demo.banner')}</p>
         </div>
+
+        <p className="mt-3 text-[0.65rem] text-white/25 leading-relaxed">
+          3D models: "Boeing 787-9" by{' '}
+          <a href="https://sketchfab.com/nobilishornet2" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/40">Nobilis 2</a>
+          {' '}and "Airbus_a330-900_neo" by{' '}
+          <a href="https://sketchfab.com/mhmdshwatahmdmhdy922" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/40">Ahmed Mahdi</a>
+          {' '}— licensed under{' '}
+          <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/40">CC-BY-4.0</a>
+          , retinted to the Citadelle livery.
+        </p>
       </div>
     </footer>
   );

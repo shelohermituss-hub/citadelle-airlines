@@ -1,12 +1,14 @@
-import { useRef, useMemo, useEffect } from 'react';
+import { useRef, useMemo, useEffect, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, ContactShadows } from '@react-three/drei';
 import * as THREE from 'three';
-import type { BodyType } from '@/data/fleet';
+import type { BodyType, AircraftCode } from '@/data/fleet';
+import { GltfAirplaneModel, hasGltfModel } from './GltfAirplaneModel';
 
 interface AirplaneProps {
   onLoad?: () => void;
   bodyType?: BodyType;
+  aircraftCode?: AircraftCode;
 }
 
 const GOLD = '#F2A81D';
@@ -216,8 +218,9 @@ function AirplaneModel({ bodyType = 'narrow' }: { bodyType?: BodyType }) {
   );
 }
 
-export default function ThreeAirplane({ onLoad, bodyType = 'narrow' }: AirplaneProps) {
+export default function ThreeAirplane({ onLoad, bodyType = 'narrow', aircraftCode }: AirplaneProps) {
   const controls = useRef(null);
+  const useGltf = aircraftCode ? hasGltfModel(aircraftCode) : false;
 
   useEffect(() => {
     onLoad?.();
@@ -225,7 +228,7 @@ export default function ThreeAirplane({ onLoad, bodyType = 'narrow' }: AirplaneP
 
   return (
     <Canvas
-      camera={{ position: [4.0, 1.1, 2.6], fov: 30 }}
+      camera={useGltf ? { position: [4.6, 2.3, 4.6], fov: 32 } : { position: [4.0, 1.1, 2.6], fov: 30 }}
       dpr={[1, 1.5]}
       gl={{ antialias: true, powerPreference: 'high-performance' }}
       style={{ width: '100%', height: '100%' }}
@@ -237,7 +240,13 @@ export default function ThreeAirplane({ onLoad, bodyType = 'narrow' }: AirplaneP
       <directionalLight position={[-5, 3, -4]} intensity={0.4} />
       <directionalLight position={[0, -3, 2]} intensity={0.25} color="#F2A81D" />
 
-      <AirplaneModel bodyType={bodyType} />
+      {useGltf && aircraftCode ? (
+        <Suspense fallback={null}>
+          <GltfAirplaneModel code={aircraftCode} />
+        </Suspense>
+      ) : (
+        <AirplaneModel bodyType={bodyType} />
+      )}
 
       <ContactShadows position={[0, -0.8, 0]} opacity={0.3} scale={7} blur={2.5} far={2} />
 
