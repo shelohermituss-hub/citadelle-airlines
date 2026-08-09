@@ -1,5 +1,6 @@
 import { Suspense, lazy, useState, useEffect, useRef } from 'react';
 import { Plane } from 'lucide-react';
+import type { BodyType } from '@/data/fleet';
 
 const ThreeAirplane = lazy(() => import('./ThreeAirplane'));
 
@@ -24,7 +25,7 @@ function isSlowConnection(): boolean {
   return false;
 }
 
-export function Airplane3D() {
+export function Airplane3D({ bodyType = 'narrow' }: { bodyType?: BodyType }) {
   const [canRender3D, setCanRender3D] = useState(false);
   const [, setLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -54,7 +55,13 @@ export function Airplane3D() {
       <div ref={containerRef} className="relative w-full h-full flex items-center justify-center">
         <div className="relative w-full max-w-md aspect-[16/10] flex items-center justify-center">
           {/* Static airplane illustration */}
-          <svg viewBox="0 0 400 250" className="w-full h-full drop-shadow-2xl animate-float" role="img" aria-label="Citadelle Airlines aircraft">
+          <svg
+            viewBox="0 0 400 250"
+            className="w-full h-full drop-shadow-2xl animate-float"
+            style={bodyType === 'wide' ? { transform: 'scaleX(1.08)' } : undefined}
+            role="img"
+            aria-label="Citadelle Airlines aircraft"
+          >
             <defs>
               <linearGradient id="fuselage" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#FFFFFF" />
@@ -106,7 +113,7 @@ export function Airplane3D() {
           </div>
         }
       >
-        <ThreeAirplane onLoad={() => setLoaded(true)} />
+        <ThreeAirplane onLoad={() => setLoaded(true)} bodyType={bodyType} />
       </Suspense>
     </div>
   );

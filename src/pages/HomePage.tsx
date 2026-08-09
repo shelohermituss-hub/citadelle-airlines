@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
 import { SearchForm } from '@/components/SearchForm';
-import { Airplane3D } from '@/components/Airplane3D';
+import { FleetCarousel } from '@/components/FleetCarousel';
 import { AIRPORTS, HUB_IATA } from '@/data/airports';
 import { getFromPrice } from '@/data/mockOffers';
 import { BookOpen, BarChart3, Plane, ArrowRight, Sparkles } from 'lucide-react';
@@ -32,7 +32,7 @@ export default function HomePage() {
       {/* Hero section with 3D airplane + search */}
       <section className="relative overflow-hidden bg-gradient-to-b from-citadelle-cream to-white">
         <div className="container-page pt-6 pb-8 lg:pt-10 lg:pb-12">
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-start">
             {/* Left: text + search */}
             <div className="order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 rounded-full bg-citadelle-gold/10 px-3 py-1 mb-4">
@@ -47,9 +47,9 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Right: 3D airplane */}
-            <div className="order-1 lg:order-2 h-[240px] sm:h-[300px] lg:h-[380px] relative">
-              <Airplane3D />
+            {/* Right: browsable 3D fleet */}
+            <div className="order-1 lg:order-2">
+              <FleetCarousel />
             </div>
           </div>
 
