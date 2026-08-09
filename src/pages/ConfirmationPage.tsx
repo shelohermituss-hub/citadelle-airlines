@@ -6,6 +6,7 @@ import { getAirport } from '@/data/airports';
 import { generatePdfSummary } from '@/utils/pdf';
 import { generateIcsFile } from '@/utils/ics';
 import { CheckCircle, Download, Calendar, Mail, BookOpen, Home, Plane, Clock, Users } from 'lucide-react';
+import { Flag } from '@/components/Flag';
 
 export default function ConfirmationPage() {
   const { t, locale, formatPrice, formatTime, formatDate } = useI18n();
@@ -24,6 +25,10 @@ export default function ConfirmationPage() {
     if (locale === 'fr') return a.cityFr;
     if (locale === 'ht') return a.cityHt;
     return a.cityEn;
+  }
+
+  function getCountryCode(iata: string): string | undefined {
+    return getAirport(iata)?.countryCode;
   }
 
   function handleDownloadPdf() {
@@ -76,7 +81,10 @@ export default function ConfirmationPage() {
               <div className="flex items-center gap-3">
                 <div>
                   <p className="font-semibold text-citadelle-black">{formatTime(outbound.segments[0].departure.at)}</p>
-                  <p className="text-xs text-black/50">{getCityName(outbound.segments[0].departure.iataCode)} ({outbound.segments[0].departure.iataCode})</p>
+                  <p className="text-xs text-black/50 flex items-center gap-1">
+                    <Flag countryCode={getCountryCode(outbound.segments[0].departure.iataCode) ?? ''} className="h-2 w-3 shrink-0" />
+                    {getCityName(outbound.segments[0].departure.iataCode)} ({outbound.segments[0].departure.iataCode})
+                  </p>
                 </div>
                 <div className="flex-1 flex items-center gap-1">
                   <div className="h-px flex-1 bg-black/10" />
@@ -85,7 +93,10 @@ export default function ConfirmationPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-citadelle-black">{formatTime(outbound.segments[outbound.segments.length - 1].arrival.at)}</p>
-                  <p className="text-xs text-black/50">{getCityName(outbound.segments[outbound.segments.length - 1].arrival.iataCode)} ({outbound.segments[outbound.segments.length - 1].arrival.iataCode})</p>
+                  <p className="text-xs text-black/50 flex items-center gap-1">
+                    <Flag countryCode={getCountryCode(outbound.segments[outbound.segments.length - 1].arrival.iataCode) ?? ''} className="h-2 w-3 shrink-0" />
+                    {getCityName(outbound.segments[outbound.segments.length - 1].arrival.iataCode)} ({outbound.segments[outbound.segments.length - 1].arrival.iataCode})
+                  </p>
                 </div>
               </div>
               <p className="text-xs text-black/40 mt-2">{formatDate(outbound.segments[0].departure.at)} · CA{outbound.segments[0].number}</p>
@@ -98,7 +109,10 @@ export default function ConfirmationPage() {
               <div className="flex items-center gap-3">
                 <div>
                   <p className="font-semibold text-citadelle-black">{formatTime(returnItin.segments[0].departure.at)}</p>
-                  <p className="text-xs text-black/50">{getCityName(returnItin.segments[0].departure.iataCode)} ({returnItin.segments[0].departure.iataCode})</p>
+                  <p className="text-xs text-black/50 flex items-center gap-1">
+                    <Flag countryCode={getCountryCode(returnItin.segments[0].departure.iataCode) ?? ''} className="h-2 w-3 shrink-0" />
+                    {getCityName(returnItin.segments[0].departure.iataCode)} ({returnItin.segments[0].departure.iataCode})
+                  </p>
                 </div>
                 <div className="flex-1 flex items-center gap-1">
                   <div className="h-px flex-1 bg-black/10" />
@@ -107,7 +121,10 @@ export default function ConfirmationPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-citadelle-black">{formatTime(returnItin.segments[returnItin.segments.length - 1].arrival.at)}</p>
-                  <p className="text-xs text-black/50">{getCityName(returnItin.segments[returnItin.segments.length - 1].arrival.iataCode)} ({returnItin.segments[returnItin.segments.length - 1].arrival.iataCode})</p>
+                  <p className="text-xs text-black/50 flex items-center gap-1">
+                    <Flag countryCode={getCountryCode(returnItin.segments[returnItin.segments.length - 1].arrival.iataCode) ?? ''} className="h-2 w-3 shrink-0" />
+                    {getCityName(returnItin.segments[returnItin.segments.length - 1].arrival.iataCode)} ({returnItin.segments[returnItin.segments.length - 1].arrival.iataCode})
+                  </p>
                 </div>
               </div>
               <p className="text-xs text-black/40 mt-2">{formatDate(returnItin.segments[0].departure.at)} · CA{returnItin.segments[0].number}</p>

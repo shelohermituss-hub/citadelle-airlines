@@ -5,6 +5,7 @@ import { getAirport } from '@/data/airports';
 import type { PNRRecord } from '@/data/types';
 import { generatePdfSummary } from '@/utils/pdf';
 import { Search, Loader2, BookOpen, Download, Info, Plane, Users } from 'lucide-react';
+import { Flag } from '@/components/Flag';
 
 export default function ManageBookingPage() {
   const { t, locale, formatPrice, formatTime, formatDate } = useI18n();
@@ -39,6 +40,10 @@ export default function ManageBookingPage() {
     if (locale === 'fr') return a.cityFr;
     if (locale === 'ht') return a.cityHt;
     return a.cityEn;
+  }
+
+  function getCountryCode(iata: string): string | undefined {
+    return getAirport(iata)?.countryCode;
   }
 
   function handleDownload() {
@@ -139,7 +144,10 @@ export default function ManageBookingPage() {
                     <div className="flex items-center gap-3">
                       <div>
                         <p className="font-semibold text-citadelle-black">{formatTime(first.departure.at)}</p>
-                        <p className="text-xs text-black/50">{getCityName(first.departure.iataCode)} ({first.departure.iataCode})</p>
+                        <p className="text-xs text-black/50 flex items-center gap-1">
+                          <Flag countryCode={getCountryCode(first.departure.iataCode) ?? ''} className="h-2 w-3 shrink-0" />
+                          {getCityName(first.departure.iataCode)} ({first.departure.iataCode})
+                        </p>
                       </div>
                       <div className="flex-1 flex items-center gap-1">
                         <div className="h-px flex-1 bg-black/10" />
@@ -148,7 +156,10 @@ export default function ManageBookingPage() {
                       </div>
                       <div>
                         <p className="font-semibold text-citadelle-black">{formatTime(last.arrival.at)}</p>
-                        <p className="text-xs text-black/50">{getCityName(last.arrival.iataCode)} ({last.arrival.iataCode})</p>
+                        <p className="text-xs text-black/50 flex items-center gap-1">
+                          <Flag countryCode={getCountryCode(last.arrival.iataCode) ?? ''} className="h-2 w-3 shrink-0" />
+                          {getCityName(last.arrival.iataCode)} ({last.arrival.iataCode})
+                        </p>
                       </div>
                     </div>
                     <p className="text-xs text-black/40 mt-2">{formatDate(first.departure.at)} · CA{first.number}</p>

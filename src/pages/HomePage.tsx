@@ -5,6 +5,7 @@ import { FleetCarousel } from '@/components/FleetCarousel';
 import { AIRPORTS, HUB_IATA } from '@/data/airports';
 import { getFromPrice } from '@/data/mockOffers';
 import { BookOpen, BarChart3, Plane, ArrowRight, Sparkles } from 'lucide-react';
+import { Flag } from '@/components/Flag';
 
 const FEATURED_DESTINATIONS = ['YUL', 'MIA', 'IST', 'SDQ', 'NAS', 'PTP'];
 
@@ -90,12 +91,19 @@ export default function HomePage() {
                 to={`/destinations/${a.iata}`}
                 className="card-hover group p-4 flex flex-col gap-2"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-citadelle-black text-xs font-bold text-citadelle-gold">
+                <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-citadelle-black text-xs font-bold text-citadelle-gold">
                   {a.iata}
+                  <Flag
+                    countryCode={a.countryCode}
+                    className="absolute -bottom-1 -right-1 h-3.5 w-5 ring-2 ring-white"
+                  />
                 </div>
                 <div>
                   <p className="font-semibold text-citadelle-black text-sm leading-tight">{getCityName(a)}</p>
-                  <p className="text-xs text-black/40">{getCountryName(a)}</p>
+                  <p className="text-xs text-black/40 flex items-center gap-1">
+                    <Flag countryCode={a.countryCode} className="h-2 w-3" />
+                    {getCountryName(a)}
+                  </p>
                 </div>
                 <div className="mt-auto pt-2">
                   <p className="text-xs text-black/40">{t('home.destinations.fromPrice')}</p>

@@ -9,6 +9,7 @@ import type { FlightResult, SearchCriteria } from '@/data/types';
 import { SearchForm } from '@/components/SearchForm';
 import { FlightCard } from '@/components/FlightCard';
 import { ArrowUpDown, Filter, X, Plane, Clock, ArrowRight, RefreshCw, Calendar } from 'lucide-react';
+import { Flag } from '@/components/Flag';
 
 type SortKey = 'price' | 'duration' | 'departure' | 'arrival';
 
@@ -149,11 +150,13 @@ export default function SearchResultsPage() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3 flex-wrap">
             <div className="flex items-center gap-2">
+              <Flag countryCode={getAirport(criteria.originLocationCode)?.countryCode ?? ''} className="h-3 w-4" />
               <span className="font-bold text-citadelle-black text-lg">{getCityName(criteria.originLocationCode)}</span>
               <span className="text-citadelle-black/30 text-sm">({criteria.originLocationCode})</span>
             </div>
             <ArrowRight className="h-4 w-4 text-citadelle-gold-dark" />
             <div className="flex items-center gap-2">
+              <Flag countryCode={getAirport(criteria.destinationLocationCode)?.countryCode ?? ''} className="h-3 w-4" />
               <span className="font-bold text-citadelle-black text-lg">{getCityName(criteria.destinationLocationCode)}</span>
               <span className="text-citadelle-black/30 text-sm">({criteria.destinationLocationCode})</span>
             </div>

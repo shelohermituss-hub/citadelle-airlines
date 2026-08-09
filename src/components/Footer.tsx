@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
 import { HUB_IATA } from '@/data/airports';
+import { Emblem } from './Logo';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 export function Footer() {
@@ -13,12 +14,9 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <svg viewBox="0 0 48 48" className="h-9 w-9" aria-hidden="true">
-                <rect width="48" height="48" rx="10" fill="#1f1f1f" />
-                <path d="M10 30l14-5 11-11 3 3-11 11-5 14-3-3 1.5-7.5L10 30z" fill="#F2A81D" />
-              </svg>
+              <Emblem className="h-9 w-9 shrink-0" />
               <div className="flex flex-col leading-none">
-                <span className="font-display text-xl font-extrabold tracking-tight text-white">Citadelle</span>
+                <span className="font-display text-xl font-extrabold tracking-tight text-white">CITADELLE</span>
                 <span className="text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-citadelle-gold">Airlines</span>
               </div>
             </div>

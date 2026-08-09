@@ -2,6 +2,7 @@ import { useI18n } from '@/i18n/I18nContext';
 import { getAirport } from '@/data/airports';
 import type { FlightResult } from '@/data/types';
 import { Clock, Plane, ArrowRight } from 'lucide-react';
+import { Flag } from '@/components/Flag';
 
 interface FlightCardProps {
   result: FlightResult;
@@ -21,6 +22,10 @@ export function FlightCard({ result, onSelect, isReturn = false }: FlightCardPro
     if (locale === 'fr') return a.cityFr;
     if (locale === 'ht') return a.cityHt;
     return a.cityEn;
+  }
+
+  function getCountryCode(iata: string): string | undefined {
+    return getAirport(iata)?.countryCode;
   }
 
   const fareLabel = result.fareFamily === 'ECO' ? t('fare.eco')
@@ -49,7 +54,10 @@ export function FlightCard({ result, onSelect, isReturn = false }: FlightCardPro
             <div className="text-right sm:text-left">
               <p className="font-display text-xl sm:text-2xl font-bold text-citadelle-black">{formatTime(firstSeg.departure.at)}</p>
               <p className="text-xs text-black/50 font-medium">{firstSeg.departure.iataCode}</p>
-              <p className="text-xs text-black/40 truncate">{getCityName(firstSeg.departure.iataCode)}</p>
+              <p className="text-xs text-black/40 truncate flex items-center gap-1 sm:justify-start justify-end">
+                <Flag countryCode={getCountryCode(firstSeg.departure.iataCode) ?? ''} className="h-2 w-3 shrink-0" />
+                {getCityName(firstSeg.departure.iataCode)}
+              </p>
             </div>
 
             {/* Route line */}
@@ -73,7 +81,10 @@ export function FlightCard({ result, onSelect, isReturn = false }: FlightCardPro
             <div>
               <p className="font-display text-xl sm:text-2xl font-bold text-citadelle-black">{formatTime(lastSeg.arrival.at)}</p>
               <p className="text-xs text-black/50 font-medium">{lastSeg.arrival.iataCode}</p>
-              <p className="text-xs text-black/40 truncate">{getCityName(lastSeg.arrival.iataCode)}</p>
+              <p className="text-xs text-black/40 truncate flex items-center gap-1">
+                <Flag countryCode={getCountryCode(lastSeg.arrival.iataCode) ?? ''} className="h-2 w-3 shrink-0" />
+                {getCityName(lastSeg.arrival.iataCode)}
+              </p>
             </div>
           </div>
 

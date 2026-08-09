@@ -61,6 +61,16 @@ const TZ_OFFSETS: Record<string, string> = {
   KIN: '-05:00',
   PTP: '-04:00',
   CUR: '-04:00',
+  BGI: '-04:00',
+  ANU: '-04:00',
+  PTY: '-05:00',
+  MGA: '-06:00',
+  MEX: '-06:00',
+  GEO: '-04:00',
+  PBM: '-03:00',
+  CDG: '+01:00',
+  MAD: '+01:00',
+  FCO: '+01:00',
 };
 
 function getTz(iata: string): string {

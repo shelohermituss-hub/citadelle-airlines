@@ -2,7 +2,8 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nContext';
 import { getAirport, HUB_IATA } from '@/data/airports';
 import { getFromPrice } from '@/data/mockOffers';
-import { Plane, Clock, MapPin, Building, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Plane, Clock, Building, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Flag } from '@/components/Flag';
 
 export default function DestinationDetailPage() {
   const { code } = useParams<{ code: string }>();
@@ -65,14 +66,17 @@ export default function DestinationDetailPage() {
               }} />
               <div className="text-center relative z-10">
                 <p className="font-display text-5xl sm:text-6xl font-extrabold text-citadelle-gold tracking-tight">{airport.iata}</p>
-                <p className="text-white/60 text-sm mt-1">{getCountryName(airport)}</p>
+                <p className="text-white/60 text-sm mt-1 flex items-center justify-center gap-1.5">
+                  <Flag countryCode={airport.countryCode} className="h-2.5 w-4" />
+                  {getCountryName(airport)}
+                </p>
               </div>
             </div>
           </div>
 
           <h1 className="font-display text-3xl sm:text-4xl font-bold text-citadelle-black mb-2">{getCityName(airport)}</h1>
           <p className="text-sm text-black/50 flex items-center gap-1.5 mb-6">
-            <MapPin className="h-4 w-4" />
+            <Flag countryCode={airport.countryCode} className="h-3 w-4" />
             {getCountryName(airport)}
           </p>
 
