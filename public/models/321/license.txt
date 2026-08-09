@@ -1,0 +1,11 @@
+Model Information:
+* title:	Germanwings+A320
+* source:	https://sketchfab.com/3d-models/germanwingsa320-e0dbb4a8e7ee4447ad2b930a73cb1e80
+* author:	mendezbrahian590 (https://sketchfab.com/mendezbrahian590)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Germanwings+A320" (https://sketchfab.com/3d-models/germanwingsa320-e0dbb4a8e7ee4447ad2b930a73cb1e80) by mendezbrahian590 (https://sketchfab.com/mendezbrahian590) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

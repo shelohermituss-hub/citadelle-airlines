@@ -74,11 +74,14 @@ export function Footer() {
         <p className="mt-3 text-[0.65rem] text-white/25 leading-relaxed">
           3D models: "Boeing 787-9" by{' '}
           <a href="https://sketchfab.com/nobilishornet2" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/40">Nobilis 2</a>
-          {' '}and "Airbus_a330-900_neo" by{' '}
+          , "Airbus_a330-900_neo" by{' '}
           <a href="https://sketchfab.com/mhmdshwatahmdmhdy922" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/40">Ahmed Mahdi</a>
+          , "A320neo" by{' '}
+          <a href="https://sketchfab.com/pranav27" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/40">pranav27</a>
+          {' '}and "Germanwings+A320" by{' '}
+          <a href="https://sketchfab.com/mendezbrahian590" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/40">mendezbrahian590</a>
           {' '}— licensed under{' '}
-          <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/40">CC-BY-4.0</a>
-          , retinted to the Citadelle livery.
+          <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/40">CC-BY-4.0</a>.
         </p>
       </div>
     </footer>
